@@ -3,15 +3,24 @@ package app.zoftwhere.combinatoric;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-class SeriesBigDecimal extends AbstractSeries<BigDecimal, BigInteger> {
+class SequenceBigDecimal extends AbstractSequence<BigDecimal, BigInteger> {
 
-    SeriesBigDecimal(BigDecimal base, BigDecimal increment, int exponent, BigInteger length) {
+    SequenceBigDecimal(BigDecimal base, BigDecimal increment, int exponent, BigInteger length) {
         super(base, increment, exponent, length);
     }
 
     @Override
-    protected SeriesBigDecimal clone(BigDecimal base, BigDecimal increment, int exponent, BigInteger length) {
-        return new SeriesBigDecimal(base, increment, exponent, length);
+    public BigDecimal sum() {
+        return Series.calculate(base(), increment(), exponent(), length());
+    }
+
+    @Override
+    protected Sequence<BigDecimal, BigInteger> newInstance(BigDecimal base,
+        BigDecimal increment,
+        int exponent,
+        BigInteger length)
+    {
+        return new SequenceBigDecimal(base, increment, exponent, length);
     }
 
     @Override

@@ -1,7 +1,9 @@
 package app.zoftwhere.combinatoric;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
+
+import static app.zoftwhere.combinatoric.Generator.empty;
 
 class PermutationBasic<T> extends AbstractPermutation<T> {
 
@@ -9,27 +11,44 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
 
     private final int[] index;
 
-    PermutationBasic(int[] index, int size) {
-        super(index);
-        this.index = getIndex();
-        this.size = size;
+    private final List<T> list;
+
+    private final int kSize;
+
+    public PermutationBasic(int[] index, List<T> list, int kSize) {
+        super(index, list, kSize);
+        this.index = index;
+        this.size = index.length;
+        this.list = list;
+        this.kSize = kSize;
     }
 
     @Override
-    public List<T> getValue() {
-        return null;
+    protected Permutation<T> newInstance(int[] index, List<T> list, int kSize) {
+        return new PermutationBasic<>(index, list, kSize);
     }
 
     @Override
-    public T getValue(int position) {
-        throw new NoSuchElementException();
+    public List<T> value() {
+        List<T> result = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            result.add(value(i));
+        }
+        return result;
     }
 
-
     @Override
-    public PermutationBasic<T> next(int position) {
-        if (position < 0 || position >= size) {
-            return new PermutationBasic<>(new int[0], 0);
+    public T value(int position) {
+        return list.get(index[position]);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Permutation<T> progress(int position) {
+        if (!checkPosition(position)) {
+            return empty();
         }
 
         int min = index[position];
@@ -38,8 +57,8 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
 
         for (int i = position + 1; i < size; i++) {
             if (index[i] == min + 1) {
-                int[] push = next(index, position, i);
-                return new PermutationBasic<>(push, size);
+                int[] push = advance(index, position, i);
+                return newInstance(push, list, kSize);
             }
             if (index[i] > min && index[i] < max) {
                 swap = i;
@@ -48,22 +67,24 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
         }
 
         if (swap == position) {
-            return new PermutationBasic<>(new int[0], 0);
+            return empty();
         }
 
-        return new PermutationBasic<>(next(index, position, swap), size);
+        return newInstance(advance(index, position, swap), list, kSize);
     }
 
     @Override
     public String toString() {
-        if (isEmpty()) {
-            return "[]";
-        }
-
         StringBuilder builder = new StringBuilder("[");
-        builder.append(String.format("%d", index[0]));
-        for (int i = 1; i < size; i++) {
-            builder.append(String.format(", %d", index[i]));
+        builder.append(String.format("%d:%s", index[0], value(0)));
+        for (int i = 1; i < kSize; i++) {
+            builder.append(String.format(", %d:%s", index[i], value(i)));
+        }
+        if (kSize < size) {
+            builder.append(String.format("][%d:%s", index[kSize], value(kSize)));
+        }
+        for (int i = kSize + 1; i < size; i++) {
+            builder.append(String.format(", %d:%s", index[i], value(i)));
         }
 
         return builder.append("]").toString();
