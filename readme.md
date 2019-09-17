@@ -1,6 +1,6 @@
 # ZoftWhere Combinatoric Library
 
-Release v1.0.0 (2019-09-15)
+Release v2.0.0 (2019-09-17)
 
 
 ## Features
