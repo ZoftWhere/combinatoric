@@ -1,14 +1,19 @@
 package app.zoftwhere.combinatoric;
 
-class SeriesPrimitive extends AbstractSeries<Long, Long> {
+class SequencePrimitive extends AbstractSequence<Long, Long> {
 
-    SeriesPrimitive(Long base, Long increment, int exponent, Long length) {
+    SequencePrimitive(Long base, Long increment, int exponent, Long length) {
         super(base, increment, exponent, length);
     }
 
     @Override
-    protected SeriesPrimitive clone(Long base, Long increment, int exponent, Long length) {
-        return new SeriesPrimitive(base, increment, exponent, length);
+    public Long sum() {
+        return Series.calculate(base(), increment(), exponent(), length());
+    }
+
+    @Override
+    protected SequencePrimitive newInstance(Long base, Long increment, int exponent, Long length) {
+        return new SequencePrimitive(base, increment, exponent, length);
     }
 
     @Override
