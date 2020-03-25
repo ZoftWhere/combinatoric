@@ -24,6 +24,11 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
 
     /**
      * Returns an immutable instance with the values in the clone.
+     *
+     * @param index index array
+     * @param list  list of elements
+     * @param kSize count of permutation elements
+     * @return immutable permutation instance.
      */
     protected abstract Permutation<T> newInstance(int[] index, List<T> list, int kSize);
 
