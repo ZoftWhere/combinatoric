@@ -2,6 +2,11 @@ package app.zoftwhere.combinatoric;
 
 import java.util.List;
 
+/**
+ * Permutation.
+ *
+ * @param <T> the type
+ */
 public interface Permutation<T> {
 
     /**
