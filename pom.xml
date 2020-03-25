@@ -104,6 +104,9 @@
                     <execution>
                         <id>default-compile</id>
                         <phase>none</phase>
+                        <configuration>
+                            <release>${maven.compiler.test-jdk}</release>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>main-compile</id>
@@ -112,6 +115,23 @@
                             <goal>compile</goal>
                         </goals>
                         <configuration>
+                            <compileSourceRoots>
+                                <sourceRoot>${project.build.sourceDirectory}</sourceRoot>
+                                <sourceRoot>main-jpms</sourceRoot>
+                            </compileSourceRoots>
+                            <release>${maven.compiler.test-jdk}</release>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>main-compile-jdk8</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <compileSourceRoots>
+                                <sourceRoot>${project.build.sourceDirectory}</sourceRoot>
+                            </compileSourceRoots>
                             <source>${maven.compiler.main-jdk}</source>
                             <target>${maven.compiler.main-jdk}</target>
                         </configuration>
@@ -127,19 +147,16 @@
                             <goal>testCompile</goal>
                         </goals>
                         <configuration>
-                            <source>${maven.compiler.test-jdk}</source>
-                            <target>${maven.compiler.test-jdk}</target>
+                            <release>${maven.compiler.test-jdk}</release>
                         </configuration>
                     </execution>
                 </executions>
                 <configuration>
-                    <source>${maven.compiler.test-jdk}</source>
-                    <target>${maven.compiler.test-jdk}</target>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
                     <compilerArgs>
                         <arg>-Xlint:all,-processing,-cast,-serial,-try</arg>
                     </compilerArgs>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
 
@@ -289,7 +306,7 @@
                 <version>1.0.0.Beta2</version>
                 <executions>
                     <execution>
-                        <id>add-module-info</id>
+                        <id>main-jpms</id>
                         <phase>package</phase>
                         <goals>
                             <goal>add-module-info</goal>
