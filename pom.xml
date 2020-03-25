@@ -319,13 +319,6 @@
                 <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
-                        <phase>none</phase>
-                    </execution>
-                    <execution>
-                        <id>default-source</id>
-                        <phase>none</phase>
-                    </execution>
-                    <execution>
                         <id>main-source</id>
                         <phase>package</phase>
                         <goals>
