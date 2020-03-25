@@ -1,9 +1,9 @@
-package main.permutation;
+package example;
 
 import app.zoftwhere.combinatoric.Generator;
 import app.zoftwhere.combinatoric.Permutation;
 
-public class Example {
+public class PermutationExample {
 
     public static void main(String[] args) {
         Permutation<Void> permutation;

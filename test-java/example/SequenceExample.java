@@ -1,11 +1,11 @@
-package main.sequence;
+package example;
 
 import app.zoftwhere.combinatoric.Generator;
 import app.zoftwhere.combinatoric.Sequence;
 
 import java.math.BigDecimal;
 
-public class Example {
+public class SequenceExample {
 
     @SuppressWarnings({"UnusedAssignment", "unused"})
     public static void main(String[] args) {
