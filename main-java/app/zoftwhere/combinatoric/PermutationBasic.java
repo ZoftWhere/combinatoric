@@ -15,7 +15,7 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
 
     private final int kSize;
 
-    public PermutationBasic(int[] index, List<T> list, int kSize) {
+    PermutationBasic(int[] index, List<T> list, int kSize) {
         super(index, list, kSize);
         this.index = index;
         this.size = index.length;
