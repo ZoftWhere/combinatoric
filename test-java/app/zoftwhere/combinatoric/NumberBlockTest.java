@@ -1,7 +1,5 @@
 package app.zoftwhere.combinatoric;
 
-import app.zoftwhere.combinatoric.Permutation;
-import app.zoftwhere.combinatoric.NumberBlock;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

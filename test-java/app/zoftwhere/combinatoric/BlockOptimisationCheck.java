@@ -1,7 +1,5 @@
 package app.zoftwhere.combinatoric;
 
-import app.zoftwhere.combinatoric.BlockOptimisation;
-
 public class BlockOptimisationCheck {
 
     public static void main(String[] args) {

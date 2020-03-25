@@ -1,8 +1,5 @@
 package app.zoftwhere.combinatoric;
 
-import app.zoftwhere.combinatoric.Generator;
-import app.zoftwhere.combinatoric.Permutation;
-
 import java.util.ArrayList;
 import java.util.List;
 
