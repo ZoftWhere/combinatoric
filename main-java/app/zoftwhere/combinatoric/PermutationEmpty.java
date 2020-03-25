@@ -75,7 +75,7 @@ class PermutationEmpty<T> extends AbstractPermutation<T> {
      */
     @Override
     public Permutation<T> progress(int position) {
-        return newInstance(null, null, 0);
+        return this;
     }
 
     @Override
