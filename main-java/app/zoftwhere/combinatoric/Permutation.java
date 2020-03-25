@@ -6,24 +6,28 @@ public interface Permutation<T> {
 
     /**
      * Check if the permutation has any elements.
+     *
      * @return true if the permutation has elements, false otherwise
      */
     boolean isPresent();
 
     /**
      * Check if the permutation is empty.
+     *
      * @return true if the permutation is empty, false otherwise
      */
     boolean isEmpty();
 
     /**
      * The element count in the selection set.
+     *
      * @return element count in the selection set
      */
     int size();
 
     /**
      * The element count in the permutation.
+     *
      * @return element count in the permutation
      */
     int kSize();
