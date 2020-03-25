@@ -24,19 +24,20 @@
         <!-- Settings: User defined plugin properties -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
+        <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
         <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
         <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
-        <maven-jar-plugin.version>3.1.2</maven-jar-plugin.version>
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven-javadoc-plugin.version>3.1.1</maven-javadoc-plugin.version>
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-        <maven-site-plugin.version>3.8.2</maven-site-plugin.version>
-        <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
+        <maven-site-plugin.version>3.9.0</maven-site-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <maven-toolchains-plugin.version>3.0.0</maven-toolchains-plugin.version>
 
         <!-- > -->
-        <org.junit.5.version>5.4.2</org.junit.5.version>
+        <surefire.printSummary>false</surefire.printSummary>
+        <org.junit.5.version>5.6.0</org.junit.5.version>
     </properties>
 
     <dependencyManagement>
@@ -181,6 +182,36 @@
                 <configuration>
                     <overwrite>false</overwrite>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-test</id>
+                        <configuration>
+                            <argLine>
+                                <!-- main-java packages -->
+                                --add-opens&#32;zoftwhere.mathematic.combinatoric/app.zoftwhere.combinatoric=ALL-UNNAMED
+                                <!-- test-java packages -->
+                                --add-opens&#32;zoftwhere.mathematic.combinatoric/app.zoftwhere.combinatoric.scope=ALL-UNNAMED
+                                --add-opens&#32;zoftwhere.mathematic.combinatoric/example=ALL-UNNAMED
+                            </argLine>
+                            <forkCount>4</forkCount>
+                            <reuseForks>false</reuseForks>
+                            <printSummary>${surefire.printSummary}</printSummary>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.jupiter</groupId>
+                        <artifactId>junit-jupiter-engine</artifactId>
+                        <version>${org.junit.5.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <plugin>
