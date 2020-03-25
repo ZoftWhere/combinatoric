@@ -16,7 +16,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
     private final List<T> list;
 
     /**
-     * User PermutationBuilder to initialize a new permutation.
+     * Package-private constructor to initialize a new permutation.
      */
     AbstractPermutation(int[] index, List<T> list, int kSize) {
         this.index = index;
