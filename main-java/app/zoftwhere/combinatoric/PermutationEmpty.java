@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 class PermutationEmpty<T> extends AbstractPermutation<T> {
 
     PermutationEmpty() {
-        super(new int[0], null, 0);
+        super(new int[0], 0);
     }
 
     @Override
