@@ -165,7 +165,7 @@
                     </execution>
                     <execution>
                         <id>test-resources</id>
-                        <phase>process-resources</phase>
+                        <phase>process-test-resources</phase>
                         <goals>
                             <goal>testResources</goal>
                         </goals>
