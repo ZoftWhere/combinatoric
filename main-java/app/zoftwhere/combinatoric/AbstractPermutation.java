@@ -13,15 +13,12 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
 
     private final int kSize;
 
-    private final List<T> list;
-
     /**
      * Package-private constructor to initialize a new permutation.
      */
     AbstractPermutation(int[] index, List<T> list, int kSize) {
         this.index = index;
         this.size = index.length;
-        this.list = list;
         this.kSize = kSize;
     }
 
