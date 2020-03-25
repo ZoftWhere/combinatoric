@@ -345,6 +345,25 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
                 <version>${maven-install-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>main-install</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <pomFile>${project.basedir}/pom.xml</pomFile>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${project.artifactId}</artifactId>
+                            <version>${project.version}</version>
+                            <file>${project.build.directory}/${project.build.finalName}.jar</file>
+                            <packaging>jar</packaging>
+                            <sources>${project.build.directory}/${project.build.finalName}-sources.jar</sources>
+                            <javadoc>${project.build.directory}/${project.build.finalName}-javadoc.jar</javadoc>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
