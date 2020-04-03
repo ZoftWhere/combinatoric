@@ -1,12 +1,14 @@
 package app.zoftwhere.combinatoric;
 
 import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 import static app.zoftwhere.combinatoric.Generator.newPermutation;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -56,20 +58,20 @@ class PermutationTest {
         assertNotNull(permutation.next());
         assertNotNull(permutation.next(0));
 
-        assertTrue(newPermutation(0) instanceof PermutationEmpty);
-        assertTrue(newPermutation(1, 0) instanceof PermutationEmpty);
-        assertTrue(newPermutation(1).next() instanceof PermutationEmpty);
-        assertTrue(newPermutation(1).next(0) instanceof PermutationEmpty);
-        assertTrue(newPermutation(1).progress(0) instanceof PermutationEmpty);
-        assertTrue(newPermutation(2, 1).progress(1) instanceof PermutationEmpty);
-        assertTrue(newPermutation(null, null, 0) instanceof PermutationEmpty);
-        assertTrue(newPermutation(List.of(0)).next() instanceof PermutationEmpty);
-        assertTrue(newPermutation(List.of(0)).next(0) instanceof PermutationEmpty);
-        assertTrue(newPermutation((List<Integer>) null) instanceof PermutationEmpty);
-        assertTrue(newPermutation(new ArrayList<Integer>(0)) instanceof PermutationEmpty);
+        assertClass(newPermutation(0), PermutationEmpty.class);
+        assertClass(newPermutation(1, 0), PermutationEmpty.class);
+        assertClass(newPermutation(1).next(), PermutationEmpty.class);
+        assertClass(newPermutation(1).next(0), PermutationEmpty.class);
+        assertClass(newPermutation(1).progress(0), PermutationEmpty.class);
+        assertClass(newPermutation(2, 1).progress(1), PermutationEmpty.class);
+        assertClass(newPermutation(null, null, 0), PermutationEmpty.class);
+        assertClass(newPermutation(List.of(0)).next(), PermutationEmpty.class);
+        assertClass(newPermutation(List.of(0)).next(0), PermutationEmpty.class);
+        assertClass(newPermutation((List<Integer>) null), PermutationEmpty.class);
+        assertClass(newPermutation(new ArrayList<Integer>(0)), PermutationEmpty.class);
 
-        assertTrue(newPermutation(List.of(0), false).progress(0) instanceof PermutationEmpty);
-        assertTrue(newPermutation(Arrays.asList(1, 2, 1), 1).progress(2) instanceof PermutationEmpty);
+        assertClass(newPermutation(List.of(0), false).progress(0), PermutationEmpty.class);
+        assertClass(newPermutation(Arrays.asList(1, 2, 1), 1).progress(2), PermutationEmpty.class);
     }
 
     @Test
@@ -77,25 +79,25 @@ class PermutationTest {
         Permutation<Integer> permutation;
 
         permutation = newPermutation(List.of(1, 2, 3, 4));
-        assertTrue(permutation instanceof PermutationBasic);
+        assertClass(permutation, PermutationBasic.class);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), Comparator.naturalOrder());
-        assertTrue(permutation instanceof PermutationBasic);
+        assertClass(permutation, PermutationBasic.class);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), true);
-        assertTrue(permutation instanceof PermutationBasic);
+        assertClass(permutation, PermutationBasic.class);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), false);
-        assertTrue(permutation instanceof PermutationBasic);
+        assertClass(permutation, PermutationBasic.class);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), Comparator.naturalOrder(), 3);
-        assertTrue(permutation instanceof PermutationBasic);
+        assertClass(permutation, PermutationBasic.class);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), true, 3);
-        assertTrue(permutation instanceof PermutationBasic);
+        assertClass(permutation, PermutationBasic.class);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), false, 3);
-        assertTrue(permutation instanceof PermutationBasic);
+        assertClass(permutation, PermutationBasic.class);
     }
 
     @Test
@@ -103,22 +105,22 @@ class PermutationTest {
         Permutation<Integer> permutation;
 
         permutation = newPermutation(List.of(1, 1, 1, 1), Comparator.naturalOrder());
-        assertTrue(permutation instanceof PermutationNTuple);
+        assertClass(permutation, PermutationNTuple.class);
 
         permutation = newPermutation(List.of(1, 1, 2, 2), Comparator.naturalOrder());
-        assertTrue(permutation instanceof PermutationNTuple);
+        assertClass(permutation, PermutationNTuple.class);
 
         permutation = newPermutation(List.of(1, 1, 1, 1));
-        assertTrue(permutation instanceof PermutationNTuple);
+        assertClass(permutation, PermutationNTuple.class);
 
         permutation = newPermutation(List.of(1, 1, 2, 2));
-        assertTrue(permutation instanceof PermutationNTuple);
+        assertClass(permutation, PermutationNTuple.class);
 
         permutation = newPermutation(List.of(1, 1, 1, 1), true);
-        assertTrue(permutation instanceof PermutationNTuple);
+        assertClass(permutation, PermutationNTuple.class);
 
         permutation = newPermutation(List.of(1, 1, 2, 2), true);
-        assertTrue(permutation instanceof PermutationNTuple);
+        assertClass(permutation, PermutationNTuple.class);
     }
 
     @Test
@@ -329,7 +331,6 @@ class PermutationTest {
         }
     }
 
-
     @Test
     void testKTuple() {
         final List<Integer> list = Arrays.asList(1, 1, 2, 2, 3, 3);
@@ -355,13 +356,11 @@ class PermutationTest {
         assertEquals(size, permutation.size());
 
         do {
-            //System.out.printf("\"%s\",%n", permutation.toString());
             assertEquals(expected[index], permutation.toString());
             permutation = permutation.next(size - 1);
             index++;
         }
         while (permutation.isPresent());
-        //System.out.printf("\"%s\"%n", permutation.toString());
 
         assertTrue(permutation.isEmpty());
         assertFalse(permutation.isPresent());
@@ -410,6 +409,16 @@ class PermutationTest {
         if (!(permutation instanceof PermutationEmpty)) {
             fail("permutation.type.not.empty");
         }
+    }
+
+    private static void assertClass(Object object, Class<?> objectClass) {
+        String expected = objectClass.getName();
+        String actual = object.getClass().getName();
+        if (Objects.equals(expected, actual)) {
+            return;
+        }
+
+        throw new AssertionFailedError("Object not of the expected type.", expected, actual);
     }
 
 }

@@ -1,4 +1,4 @@
-package main.combinatoric;
+package app.zoftwhere.combinatoric.scope;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +9,7 @@ import static app.zoftwhere.combinatoric.Generator.primitiveSequence;
 /**
  * Test scope rules.
  */
-class SequenceTest {
+class SequenceScopeTest {
 
     @Test
     void testPrimitive() {

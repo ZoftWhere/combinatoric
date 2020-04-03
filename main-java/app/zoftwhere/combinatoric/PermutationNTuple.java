@@ -14,7 +14,7 @@ class PermutationNTuple<T> extends PermutationBasic<T> {
 
     private final int kSize;
 
-    public PermutationNTuple(int[] index, List<T> list, int kSize) {
+    PermutationNTuple(int[] index, List<T> list, int kSize) {
         super(index, list, kSize);
         this.index = index;
         this.size = index.length;

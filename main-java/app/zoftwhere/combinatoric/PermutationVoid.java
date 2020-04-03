@@ -34,6 +34,7 @@ class PermutationVoid extends PermutationBasic<Void> {
     }
 
     @Override
+    @SuppressWarnings("EmptyMethod")
     public Permutation<Void> next() {
         return super.next();
     }

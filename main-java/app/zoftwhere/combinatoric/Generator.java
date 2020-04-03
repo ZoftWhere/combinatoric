@@ -52,7 +52,8 @@ public class Generator {
     /**
      * Creates an immutable void permutation.
      *
-     * @param size the number of elements to hold.
+     * @param size  the number of elements to hold
+     * @param kSize the number of elements for display
      * @return immutable void permutation
      */
     public static Permutation<Void> newPermutation(int size, int kSize) {
@@ -71,7 +72,9 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
-     * @param list the value elements
+     * @param <T>        the type
+     * @param list       the value elements
+     * @param comparator the comparator
      * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
      * @throws NullPointerException if any of the list items are null
      */
@@ -82,8 +85,10 @@ public class Generator {
     /**
      * Creates an immutable k-permutation.
      *
-     * @param list  the value elements
-     * @param kSize kSize value
+     * @param <T>        the type
+     * @param list       the value elements
+     * @param comparator the comparator
+     * @param kSize      kSize value
      * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
      * @throws NullPointerException if any of the list items are null
      */
@@ -125,6 +130,7 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
+     * @param <T>  the type
      * @param list the value elements
      * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
      * @throws NullPointerException if any of the list items are null
@@ -136,6 +142,7 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
+     * @param <T>   the type
      * @param list  the value elements
      * @param kSize kSize value
      * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
@@ -180,6 +187,7 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
+     * @param <T>             the type
      * @param list            the value elements
      * @param withRepetitions flag to specify if duplicates should be ignored
      * @return immutable linked permutation
@@ -192,6 +200,7 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
+     * @param <T>             the type
      * @param list            the value elements
      * @param withRepetitions flag to specify if duplicates should be ignored
      * @param kSize           kSize value
@@ -234,6 +243,7 @@ public class Generator {
     /**
      * Creates an empty permutation.
      *
+     * @param <T> the type
      * @return an empty permutation
      */
     static <T> Permutation<T> empty() {

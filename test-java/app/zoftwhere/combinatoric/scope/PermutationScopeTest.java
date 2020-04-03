@@ -1,4 +1,4 @@
-package main.combinatoric;
+package app.zoftwhere.combinatoric.scope;
 
 import app.zoftwhere.combinatoric.Generator;
 import app.zoftwhere.combinatoric.Permutation;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Test scope rules.
  */
-class PermutationTest {
+class PermutationScopeTest {
 
     @Test
     void testVoidPermutation() {

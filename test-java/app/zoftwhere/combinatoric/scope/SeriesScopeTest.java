@@ -1,4 +1,4 @@
-package main.combinatoric;
+package app.zoftwhere.combinatoric.scope;
 
 import app.zoftwhere.combinatoric.Series;
 import org.junit.jupiter.api.Assertions;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Test scope rules.
  */
-class SeriesTest {
+class SeriesScopeTest {
 
     @Test
     void testCalculate() {

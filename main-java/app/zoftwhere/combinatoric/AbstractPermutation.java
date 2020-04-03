@@ -13,20 +13,22 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
 
     private final int kSize;
 
-    private final List<T> list;
-
     /**
-     * User PermutationBuilder to initialize a new permutation.
+     * Package-private constructor to initialize a new permutation.
      */
-    AbstractPermutation(int[] index, List<T> list, int kSize) {
+    AbstractPermutation(int[] index, int kSize) {
         this.index = index;
         this.size = index.length;
-        this.list = list;
         this.kSize = kSize;
     }
 
     /**
      * Returns an immutable instance with the values in the clone.
+     *
+     * @param index index array
+     * @param list  list of elements
+     * @param kSize count of permutation elements
+     * @return immutable permutation instance.
      */
     protected abstract Permutation<T> newInstance(int[] index, List<T> list, int kSize);
 
