@@ -9,8 +9,21 @@ import java.util.List;
 import static app.zoftwhere.combinatoric.AbstractPermutation.orderedArray;
 import static java.util.Collections.unmodifiableList;
 
+/**
+ * <p>Generator.
+ * </p>
+ * <p>This is a public class for factory functionality.
+ * </p>
+ *
+ * @author Osmund
+ */
 public class Generator {
 
+    /**
+     * Factory method for {@link java.lang.Long} {@link app.zoftwhere.combinatoric.Sequence}.
+     *
+     * @return Long sequence
+     */
     public static Sequence<Long, Long> primitiveSequence() {
         Long base = 1L;
         Long increment = 1L;
@@ -19,6 +32,11 @@ public class Generator {
         return new SequencePrimitive(base, increment, exponent, length);
     }
 
+    /**
+     * Factory method for {@link java.math.BigInteger} {@link app.zoftwhere.combinatoric.Sequence}.
+     *
+     * @return BigInteger sequence
+     */
     public static Sequence<BigInteger, BigInteger> bigIntegerSequence() {
         BigInteger base = BigInteger.ONE;
         BigInteger increment = BigInteger.ONE;
@@ -27,6 +45,11 @@ public class Generator {
         return new SequenceBigInteger(base, increment, exponent, length);
     }
 
+    /**
+     * Factory method for {@link java.math.BigDecimal} {@link app.zoftwhere.combinatoric.Sequence}.
+     *
+     * @return BigDecimal sequence
+     */
     public static Sequence<BigDecimal, BigInteger> bigDecimalSequence() {
         BigDecimal base = BigDecimal.ONE;
         BigDecimal increment = BigDecimal.ONE;
@@ -223,6 +246,14 @@ public class Generator {
         return new PermutationBasic<>(orderedArray(size), unmodifiableList(list), kSize);
     }
 
+    /**
+     * Returns the index for group insertion.
+     *
+     * @param list list of elements
+     * @param item item to insert
+     * @param <T>  item type
+     * @return index for group insertion
+     */
     private static <T> int getGroupInsertIndex(final List<T> list, T item) {
         final int size = list.size();
         if (size == 0) {
