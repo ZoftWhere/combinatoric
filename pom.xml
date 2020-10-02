@@ -7,6 +7,13 @@
     <groupId>app.zoftwhere.mathematic</groupId>
     <artifactId>combinatoric</artifactId>
     <version>2.2.0-SNAPSHOT</version>
+    <organization>
+        <name>ZoftWhere</name>
+        <url>https://github.com/ZoftWhere</url>
+    </organization>
+    <name>zoftwhere.mathematic.combinatoric</name>
+    <description>ZoftWhere Mathematic Combinatoric Library.</description>
+    <url>https://github.com/ZoftWhere/combinatoric</url>
 
     <properties>
         <!-- Settings: maven-resource-plugin -->
