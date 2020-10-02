@@ -1,8 +1,8 @@
 package example;
 
-import app.zoftwhere.combinatoric.Generator;
-
 import java.util.Arrays;
+
+import app.zoftwhere.combinatoric.Generator;
 
 public class RunIndexPermutation {
 

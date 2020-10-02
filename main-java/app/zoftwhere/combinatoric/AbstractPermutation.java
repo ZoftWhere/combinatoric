@@ -35,63 +35,45 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
      */
     protected abstract Permutation<T> newInstance(int[] index, List<T> list, int kSize);
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public int size() {
         return size;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public int kSize() {
         return kSize;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public boolean isEmpty() {
         return size == 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public boolean isPresent() {
         return size != 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public int[] index() {
         int[] push = new int[size];
         System.arraycopy(index, 0, push, 0, size);
         return push;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public int index(int position) {
         return index[position];
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public abstract List<T> value();
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public abstract T value(int position);
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public Permutation<T> next() {
         if (size < 2) {
             return empty();
@@ -99,9 +81,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
         return next(Math.min(size - 2, kSize - 1));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public Permutation<T> next(int position) {
         checkPosition(position);
 
@@ -120,9 +100,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
         return progress(0);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public abstract Permutation<T> progress(int position);
 
     boolean checkPosition(int position) {

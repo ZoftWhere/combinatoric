@@ -6,9 +6,13 @@ import java.util.List;
 public class NumberBlock {
 
     private final int[] rowTotal;
+
     private final int[] columnTotal;
+
     private final int rowCount;
+
     private final int columnCount;
+
     private final List<Integer> pocket;
 
     public NumberBlock(int[] rowTotal, int[] columnTotal, int[] pileArray) {

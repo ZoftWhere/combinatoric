@@ -1,9 +1,9 @@
 package app.zoftwhere.combinatoric.scope;
 
+import java.util.List;
+
 import app.zoftwhere.combinatoric.Generator;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 /**
  * Test scope rules.

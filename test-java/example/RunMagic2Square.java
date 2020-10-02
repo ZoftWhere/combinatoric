@@ -1,10 +1,10 @@
 package example;
 
-import app.zoftwhere.combinatoric.NumberBlock;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+
+import app.zoftwhere.combinatoric.NumberBlock;
 
 import static app.zoftwhere.combinatoric.Generator.primitiveSequence;
 

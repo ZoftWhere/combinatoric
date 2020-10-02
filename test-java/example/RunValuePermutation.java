@@ -1,9 +1,9 @@
 package example;
 
-import app.zoftwhere.combinatoric.Generator;
-
 import java.util.Arrays;
 import java.util.List;
+
+import app.zoftwhere.combinatoric.Generator;
 
 import static java.util.Comparator.naturalOrder;
 

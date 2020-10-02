@@ -1,14 +1,14 @@
 package app.zoftwhere.combinatoric;
 
-import org.junit.jupiter.api.Test;
-import org.opentest4j.AssertionFailedError;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+
+import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 import static app.zoftwhere.combinatoric.Generator.newPermutation;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,25 +30,29 @@ class PermutationTest {
             permutation.index(0);
             fail("expected.no.such.element.exception");
         }
-        catch (NoSuchElementException ignore) {}
+        catch (NoSuchElementException ignore) {
+        }
 
         try {
             permutation.index();
             fail("expected.no.such.element.exception");
         }
-        catch (NoSuchElementException ignore) {}
+        catch (NoSuchElementException ignore) {
+        }
 
         try {
             permutation.value(0);
             fail("expected.no.such.element.exception");
         }
-        catch (NoSuchElementException ignore) {}
+        catch (NoSuchElementException ignore) {
+        }
 
         try {
             permutation.value();
             fail("expected.no.such.element.exception");
         }
-        catch (NoSuchElementException ignore) {}
+        catch (NoSuchElementException ignore) {
+        }
 
         final var progress = permutation.progress(1);
         assertNotNull(progress);
@@ -129,37 +133,43 @@ class PermutationTest {
             newPermutation(1).index(-1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {}
+        catch (ArrayIndexOutOfBoundsException ignore) {
+        }
 
         try {
             newPermutation(1).index(1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {}
+        catch (ArrayIndexOutOfBoundsException ignore) {
+        }
 
         try {
             newPermutation(1).progress(-1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {}
+        catch (ArrayIndexOutOfBoundsException ignore) {
+        }
 
         try {
             newPermutation(1).progress(1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {}
+        catch (ArrayIndexOutOfBoundsException ignore) {
+        }
 
         try {
             newPermutation(1, 4);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {}
+        catch (ArrayIndexOutOfBoundsException ignore) {
+        }
 
         try {
             newPermutation(List.of(1, 2, 3), Comparator.naturalOrder(), 4);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {}
+        catch (ArrayIndexOutOfBoundsException ignore) {
+        }
     }
 
     @Test
@@ -169,13 +179,15 @@ class PermutationTest {
             permutation.value(0);
             fail("expected.no.such.element.exception");
         }
-        catch (NoSuchElementException ignore) {}
+        catch (NoSuchElementException ignore) {
+        }
 
         try {
             permutation.value();
             fail("expected.no.such.element.exception");
         }
-        catch (NoSuchElementException ignore) {}
+        catch (NoSuchElementException ignore) {
+        }
     }
 
     @Test
@@ -184,25 +196,29 @@ class PermutationTest {
             newPermutation(Arrays.asList(1, null, 3, 4));
             fail("expected.null.pointer.exception");
         }
-        catch (NullPointerException ignore) {}
+        catch (NullPointerException ignore) {
+        }
 
         try {
             newPermutation(Arrays.asList(1, null, 3, 4), false);
             fail("expected.null.pointer.exception");
         }
-        catch (NullPointerException ignore) {}
+        catch (NullPointerException ignore) {
+        }
 
         try {
             newPermutation(Arrays.asList(1, null, 3, 4), true);
             fail("expected.null.pointer.exception");
         }
-        catch (NullPointerException ignore) {}
+        catch (NullPointerException ignore) {
+        }
 
         try {
             newPermutation(Arrays.asList(1, null, 3, 4), Comparator.naturalOrder());
             fail("expected.null.pointer.exception");
         }
-        catch (NullPointerException ignore) {}
+        catch (NullPointerException ignore) {
+        }
     }
 
     @Test

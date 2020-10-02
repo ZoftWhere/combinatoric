@@ -1,12 +1,11 @@
 package app.zoftwhere.combinatoric;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.function.Function;
 import java.util.function.Supplier;
+
+import org.junit.jupiter.api.Test;
 
 import static app.zoftwhere.combinatoric.Generator.bigDecimalSequence;
 import static app.zoftwhere.combinatoric.Generator.bigIntegerSequence;
@@ -176,11 +175,17 @@ class SeriesTest {
     private static class TestRunner<T, L> {
 
         private final Supplier<Sequence<T, L>> supplier;
+
         private final Function<String, T> parseValue;
+
         private final Function<String, L> parseLength;
+
         private final String base;
+
         private final String increment;
+
         private final String exponent;
+
         private final String length;
 
         private TestRunner(Supplier<Sequence<T, L>> supplier,

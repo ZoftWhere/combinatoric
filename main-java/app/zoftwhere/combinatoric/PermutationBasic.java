@@ -42,9 +42,7 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
         return list.get(index[position]);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Permutation<T> progress(int position) {
         if (!checkPosition(position)) {

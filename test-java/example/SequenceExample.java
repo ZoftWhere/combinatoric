@@ -1,9 +1,9 @@
 package example;
 
+import java.math.BigDecimal;
+
 import app.zoftwhere.combinatoric.Generator;
 import app.zoftwhere.combinatoric.Sequence;
-
-import java.math.BigDecimal;
 
 public class SequenceExample {
 

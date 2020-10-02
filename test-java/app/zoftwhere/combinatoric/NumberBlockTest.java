@@ -1,8 +1,8 @@
 package app.zoftwhere.combinatoric;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import static app.zoftwhere.combinatoric.Generator.newPermutation;
 import static org.junit.jupiter.api.Assertions.assertEquals;

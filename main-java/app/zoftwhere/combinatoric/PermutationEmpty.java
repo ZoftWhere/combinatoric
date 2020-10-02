@@ -14,33 +14,25 @@ class PermutationEmpty<T> extends AbstractPermutation<T> {
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int[] index() {
         throw new NoSuchElementException();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int index(int position) {
         throw new NoSuchElementException();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<T> value() {
         throw new NoSuchElementException();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public T value(int position) {
         throw new NoSuchElementException();
