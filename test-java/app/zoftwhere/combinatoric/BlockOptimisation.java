@@ -24,20 +24,20 @@ public class BlockOptimisation extends NumberBlock {
 
     public SolutionPair testBlockSolutions() {
         long iterationCount = 0;
-        final int boardTileCount = rowCount * columnCount;
+        final var boardTileCount = rowCount * columnCount;
 
-        final List<Integer> pocket = getPocket(pileArray, boardTileCount);
-        final List<Permutation<Integer>> solutionList = new ArrayList<>();
-        Permutation<Integer> permutation = Generator.newPermutation(pocket);
+        final var pocket = getPocket(pileArray, boardTileCount);
+        final var solutionList = new ArrayList<Permutation<Integer>>();
+        var permutation = Generator.newPermutation(pocket);
 
         while (permutation.isPresent()) {
-            int move = boardTileCount - 1;
-            boolean solution = true;
+            var move = boardTileCount - 1;
+            var solution = true;
 
-            for (int row = 0; (row < rowCount) && solution; row++) {
+            for (var row = 0; (row < rowCount) && solution; row++) {
 
-                final int rowOffset = row * columnCount;
-                for (int column = 0; column < columnCount; column++) {
+                final var rowOffset = row * columnCount;
+                for (var column = 0; column < columnCount; column++) {
                     final int value = permutation.value(rowOffset + column);
                     if (value <= columnTotal[column]) {
                         continue;
@@ -64,7 +64,7 @@ public class BlockOptimisation extends NumberBlock {
                     break;
                 }
 
-                final int rowSum = sumRow(permutation, row);
+                final var rowSum = sumRow(permutation, row);
                 if (rowSum != rowTotal[row]) {
                     solution = false;
                     move = (row + 1) * columnCount - 1;
@@ -80,7 +80,7 @@ public class BlockOptimisation extends NumberBlock {
                 break;
             }
 
-            for (int column = 0; (column < columnCount) && solution; column++) {
+            for (var column = 0; (column < columnCount) && solution; column++) {
                 if (sumColumn(permutation, column) != columnTotal[column]) {
                     solution = false;
                     move = (rowCount - 1) * columnCount + column;

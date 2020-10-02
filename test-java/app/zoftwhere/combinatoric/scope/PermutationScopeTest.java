@@ -1,7 +1,6 @@
 package app.zoftwhere.combinatoric.scope;
 
 import app.zoftwhere.combinatoric.Generator;
-import app.zoftwhere.combinatoric.Permutation;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,7 +12,7 @@ class PermutationScopeTest {
 
     @Test
     void testVoidPermutation() {
-        Permutation<Void> permutation = Generator.newPermutation(1);
+        final var permutation = Generator.newPermutation(1);
         permutation.isPresent();
         permutation.isEmpty();
         permutation.size();
@@ -24,7 +23,7 @@ class PermutationScopeTest {
 
     @Test
     void testTypedPermutation() {
-        Permutation<Integer> permutation = Generator.newPermutation(List.of(1));
+        final var permutation = Generator.newPermutation(List.of(1));
         permutation.isPresent();
         permutation.isEmpty();
         permutation.size();

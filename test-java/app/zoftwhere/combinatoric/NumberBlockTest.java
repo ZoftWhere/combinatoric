@@ -12,22 +12,22 @@ class NumberBlockTest {
     @Test
     void testSumTotal() {
         final int[] rowTotal = {3, 8};
-        final int rowCount = rowTotal.length;
+        final var rowCount = rowTotal.length;
 
         final int[] columnTotal = {4, 7};
-        final int columnCount = columnTotal.length;
+        final var columnCount = columnTotal.length;
 
         final int[] pileArray = {0, 1, 1, 1, 0, 1};
 
-        NumberBlock numberBlock = new NumberBlock(rowTotal, columnTotal, pileArray);
+        final var numberBlock = new NumberBlock(rowTotal, columnTotal, pileArray);
 
-        Permutation<Integer> permutation = newPermutation(List.of(1, 2, 3, 5));
+        final var permutation = newPermutation(List.of(1, 2, 3, 5));
 
-        for (int i = 0; i < rowCount; i++) {
+        for (var i = 0; i < rowCount; i++) {
             assertEquals(rowTotal[i], numberBlock.sumRow(permutation, i));
         }
 
-        for (int i = 0; i < columnCount; i++) {
+        for (var i = 0; i < columnCount; i++) {
             assertEquals(columnTotal[i], numberBlock.sumColumn(permutation, i));
         }
     }

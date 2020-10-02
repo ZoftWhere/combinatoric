@@ -19,8 +19,8 @@ class SeriesTest {
     @Test
     void testPrimitive() {
         assertEquals(Long.valueOf(1), primitiveSequence().sum());
-        Sequence<Long, Long> sequence = primitiveSequence();
-        Long actual = Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length());
+        final var sequence = primitiveSequence();
+        final var actual = Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length());
         assertEquals(Long.valueOf(1), Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length()));
         assertEquals(Long.valueOf(1), actual);
     }
@@ -28,8 +28,8 @@ class SeriesTest {
     @Test
     void testBigInteger() {
         assertEquals(BigInteger.ONE, bigIntegerSequence().sum());
-        Sequence<BigInteger, BigInteger> sequence = bigIntegerSequence();
-        BigInteger actual = Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length());
+        final var sequence = bigIntegerSequence();
+        final var actual = Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length());
         assertEquals(BigInteger.ONE, Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length()));
         assertEquals(BigInteger.ONE, actual);
     }
@@ -37,8 +37,8 @@ class SeriesTest {
     @Test
     void testBigDecimal() {
         assertEquals(BigDecimal.ONE, bigDecimalSequence().sum());
-        Sequence<BigDecimal, BigInteger> sequence = bigDecimalSequence();
-        BigDecimal actual = Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length());
+        final var sequence = bigDecimalSequence();
+        final var actual = Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length());
         assertEquals(BigDecimal.ONE, Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length()));
         assertEquals(BigDecimal.ONE, actual);
     }
@@ -221,7 +221,7 @@ class SeriesTest {
             assert increment != null;
             assert exponent != null;
             assert length != null;
-            String actual = supplier.get()
+            final var actual = supplier.get()
                 .base(parseValue.apply(base))
                 .increment(parseValue.apply(increment))
                 .exponent(Integer.parseInt(exponent))

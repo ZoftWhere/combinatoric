@@ -32,7 +32,7 @@ public class NumberBlock {
     }
 
     public List<Permutation<Integer>> getSolutionList(boolean exitOnFirst) {
-        final int boardTileCount = rowCount * columnCount;
+        final var boardTileCount = rowCount * columnCount;
         final List<Permutation<Integer>> solutionList = new ArrayList<>();
 
         // The pocket must contain at least enough tiles to tile the board.
@@ -40,20 +40,20 @@ public class NumberBlock {
             return solutionList;
         }
 
-        Permutation<Integer> permutation = Generator.newPermutation(pocket);
+        var permutation = Generator.newPermutation(pocket);
 
         while (permutation.isPresent()) {
-            int move = boardTileCount - 1;
-            boolean solution = true;
+            var move = boardTileCount - 1;
+            var solution = true;
 
-            for (int row = 0; (row < rowCount) && solution; row++) {
+            for (var row = 0; (row < rowCount) && solution; row++) {
                 if (sumRow(permutation, row) != rowTotal[row]) {
                     solution = false;
                     move = (row + 1) * columnCount - 1;
                 }
             }
 
-            for (int column = 0; (column < columnCount) && solution; column++) {
+            for (var column = 0; (column < columnCount) && solution; column++) {
                 if (sumColumn(permutation, column) != columnTotal[column]) {
                     solution = false;
                     move = (rowCount - 1) * columnCount + column;
@@ -74,48 +74,49 @@ public class NumberBlock {
     }
 
     int sumRow(Permutation<Integer> permutation, int rowNumber) {
-        final int left = rowNumber * columnCount;
-        final int right = left + columnCount - 1;
-        int sum = 0;
-        for (int i = left; i <= right; i++) {
+        final var left = rowNumber * columnCount;
+        final var right = left + columnCount - 1;
+
+        var sum = 0;
+        for (var i = left; i <= right; i++) {
             sum += permutation.value(i);
         }
-
         return sum;
     }
 
     int sumColumn(Permutation<Integer> permutation, int columnNumber) {
-        int sum = 0;
-        for (int row = 0; row < rowCount; row++) {
-            int index = row * columnCount + columnNumber;
+        var sum = 0;
+        for (var row = 0; row < rowCount; row++) {
+            final var index = row * columnCount + columnNumber;
             sum += permutation.value(index);
         }
         return sum;
     }
 
     public List<Integer> getPocket(int[] pileArray, int boardTileCount) {
-        final int boardMax = getBoardMax();
-        final int size = getPocketSize(pileArray, boardTileCount, boardMax);
+        final var boardMax = getBoardMax();
+        final var size = getPocketSize(pileArray, boardTileCount, boardMax);
         List<Integer> pocket = new ArrayList<>(size);
 
-        for (int value = 0; value < pileArray.length; value++) {
+        for (var value = 0; value < pileArray.length; value++) {
             if (value > boardMax) {
                 break;
             }
 
-            final int count = pileArray[value];
+            final var count = pileArray[value];
 
             if (count < 0) {
-                for (int q = 1; q <= boardTileCount; q++) {
+                for (var q = 1; q <= boardTileCount; q++) {
                     pocket.add(value);
                 }
                 continue;
             }
 
-            for (int q = 1; q <= count; q++) {
+            for (var q = 1; q <= count; q++) {
                 pocket.add(value);
             }
         }
+
         return pocket;
     }
 
@@ -124,22 +125,23 @@ public class NumberBlock {
     }
 
     int getMax(int[] array) {
-        int max = array[0];
-        for (int i = 1; i < array.length; i++) {
+        var max = array[0];
+        for (var i = 1; i < array.length; i++) {
             max = Math.max(array[i], max);
         }
         return max;
     }
 
     int getPocketSize(int[] pileArray, int boardTileCount, int boardMax) {
-        final int pileSize = pileArray.length;
-        int size = 0;
-        for (int value = 0; value < pileSize; value++) {
+        final var pileSize = pileArray.length;
+
+        var size = 0;
+        for (var value = 0; value < pileSize; value++) {
             if (value > boardMax) {
                 break;
             }
 
-            final int count = pileArray[value];
+            final var count = pileArray[value];
             if (count < 0) {
                 size += boardTileCount;
                 continue;
