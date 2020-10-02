@@ -3,12 +3,24 @@ package app.zoftwhere.combinatoric;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * <p>Permutation Empty.
+ * </p>
+ * <p>This is a package-private class that implements functionality.
+ * </p>
+ *
+ * @author Osmund
+ */
 class PermutationEmpty<T> extends AbstractPermutation<T> {
 
+    /**
+     * Constructor for {@link app.zoftwhere.combinatoric.PermutationEmpty} (package-private).
+     */
     PermutationEmpty() {
         super(new int[0], 0);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Permutation<T> newInstance(int[] index, List<T> list, int kSize) {
         return this;
