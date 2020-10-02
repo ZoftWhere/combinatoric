@@ -128,7 +128,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
      */
     boolean checkPosition(int position) {
         if (position < 0 || position >= size) {
-            final var template = "Index %d out of bounds for length %d";
+            final String template = "Index %d out of bounds for length %d";
             throw new ArrayIndexOutOfBoundsException(String.format(template, position, size));
         }
 
