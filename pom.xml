@@ -26,7 +26,7 @@
         <maven.compiler.test-jdk>11</maven.compiler.test-jdk>
 
         <!-- Settings: maven-build -->
-        <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
+        <maven.build.timestamp.format>yyyy-MM-dd&apos;T&apos;HH:mm:ss&apos;Z&apos;</maven.build.timestamp.format>
 
         <!-- Settings: User defined plugin properties -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
