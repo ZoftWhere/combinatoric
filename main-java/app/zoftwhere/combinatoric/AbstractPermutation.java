@@ -5,6 +5,14 @@ import java.util.List;
 
 import static app.zoftwhere.combinatoric.Generator.empty;
 
+/**
+ * <p>Abstract Permutation.
+ * </p>
+ * <p>This is a package-private abstract class for generic functionality.
+ * </p>
+ *
+ * @author Osmund
+ */
 abstract class AbstractPermutation<T> implements Permutation<T> {
 
     private final int[] index;
@@ -36,21 +44,25 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
     protected abstract Permutation<T> newInstance(int[] index, List<T> list, int kSize);
 
     /** {@inheritDoc} */
+    @Override
     public int size() {
         return size;
     }
 
     /** {@inheritDoc} */
+    @Override
     public int kSize() {
         return kSize;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean isPresent() {
         return size != 0;
     }
@@ -63,17 +75,20 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
     }
 
     /** {@inheritDoc} */
+    @Override
     public int index(int position) {
         return index[position];
     }
 
     /** {@inheritDoc} */
+    @Override
     public abstract List<T> value();
 
     /** {@inheritDoc} */
     public abstract T value(int position);
 
     /** {@inheritDoc} */
+    @Override
     public Permutation<T> next() {
         if (size < 2) {
             return empty();
@@ -82,6 +97,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
     }
 
     /** {@inheritDoc} */
+    @Override
     public Permutation<T> next(int position) {
         checkPosition(position);
 
@@ -101,8 +117,15 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
     }
 
     /** {@inheritDoc} */
+    @Override
     public abstract Permutation<T> progress(int position);
 
+    /**
+     * Check the position.
+     *
+     * @param position position
+     * @return if check successful, false otherwise
+     */
     boolean checkPosition(int position) {
         if (position < 0 || position >= size) {
             final var template = "Index %d out of bounds for length %d";
