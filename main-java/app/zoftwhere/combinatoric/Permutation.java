@@ -46,10 +46,26 @@ public interface Permutation<T> {
      */
     int index(int position);
 
+    /**
+     * The index array.
+     *
+     * @return index array
+     */
     int[] index();
 
+    /**
+     * Get the value of an element in the current permutation collection.
+     *
+     * @param position position of element to retrieve
+     * @return the element at the position of the collection
+     */
     T value(int position);
 
+    /**
+     * Get the collection of the current order of the permutation.
+     *
+     * @return the collection of the current order of the permutation
+     */
     List<T> value();
 
     /**
