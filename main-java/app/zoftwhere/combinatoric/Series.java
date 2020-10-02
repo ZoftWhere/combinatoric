@@ -3,6 +3,12 @@ package app.zoftwhere.combinatoric;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+/**
+ * <p>Series.
+ * </p>
+ *
+ * @author Osmund
+ */
 public class Series {
 
     /**
@@ -65,6 +71,9 @@ public class Series {
         return new Series().summation(base, d, exponent, n);
     }
 
+    /**
+     * Constructor for Series (package-private).
+     */
     Series() {
     }
 
