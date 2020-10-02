@@ -15,6 +15,9 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
 
     /**
      * Package-private constructor to initialize a new permutation.
+     *
+     * @param index index array
+     * @param kSize count of permutation elements
      */
     AbstractPermutation(int[] index, int kSize) {
         this.index = index;
@@ -124,7 +127,8 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
 
     boolean checkPosition(int position) {
         if (position < 0 || position >= size) {
-            throw new ArrayIndexOutOfBoundsException(String.format("Index %d out of bounds for length %d", position, size));
+            final var template = "Index %d out of bounds for length %d";
+            throw new ArrayIndexOutOfBoundsException(String.format(template, position, size));
         }
 
         return (position < size - 1) && (position < kSize);
