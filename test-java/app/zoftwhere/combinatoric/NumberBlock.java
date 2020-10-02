@@ -3,18 +3,38 @@ package app.zoftwhere.combinatoric;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <p>Number Block.
+ * </p>
+ * <p>A number block if a rectangle with rows and columns of squares.  Each row, and each column, has a sum.
+ * </p>
+ *
+ * @author Osmund
+ */
 public class NumberBlock {
 
+    /** row total array */
     private final int[] rowTotal;
 
+    /** column total array */
     private final int[] columnTotal;
 
+    /** number of rows */
     private final int rowCount;
 
+    /** number of columns */
     private final int columnCount;
 
+    /** number block pocket */
     private final List<Integer> pocket;
 
+    /**
+     * Constructor for {@link app.zoftwhere.combinatoric.NumberBlock}.
+     *
+     * @param rowTotal    number of rows
+     * @param columnTotal number of columns
+     * @param pileArray   pile array
+     */
     public NumberBlock(int[] rowTotal, int[] columnTotal, int[] pileArray) {
         this.rowTotal = rowTotal;
         this.columnTotal = columnTotal;
@@ -23,6 +43,13 @@ public class NumberBlock {
         this.pocket = getPocket(pileArray, rowCount * columnCount);
     }
 
+    /**
+     * Constructor for {@link app.zoftwhere.combinatoric.NumberBlock}.
+     *
+     * @param rowTotal    number of rows
+     * @param columnTotal number of columns
+     * @param pocket      number block pocket
+     */
     public NumberBlock(int[] rowTotal, int[] columnTotal, List<Integer> pocket) {
         this.rowTotal = rowTotal;
         this.columnTotal = columnTotal;
@@ -31,10 +58,21 @@ public class NumberBlock {
         this.pocket = pocket;
     }
 
+    /**
+     * Build a list of solutions.
+     *
+     * @return list of solutions
+     */
     public List<Permutation<Integer>> getSolutionList() {
         return this.getSolutionList(false);
     }
 
+    /**
+     * Build a list of solutions.
+     *
+     * @param exitOnFirst exit on first flag
+     * @return list of solutions
+     */
     public List<Permutation<Integer>> getSolutionList(boolean exitOnFirst) {
         final var boardTileCount = rowCount * columnCount;
         final List<Permutation<Integer>> solutionList = new ArrayList<>();
@@ -77,6 +115,13 @@ public class NumberBlock {
         return solutionList;
     }
 
+    /**
+     * Calculate the sum for a row.
+     *
+     * @param permutation permutation for number block
+     * @param rowNumber   row index (zero-based index)
+     * @return sum for row
+     */
     int sumRow(Permutation<Integer> permutation, int rowNumber) {
         final var left = rowNumber * columnCount;
         final var right = left + columnCount - 1;
@@ -88,6 +133,13 @@ public class NumberBlock {
         return sum;
     }
 
+    /**
+     * Calculate the sum for a column.
+     *
+     * @param permutation  permutation for number block
+     * @param columnNumber column index (zero-based index)
+     * @return sum for a column
+     */
     int sumColumn(Permutation<Integer> permutation, int columnNumber) {
         var sum = 0;
         for (var row = 0; row < rowCount; row++) {
@@ -97,6 +149,13 @@ public class NumberBlock {
         return sum;
     }
 
+    /**
+     * Calculate the number block pocket.
+     *
+     * @param pileArray      pile array
+     * @param boardTileCount board tile count
+     * @return number block pocket
+     */
     public List<Integer> getPocket(int[] pileArray, int boardTileCount) {
         final var boardMax = getBoardMax();
         final var size = getPocketSize(pileArray, boardTileCount, boardMax);
@@ -124,10 +183,22 @@ public class NumberBlock {
         return pocket;
     }
 
+    /**
+     * Return the maximum value for any total
+     *
+     * @return maximum value for any total
+     */
     int getBoardMax() {
         return Math.min(getMax(this.rowTotal), getMax(this.columnTotal));
     }
 
+
+    /**
+     * Return the maximum value in an array
+     *
+     * @param array array
+     * @return maximum value in an array
+     */
     int getMax(int[] array) {
         var max = array[0];
         for (var i = 1; i < array.length; i++) {
@@ -136,6 +207,14 @@ public class NumberBlock {
         return max;
     }
 
+    /**
+     * Calculate the number block pocket size.
+     *
+     * @param pileArray      pile array
+     * @param boardTileCount board tile count
+     * @param boardMax       board maximum value
+     * @return number block pocket size
+     */
     int getPocketSize(int[] pileArray, int boardTileCount, int boardMax) {
         final var pileSize = pileArray.length;
 
