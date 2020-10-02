@@ -20,8 +20,11 @@ class SeriesTest {
     void testPrimitive() {
         assertEquals(Long.valueOf(1), primitiveSequence().sum());
         final var sequence = primitiveSequence();
-        final var actual = Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length());
-        assertEquals(Long.valueOf(1), Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length()));
+        final var base = sequence.base();
+        final var increment = sequence.increment();
+        final var exponent = sequence.exponent();
+        final var length = sequence.length();
+        final var actual = Series.calculate(base, increment, exponent, length);
         assertEquals(Long.valueOf(1), actual);
     }
 
@@ -29,8 +32,11 @@ class SeriesTest {
     void testBigInteger() {
         assertEquals(BigInteger.ONE, bigIntegerSequence().sum());
         final var sequence = bigIntegerSequence();
-        final var actual = Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length());
-        assertEquals(BigInteger.ONE, Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length()));
+        final var base = sequence.base();
+        final var increment = sequence.increment();
+        final var exponent = sequence.exponent();
+        final var length = sequence.length();
+        final var actual = Series.calculate(base, increment, exponent, length);
         assertEquals(BigInteger.ONE, actual);
     }
 
@@ -38,8 +44,11 @@ class SeriesTest {
     void testBigDecimal() {
         assertEquals(BigDecimal.ONE, bigDecimalSequence().sum());
         final var sequence = bigDecimalSequence();
-        final var actual = Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length());
-        assertEquals(BigDecimal.ONE, Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length()));
+        final var base = sequence.base();
+        final var increment = sequence.increment();
+        final var exponent = sequence.exponent();
+        final var length = sequence.length();
+        final var actual = Series.calculate(base, increment, exponent, length);
         assertEquals(BigDecimal.ONE, actual);
     }
 
@@ -164,7 +173,7 @@ class SeriesTest {
         return new TestRunner<>(supplier, parseValue, parseLength);
     }
 
-    public static class TestRunner<T, L> {
+    private static class TestRunner<T, L> {
 
         private final Supplier<Sequence<T, L>> supplier;
         private final Function<String, T> parseValue;
@@ -174,7 +183,7 @@ class SeriesTest {
         private final String exponent;
         private final String length;
 
-        public TestRunner(Supplier<Sequence<T, L>> supplier,
+        private TestRunner(Supplier<Sequence<T, L>> supplier,
             Function<String, T> parseValue,
             Function<String, L> parseLength)
         {
