@@ -101,21 +101,21 @@ class SeriesTest {
     void zeroExponent() {
         try {
             primitiveSequence().base(0).exponent(0).sum();
-            Assertions.fail("expected.illegal.argument.exception");
+            fail("expected.illegal.argument.exception");
         }
         catch (Exception ignore) {
         }
 
         try {
             bigIntegerSequence().base(0).exponent(0).sum();
-            Assertions.fail("expected.illegal.argument.exception");
+            fail("expected.illegal.argument.exception");
         }
         catch (Exception ignore) {
         }
 
         try {
             bigDecimalSequence().base(0).exponent(0).sum();
-            Assertions.fail("expected.illegal.argument.exception");
+            fail("expected.illegal.argument.exception");
         }
         catch (Exception ignore) {
         }
@@ -227,7 +227,7 @@ class SeriesTest {
                 .exponent(Integer.parseInt(exponent))
                 .length(parseLength.apply(length))
                 .sum().toString();
-            Assertions.assertEquals(expected, actual);
+            assertEquals(expected, actual);
         }
 
     }
