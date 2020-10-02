@@ -46,6 +46,7 @@
         <!-- > -->
         <surefire.printSummary>false</surefire.printSummary>
         <org.junit.5.version>5.6.2</org.junit.5.version>
+        <moditect-maven-plugin.version>1.0.0.Beta2</moditect-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -471,7 +472,7 @@
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
-                <version>1.0.0.Beta2</version>
+                <version>${moditect-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>main-jpms</id>
