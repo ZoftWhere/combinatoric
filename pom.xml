@@ -379,7 +379,7 @@
                 <executions>
                     <execution>
                         <id>main-jpms</id>
-                        <phase>package</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>add-module-info</goal>
                         </goals>
