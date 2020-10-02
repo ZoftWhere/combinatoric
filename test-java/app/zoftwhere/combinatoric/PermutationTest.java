@@ -1,14 +1,14 @@
 package app.zoftwhere.combinatoric;
 
-import org.junit.jupiter.api.Test;
-import org.opentest4j.AssertionFailedError;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+
+import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 import static app.zoftwhere.combinatoric.Generator.newPermutation;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,7 +21,7 @@ class PermutationTest {
 
     @Test
     void testEmpty() {
-        Permutation<Void> permutation = newPermutation(0);
+        final var permutation = newPermutation(0);
         assertEquals(Integer.valueOf(0), permutation.size());
         assertTrue(permutation.isEmpty());
         assertFalse(permutation.isPresent());
@@ -30,27 +30,31 @@ class PermutationTest {
             permutation.index(0);
             fail("expected.no.such.element.exception");
         }
-        catch (NoSuchElementException ignore) {}
+        catch (NoSuchElementException ignore) {
+        }
 
         try {
             permutation.index();
             fail("expected.no.such.element.exception");
         }
-        catch (NoSuchElementException ignore) {}
+        catch (NoSuchElementException ignore) {
+        }
 
         try {
             permutation.value(0);
             fail("expected.no.such.element.exception");
         }
-        catch (NoSuchElementException ignore) {}
+        catch (NoSuchElementException ignore) {
+        }
 
         try {
             permutation.value();
             fail("expected.no.such.element.exception");
         }
-        catch (NoSuchElementException ignore) {}
+        catch (NoSuchElementException ignore) {
+        }
 
-        Permutation<Void> progress = permutation.progress(1);
+        final var progress = permutation.progress(1);
         assertNotNull(progress);
         assertTrue(progress.isEmpty());
         assertFalse(progress.isPresent());
@@ -129,53 +133,61 @@ class PermutationTest {
             newPermutation(1).index(-1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {}
+        catch (ArrayIndexOutOfBoundsException ignore) {
+        }
 
         try {
             newPermutation(1).index(1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {}
+        catch (ArrayIndexOutOfBoundsException ignore) {
+        }
 
         try {
             newPermutation(1).progress(-1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {}
+        catch (ArrayIndexOutOfBoundsException ignore) {
+        }
 
         try {
             newPermutation(1).progress(1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {}
+        catch (ArrayIndexOutOfBoundsException ignore) {
+        }
 
         try {
             newPermutation(1, 4);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {}
+        catch (ArrayIndexOutOfBoundsException ignore) {
+        }
 
         try {
             newPermutation(List.of(1, 2, 3), Comparator.naturalOrder(), 4);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {}
+        catch (ArrayIndexOutOfBoundsException ignore) {
+        }
     }
 
     @Test
     void testBasicGetValue() {
-        Permutation<Void> permutation = newPermutation(1);
+        final var permutation = newPermutation(1);
         try {
             permutation.value(0);
             fail("expected.no.such.element.exception");
         }
-        catch (NoSuchElementException ignore) {}
+        catch (NoSuchElementException ignore) {
+        }
 
         try {
             permutation.value();
             fail("expected.no.such.element.exception");
         }
-        catch (NoSuchElementException ignore) {}
+        catch (NoSuchElementException ignore) {
+        }
     }
 
     @Test
@@ -184,25 +196,29 @@ class PermutationTest {
             newPermutation(Arrays.asList(1, null, 3, 4));
             fail("expected.null.pointer.exception");
         }
-        catch (NullPointerException ignore) {}
+        catch (NullPointerException ignore) {
+        }
 
         try {
             newPermutation(Arrays.asList(1, null, 3, 4), false);
             fail("expected.null.pointer.exception");
         }
-        catch (NullPointerException ignore) {}
+        catch (NullPointerException ignore) {
+        }
 
         try {
             newPermutation(Arrays.asList(1, null, 3, 4), true);
             fail("expected.null.pointer.exception");
         }
-        catch (NullPointerException ignore) {}
+        catch (NullPointerException ignore) {
+        }
 
         try {
             newPermutation(Arrays.asList(1, null, 3, 4), Comparator.naturalOrder());
             fail("expected.null.pointer.exception");
         }
-        catch (NullPointerException ignore) {}
+        catch (NullPointerException ignore) {
+        }
     }
 
     @Test
@@ -239,10 +255,10 @@ class PermutationTest {
             "[2, 1, 0]", //
             "[]"
         };
-        final int size = 3;
+        final var size = 3;
 
-        Permutation<Void> permutation = newPermutation(size);
-        int index = 0;
+        var permutation = newPermutation(size);
+        var index = 0;
         assertNotNull(permutation);
         assertTrue(permutation.isPresent());
         assertFalse(permutation.isEmpty());
@@ -274,10 +290,10 @@ class PermutationTest {
             "[2:2, 1:1, 0:0]", //
             "[]"
         };
-        final int size = 3;
+        final var size = 3;
 
-        Permutation<Integer> permutation = newPermutation(List.of(0, 1, 2), false);
-        int index = 0;
+        var permutation = newPermutation(List.of(0, 1, 2), false);
+        var index = 0;
         assertNotNull(permutation);
         assertTrue(permutation.isPresent());
         assertFalse(permutation.isEmpty());
@@ -306,11 +322,11 @@ class PermutationTest {
             "[2][0, 1]",
             "[]"
         };
-        final int size = 3;
-        final int kSize = 1;
+        final var size = 3;
+        final var kSize = 1;
 
-        Permutation<Void> permutation = newPermutation(size, kSize);
-        int index = 0;
+        var permutation = newPermutation(size, kSize);
+        var index = 0;
         assertNotNull(permutation);
         assertTrue(permutation.isPresent());
         assertFalse(permutation.isEmpty());
@@ -333,7 +349,7 @@ class PermutationTest {
 
     @Test
     void testKTuple() {
-        final List<Integer> list = Arrays.asList(1, 1, 2, 2, 3, 3);
+        final var list = Arrays.asList(1, 1, 2, 2, 3, 3);
         final String[] expected = {
             "[0:1, 1:1][2:2, 3:2, 4:3, 5:3]", //
             "[0:1, 2:2][1:1, 3:2, 4:3, 5:3]", //
@@ -346,10 +362,10 @@ class PermutationTest {
             "[4:3, 5:3][0:1, 1:1, 2:2, 3:2]", //
             "[]"
         };
-        final int size = list.size();
+        final var size = list.size();
 
-        Permutation<Integer> permutation = newPermutation(list, Comparator.naturalOrder(), 2);
-        int index = 0;
+        var permutation = newPermutation(list, Comparator.naturalOrder(), 2);
+        var index = 0;
         assertNotNull(permutation);
         assertTrue(permutation.isPresent());
         assertFalse(permutation.isEmpty());
@@ -373,7 +389,7 @@ class PermutationTest {
 
     @Test
     void testTypedNext() {
-        final List<Integer> list = Arrays.asList(1, 1, 2, 2, 3, 3);
+        final var list = Arrays.asList(1, 1, 2, 2, 3, 3);
         final String[] expected = {
             "[0:1, 1:1, 2:2, 3:2, 4:3, 5:3]",
             "[0:1, 2:2, 1:1, 3:2, 4:3, 5:3]",
@@ -386,10 +402,10 @@ class PermutationTest {
             "[4:3, 5:3, 0:1, 1:1, 2:2, 3:2]",
             "[]"
         };
-        final int size = list.size();
+        final var size = list.size();
 
-        Permutation<Integer> permutation = newPermutation(list, Comparator.naturalOrder());
-        int index = 0;
+        var permutation = newPermutation(list, Comparator.naturalOrder());
+        var index = 0;
         assertNotNull(permutation);
         assertTrue(permutation.isPresent());
         assertFalse(permutation.isEmpty());
@@ -412,8 +428,8 @@ class PermutationTest {
     }
 
     private static void assertClass(Object object, Class<?> objectClass) {
-        String expected = objectClass.getName();
-        String actual = object.getClass().getName();
+        final var expected = objectClass.getName();
+        final var actual = object.getClass().getName();
         if (Objects.equals(expected, actual)) {
             return;
         }

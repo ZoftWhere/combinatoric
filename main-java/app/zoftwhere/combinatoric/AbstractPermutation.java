@@ -5,6 +5,14 @@ import java.util.List;
 
 import static app.zoftwhere.combinatoric.Generator.empty;
 
+/**
+ * <p>Abstract Permutation.
+ * </p>
+ * <p>This is a package-private abstract class for generic functionality.
+ * </p>
+ *
+ * @author Osmund
+ */
 abstract class AbstractPermutation<T> implements Permutation<T> {
 
     private final int[] index;
@@ -15,6 +23,9 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
 
     /**
      * Package-private constructor to initialize a new permutation.
+     *
+     * @param index index array
+     * @param kSize count of permutation elements
      */
     AbstractPermutation(int[] index, int kSize) {
         this.index = index;
@@ -32,63 +43,52 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
      */
     protected abstract Permutation<T> newInstance(int[] index, List<T> list, int kSize);
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
     public int size() {
         return size;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
     public int kSize() {
         return kSize;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
     public boolean isPresent() {
         return size != 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public int[] index() {
         int[] push = new int[size];
         System.arraycopy(index, 0, push, 0, size);
         return push;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
     public int index(int position) {
         return index[position];
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
     public abstract List<T> value();
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public abstract T value(int position);
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
     public Permutation<T> next() {
         if (size < 2) {
             return empty();
@@ -96,9 +96,8 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
         return next(Math.min(size - 2, kSize - 1));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
     public Permutation<T> next(int position) {
         checkPosition(position);
 
@@ -117,14 +116,20 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
         return progress(0);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
     public abstract Permutation<T> progress(int position);
 
+    /**
+     * Check the position.
+     *
+     * @param position position
+     * @return if check successful, false otherwise
+     */
     boolean checkPosition(int position) {
         if (position < 0 || position >= size) {
-            throw new ArrayIndexOutOfBoundsException(String.format("Index %d out of bounds for length %d", position, size));
+            final String template = "Index %d out of bounds for length %d";
+            throw new ArrayIndexOutOfBoundsException(String.format(template, position, size));
         }
 
         return (position < size - 1) && (position < kSize);

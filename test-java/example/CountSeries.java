@@ -1,8 +1,8 @@
 package example;
 
-import app.zoftwhere.combinatoric.Generator;
-
 import java.math.BigDecimal;
+
+import app.zoftwhere.combinatoric.Generator;
 
 import static app.zoftwhere.combinatoric.Generator.primitiveSequence;
 

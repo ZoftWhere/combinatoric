@@ -1,5 +1,8 @@
 # ZoftWhere Combinatoric Library
-![Language](https://img.shields.io/github/languages/top/ZoftWhere/combinatoric) [![License](https://img.shields.io/github/license/ZoftWhere/combinatoric)](https://github.com/ZoftWhere/combinatoric/blob/master/license.txt) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/ZoftWhere/combinatoric) ![GitHub Release Date](https://img.shields.io/github/release-date/ZoftWhere/combinatoric)
+![Language](https://img.shields.io/github/languages/top/ZoftWhere/combinatoric)
+[![License](https://img.shields.io/github/license/ZoftWhere/combinatoric)](https://github.com/ZoftWhere/combinatoric/blob/master/license.txt)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/ZoftWhere/combinatoric)
+![GitHub Release Date](https://img.shields.io/github/release-date/ZoftWhere/combinatoric)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZoftWhere/combinatoric/master?label=master%20updated)
 
 A combinatoric library.
@@ -37,10 +40,16 @@ The source code can be compiled with Java language version 8.  It has been teste
 
 The project is Maven based, so executing the ```mvn install``` should install the library to the local repository (Requires at least JDK11).  It has been tested with Apache Maven v3.6.1.
 
+The project will package the JavaDoc archive using JDK8 rules and styles.  The JavaDoc archive can be set to a later release by specifying the ```maven.compiler.main-jdk``` property.  For example, the JavaDoc will be packaged and installed for JDK11 by calling:
+
+``` shell script
+mvn clean install -Dmaven.compiler.main-jdk=11
+```
+
 If the project needs to be installed against JDK8, it can be accomplished by calling the following Maven command:
 
 ``` shell script
-mvn clean compiler:compile@main-compile-jdk8 jar:jar@main-jar source:jar@main-sources javadoc:jar@main-javadoc moditect:add-module-info@main-jpms install:install-file@main-install
+mvn clean compiler:compile@main-compile-jdk8 jar:jar@main-jar source:jar@main-sources javadoc:jar@main-javadoc-jdk8 moditect:add-module-info@main-jpms install:install-file@main-install
 ``` 
 
 

@@ -1,12 +1,11 @@
 package app.zoftwhere.combinatoric;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.function.Function;
 import java.util.function.Supplier;
+
+import org.junit.jupiter.api.Test;
 
 import static app.zoftwhere.combinatoric.Generator.bigDecimalSequence;
 import static app.zoftwhere.combinatoric.Generator.bigIntegerSequence;
@@ -19,27 +18,36 @@ class SeriesTest {
     @Test
     void testPrimitive() {
         assertEquals(Long.valueOf(1), primitiveSequence().sum());
-        Sequence<Long, Long> sequence = primitiveSequence();
-        Long actual = Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length());
-        assertEquals(Long.valueOf(1), Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length()));
+        final var sequence = primitiveSequence();
+        final var base = sequence.base();
+        final var increment = sequence.increment();
+        final var exponent = sequence.exponent();
+        final var length = sequence.length();
+        final var actual = Series.calculate(base, increment, exponent, length);
         assertEquals(Long.valueOf(1), actual);
     }
 
     @Test
     void testBigInteger() {
         assertEquals(BigInteger.ONE, bigIntegerSequence().sum());
-        Sequence<BigInteger, BigInteger> sequence = bigIntegerSequence();
-        BigInteger actual = Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length());
-        assertEquals(BigInteger.ONE, Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length()));
+        final var sequence = bigIntegerSequence();
+        final var base = sequence.base();
+        final var increment = sequence.increment();
+        final var exponent = sequence.exponent();
+        final var length = sequence.length();
+        final var actual = Series.calculate(base, increment, exponent, length);
         assertEquals(BigInteger.ONE, actual);
     }
 
     @Test
     void testBigDecimal() {
         assertEquals(BigDecimal.ONE, bigDecimalSequence().sum());
-        Sequence<BigDecimal, BigInteger> sequence = bigDecimalSequence();
-        BigDecimal actual = Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length());
-        assertEquals(BigDecimal.ONE, Series.calculate(sequence.base(), sequence.increment(), sequence.exponent(), sequence.length()));
+        final var sequence = bigDecimalSequence();
+        final var base = sequence.base();
+        final var increment = sequence.increment();
+        final var exponent = sequence.exponent();
+        final var length = sequence.length();
+        final var actual = Series.calculate(base, increment, exponent, length);
         assertEquals(BigDecimal.ONE, actual);
     }
 
@@ -101,21 +109,21 @@ class SeriesTest {
     void zeroExponent() {
         try {
             primitiveSequence().base(0).exponent(0).sum();
-            Assertions.fail("expected.illegal.argument.exception");
+            fail("expected.illegal.argument.exception");
         }
         catch (Exception ignore) {
         }
 
         try {
             bigIntegerSequence().base(0).exponent(0).sum();
-            Assertions.fail("expected.illegal.argument.exception");
+            fail("expected.illegal.argument.exception");
         }
         catch (Exception ignore) {
         }
 
         try {
             bigDecimalSequence().base(0).exponent(0).sum();
-            Assertions.fail("expected.illegal.argument.exception");
+            fail("expected.illegal.argument.exception");
         }
         catch (Exception ignore) {
         }
@@ -164,17 +172,23 @@ class SeriesTest {
         return new TestRunner<>(supplier, parseValue, parseLength);
     }
 
-    public static class TestRunner<T, L> {
+    private static class TestRunner<T, L> {
 
         private final Supplier<Sequence<T, L>> supplier;
+
         private final Function<String, T> parseValue;
+
         private final Function<String, L> parseLength;
+
         private final String base;
+
         private final String increment;
+
         private final String exponent;
+
         private final String length;
 
-        public TestRunner(Supplier<Sequence<T, L>> supplier,
+        private TestRunner(Supplier<Sequence<T, L>> supplier,
             Function<String, T> parseValue,
             Function<String, L> parseLength)
         {
@@ -221,13 +235,13 @@ class SeriesTest {
             assert increment != null;
             assert exponent != null;
             assert length != null;
-            String actual = supplier.get()
+            final var actual = supplier.get()
                 .base(parseValue.apply(base))
                 .increment(parseValue.apply(increment))
                 .exponent(Integer.parseInt(exponent))
                 .length(parseLength.apply(length))
                 .sum().toString();
-            Assertions.assertEquals(expected, actual);
+            assertEquals(expected, actual);
         }
 
     }

@@ -4,6 +4,14 @@ import java.util.List;
 
 import static app.zoftwhere.combinatoric.Generator.empty;
 
+/**
+ * <p>Permutation N-Tuple.
+ * </p>
+ * <p>This is a package-private class that implements functionality.
+ * </p>
+ *
+ * @author Osmund
+ */
 class PermutationNTuple<T> extends PermutationBasic<T> {
 
     private final int[] index;
@@ -14,6 +22,13 @@ class PermutationNTuple<T> extends PermutationBasic<T> {
 
     private final int kSize;
 
+    /**
+     * Constructor for {@link app.zoftwhere.combinatoric.PermutationNTuple} (package-private).
+     *
+     * @param index index
+     * @param list  list
+     * @param kSize size of display elements
+     */
     PermutationNTuple(int[] index, List<T> list, int kSize) {
         super(index, list, kSize);
         this.index = index;
@@ -22,14 +37,13 @@ class PermutationNTuple<T> extends PermutationBasic<T> {
         this.kSize = kSize;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Permutation<T> newInstance(int[] index, List<T> list, int kSize) {
         return new PermutationNTuple<>(index, list, kSize);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Permutation<T> progress(int position) {
         if (!checkPosition(position)) {

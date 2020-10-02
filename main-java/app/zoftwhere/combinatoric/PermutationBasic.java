@@ -5,6 +5,14 @@ import java.util.List;
 
 import static app.zoftwhere.combinatoric.Generator.empty;
 
+/**
+ * <p>Permutation Basic.
+ * </p>
+ * <p>This is a package-private class that implements functionality.
+ * </p>
+ *
+ * @author Osmund
+ */
 class PermutationBasic<T> extends AbstractPermutation<T> {
 
     private final int size;
@@ -15,6 +23,13 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
 
     private final int kSize;
 
+    /**
+     * Constructor for {@link app.zoftwhere.combinatoric.PermutationBasic} (package-private).
+     *
+     * @param index index
+     * @param list  list
+     * @param kSize size of display elements
+     */
     PermutationBasic(int[] index, List<T> list, int kSize) {
         super(index, kSize);
         this.index = index;
@@ -23,11 +38,13 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
         this.kSize = kSize;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Permutation<T> newInstance(int[] index, List<T> list, int kSize) {
         return new PermutationBasic<>(index, list, kSize);
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<T> value() {
         List<T> result = new ArrayList<>(size);
@@ -37,14 +54,13 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public T value(int position) {
         return list.get(index[position]);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Permutation<T> progress(int position) {
         if (!checkPosition(position)) {

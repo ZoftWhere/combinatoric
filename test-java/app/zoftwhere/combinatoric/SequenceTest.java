@@ -1,9 +1,9 @@
 package app.zoftwhere.combinatoric;
 
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
+
+import org.junit.jupiter.api.Test;
 
 import static app.zoftwhere.combinatoric.Generator.bigDecimalSequence;
 import static app.zoftwhere.combinatoric.Generator.bigIntegerSequence;
@@ -14,10 +14,10 @@ class SequenceTest {
 
     @Test
     void buildLongLinear() {
-        for (int a = 0; a < 5; a++) {
-            for (int d = -3; d < 3; d++) {
-                for (int n = -5; n <= 5; n++) {
-                    long expected = controlLine(a, d, n);
+        for (var a = 0; a < 5; a++) {
+            for (var d = -3; d < 3; d++) {
+                for (var n = -5; n <= 5; n++) {
+                    final var expected = controlLine(a, d, n);
                     long actual = primitiveSequence()
                         .base((long) a)
                         .increment((long) d)
@@ -25,7 +25,7 @@ class SequenceTest {
                         .sum();
 
                     if (expected != actual) {
-                        String message = String.format("sum{%d, %d %d} == %d != %d", a, d, n, expected, actual);
+                        final var message = String.format("sum{%d, %d %d} == %d != %d", a, d, n, expected, actual);
                         fail(message);
                     }
                 }
@@ -35,10 +35,10 @@ class SequenceTest {
 
     @Test
     void buildLongSquare() {
-        for (int a = 0; a < 5; a++) {
-            for (int d = -3; d < 3; d++) {
-                for (int n = -5; n <= 5; n++) {
-                    long expected = controlSquare(a, d, n);
+        for (var a = 0; a < 5; a++) {
+            for (var d = -3; d < 3; d++) {
+                for (var n = -5; n <= 5; n++) {
+                    final var expected = controlSquare(a, d, n);
                     long actual = primitiveSequence()
                         .base((long) a)
                         .exponent(2)
@@ -47,7 +47,7 @@ class SequenceTest {
                         .sum();
 
                     if (expected != actual) {
-                        String message = String.format("sum{%d, %d %d} == %d != %d", a, d, n, expected, actual);
+                        final var message = String.format("sum{%d, %d %d} == %d != %d", a, d, n, expected, actual);
                         fail(message);
                     }
                 }
@@ -57,10 +57,10 @@ class SequenceTest {
 
     @Test
     void buildLongCube() {
-        for (int a = 0; a < 5; a++) {
-            for (int d = -3; d < 3; d++) {
-                for (int n = -5; n <= 5; n++) {
-                    long expected = controlCube(a, d, n);
+        for (var a = 0; a < 5; a++) {
+            for (var d = -3; d < 3; d++) {
+                for (var n = -5; n <= 5; n++) {
+                    final var expected = controlCube(a, d, n);
                     long actual = primitiveSequence()
                         .base((long) a)
                         .exponent(3)
@@ -69,7 +69,7 @@ class SequenceTest {
                         .sum();
 
                     if (expected != actual) {
-                        String message = String.format("sum{%d, %d, %d} == %d != %d", a, d, n, expected, actual);
+                        final var message = String.format("sum{%d, %d, %d} == %d != %d", a, d, n, expected, actual);
                         fail(message);
                     }
                 }
@@ -79,12 +79,12 @@ class SequenceTest {
 
     @Test
     void buildBigInteger() {
-        for (int p = 1; p <= 8; p++) {
-            for (int a = 0; a < 5; a++) {
-                for (int d = -3; d < 3; d++) {
-                    for (int n = -5; n <= 5; n++) {
-                        BigInteger expected = control(a, d, p, n);
-                        BigInteger actual = bigIntegerSequence()
+        for (var p = 1; p <= 8; p++) {
+            for (var a = 0; a < 5; a++) {
+                for (var d = -3; d < 3; d++) {
+                    for (var n = -5; n <= 5; n++) {
+                        final var expected = control(a, d, p, n);
+                        final var actual = bigIntegerSequence()
                             .base(BigInteger.valueOf(a))
                             .exponent(p)
                             .increment(d)
@@ -92,17 +92,8 @@ class SequenceTest {
                             .sum();
 
                         if (expected.compareTo(actual) != 0) {
-                            String message = String.format("sum{%d, %d, %d, %d} == %d != %d", a, d, p, n, expected, actual);
-
-                            control(a, d, n, p);
-
-                            bigIntegerSequence()
-                                .base(BigInteger.valueOf(a))
-                                .exponent(p)
-                                .increment(d)
-                                .length(n)
-                                .sum();
-
+                            final var template = "sum{%d, %d, %d, %d} == %s != %s";
+                            final var message = String.format(template, a, d, p, n, expected, actual);
                             fail(message);
                         }
                     }
@@ -113,13 +104,13 @@ class SequenceTest {
 
     @Test
     void buildBigDecimal() {
-        for (int p = 1; p <= 3; p++) {
-            for (int a = 0; a < 5; a++) {
-                for (int d = -3; d < 3; d++) {
-                    for (int n = -5; n <= 5; n++) {
-                        BigInteger value = control(a, d, p, n);
-                        BigDecimal expected = new BigDecimal(value);
-                        BigDecimal actual = bigDecimalSequence()
+        for (var p = 1; p <= 3; p++) {
+            for (var a = 0; a < 5; a++) {
+                for (var d = -3; d < 3; d++) {
+                    for (var n = -5; n <= 5; n++) {
+                        final var value = control(a, d, p, n);
+                        final var expected = new BigDecimal(value);
+                        final var actual = bigDecimalSequence()
                             .base(BigDecimal.valueOf(a))
                             .exponent(p)
                             .increment(d)
@@ -127,15 +118,8 @@ class SequenceTest {
                             .sum();
 
                         if (expected.compareTo(actual) != 0) {
-                            String message = String.format("sum{%d, %d, %d, %d} == %s != %s", a, d, p, n, expected, actual);
-
-                            bigDecimalSequence()
-                                .base(BigDecimal.valueOf(a))
-                                .exponent(p)
-                                .increment(d)
-                                .length(n)
-                                .sum();
-
+                            final var template = "sum{%d, %d, %d, %d} == %s != %s";
+                            final var message = String.format(template, a, d, p, n, expected, actual);
                             fail(message);
                         }
                     }
@@ -151,8 +135,8 @@ class SequenceTest {
         if (n < 0) {
             return controlLine(a, -d, -n);
         }
-        long sum = a * n;
-        for (int i = 1; i < n; i++) {
+        var sum = a * n;
+        for (var i = 1; i < n; i++) {
             sum += d * i;
         }
         return sum;
@@ -166,8 +150,8 @@ class SequenceTest {
             return controlSquare(a, -d, -n);
         }
         long sum = 0;
-        for (int i = 0; i < n; i++) {
-            long value = a + d * i;
+        for (var i = 0; i < n; i++) {
+            final var value = a + d * i;
             sum += value * value;
         }
         return sum;
@@ -181,8 +165,8 @@ class SequenceTest {
             return controlCube(a, -d, -n);
         }
         long sum = 0;
-        for (int i = 0; i < n; i++) {
-            long value = a + d * i;
+        for (var i = 0; i < n; i++) {
+            final var value = a + d * i;
             sum += value * value * value;
         }
         return sum;
@@ -195,9 +179,9 @@ class SequenceTest {
         if (n < 0) {
             return control(a, -d, p, -n);
         }
-        BigInteger sum = BigInteger.ZERO;
-        for (int i = 0; i < n; i++) {
-            long value = a + d * i;
+        var sum = BigInteger.ZERO;
+        for (var i = 0; i < n; i++) {
+            final var value = a + d * i;
             sum = sum.add(BigInteger.valueOf(value).pow(p));
         }
         return sum;

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>app.zoftwhere.mathematic</groupId>
     <artifactId>combinatoric</artifactId>
-    <version>2.1.0</version>
+    <version>2.2.0</version>
+    <organization>
+        <name>ZoftWhere</name>
+        <url>https://github.com/ZoftWhere</url>
+    </organization>
+    <name>zoftwhere.mathematic.combinatoric</name>
+    <description>ZoftWhere Mathematic Combinatoric Library.</description>
+    <url>https://github.com/ZoftWhere/combinatoric</url>
 
     <properties>
         <!-- Settings: maven-resource-plugin -->
@@ -19,7 +25,7 @@
         <maven.compiler.test-jdk>11</maven.compiler.test-jdk>
 
         <!-- Settings: maven-build -->
-        <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
+        <maven.build.timestamp.format>yyyy-MM-dd&apos;T&apos;HH:mm:ss&apos;Z&apos;</maven.build.timestamp.format>
 
         <!-- Settings: User defined plugin properties -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
@@ -28,16 +34,18 @@
         <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
         <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
-        <maven-javadoc-plugin.version>3.1.1</maven-javadoc-plugin.version>
-        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-        <maven-site-plugin.version>3.9.0</maven-site-plugin.version>
+        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <maven-project-info-reports-plugin.version>3.1.1</maven-project-info-reports-plugin.version>
+        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <maven-toolchains-plugin.version>3.0.0</maven-toolchains-plugin.version>
 
         <!-- > -->
         <surefire.printSummary>false</surefire.printSummary>
-        <org.junit.5.version>5.6.0</org.junit.5.version>
+        <org.junit.5.version>5.6.2</org.junit.5.version>
+        <moditect-maven-plugin.version>1.0.0.Beta2</moditect-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -54,8 +62,21 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <scope>test</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -279,6 +300,18 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven-project-info-reports-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven-site-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven-javadoc-plugin.version}</version>
                 <executions>
@@ -289,27 +322,94 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
+                            <!-- Workaround for: https://issues.apache.org/jira/browse/MJAVADOC-623 -->
+                            <release>${maven.compiler.main-jdk}</release>
+                            <!-- -->
                             <failOnWarnings>true</failOnWarnings>
                             <isOffline>true</isOffline>
+                            <!-- Workaround for https://issues.apache.org/jira/browse/MJAVADOC-614 -->
                             <sourceFileExcludes>
                                 <exclude>module-info.java</exclude>
                             </sourceFileExcludes>
+                            <!-- -->
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>main-javadoc-jdk8</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>javadoc</goal>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <failOnWarnings>true</failOnWarnings>
+                            <isOffline>true</isOffline>
+                            <!-- Workaround for https://issues.apache.org/jira/browse/MJAVADOC-614 -->
+                            <sourceFileExcludes>
+                                <exclude>module-info.java</exclude>
+                            </sourceFileExcludes>
+                            <!-- -->
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>main-javadoc-check</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>javadoc</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Workaround for: https://issues.apache.org/jira/browse/MJAVADOC-623 -->
+                            <release>${maven.compiler.main-jdk}</release>
+                            <!-- -->
+                            <doclint>all</doclint>
+                            <show>private</show>
+                            <failOnWarnings>false</failOnWarnings>
+                            <!-- Workaround for https://issues.apache.org/jira/browse/MJAVADOC-614 -->
+                            <sourceFileExcludes>
+                                <exclude>module-info.java</exclude>
+                            </sourceFileExcludes>
+                            <!-- -->
                         </configuration>
                     </execution>
                     <execution>
                         <id>test-javadoc</id>
                         <phase>none</phase>
                         <goals>
+                            <goal>test-javadoc</goal>
                             <goal>test-jar</goal>
                         </goals>
                         <configuration>
+                            <!-- Workaround for: https://issues.apache.org/jira/browse/MJAVADOC-623 -->
+                            <release>${maven.compiler.test-jdk}</release>
+                            <!-- -->
                             <failOnWarnings>false</failOnWarnings>
+                            <isOffline>true</isOffline>
+                            <!-- Workaround for https://issues.apache.org/jira/browse/MJAVADOC-614 -->
+                            <sourceFileExcludes>
+                                <exclude>module-info.java</exclude>
+                            </sourceFileExcludes>
+                            <!-- -->
                         </configuration>
                     </execution>
                 </executions>
                 <configuration>
                     <quiet>true</quiet>
                     <failOnError>true</failOnError>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <manifest>
+                            <addClasspath>false</addClasspath>
+                        </manifest>
+                        <manifestEntries>
+                            <Build-DateTime>${maven.build.timestamp}</Build-DateTime>
+                            <Implementation-Title>${project.artifactId}</Implementation-Title>
+                            <Implementation-Vendor>${project.groupId}</Implementation-Vendor>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Specification-Title>${project.artifactId}</Specification-Title>
+                            <Specification-Vendor>${project.groupId}</Specification-Vendor>
+                            <Specification-Version>${project.version}</Specification-Version>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
             </plugin>
 
@@ -339,6 +439,23 @@
                         </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <manifest>
+                            <addClasspath>false</addClasspath>
+                        </manifest>
+                        <manifestEntries>
+                            <Build-DateTime>${maven.build.timestamp}</Build-DateTime>
+                            <Implementation-Title>${project.artifactId}</Implementation-Title>
+                            <Implementation-Vendor>${project.groupId}</Implementation-Vendor>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Specification-Title>${project.artifactId}</Specification-Title>
+                            <Specification-Vendor>${project.groupId}</Specification-Vendor>
+                            <Specification-Version>${project.version}</Specification-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -375,11 +492,11 @@
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
-                <version>1.0.0.Beta2</version>
+                <version>${moditect-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>main-jpms</id>
-                        <phase>package</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>add-module-info</goal>
                         </goals>
