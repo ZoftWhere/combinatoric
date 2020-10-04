@@ -6,6 +6,8 @@ import java.util.NoSuchElementException;
 /**
  * <p>Permutation Void.
  * </p>
+ * <p>The Permutation Void class is an index-only implementation.
+ * </p>
  * <p>This is a package-private class that implements functionality.
  * </p>
  *
@@ -21,6 +23,7 @@ class PermutationVoid extends PermutationBasic<Void> {
 
     /**
      * Constructor for {@link app.zoftwhere.combinatoric.PermutationVoid} (package-private).
+     *
      * @param index index
      * @param kSize size of display elements
      */
