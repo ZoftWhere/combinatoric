@@ -65,7 +65,7 @@ public class Generator {
     /**
      * Creates an empty permutation.
      *
-     * @param <T> the type
+     * @param <T> element type
      * @return an empty permutation
      * @since 3.0.0
      */
@@ -76,7 +76,7 @@ public class Generator {
     /**
      * Creates an immutable void permutation.
      *
-     * @param size the number of elements to hold.
+     * @param size number of elements to hold.
      * @return immutable void permutation
      * @since 2.0.0
      */
@@ -98,8 +98,8 @@ public class Generator {
     /**
      * Creates an immutable void permutation.
      *
-     * @param size  the number of elements to hold
-     * @param kSize the number of elements for display
+     * @param size  number of elements to hold
+     * @param kSize number of elements for display
      * @return immutable void permutation
      * @since 2.0.0
      */
@@ -128,9 +128,9 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
-     * @param <T>        the type
-     * @param list       the value elements
-     * @param comparator the comparator
+     * @param <T>        element type
+     * @param list       list of elements
+     * @param comparator comparator
      * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
      * @throws NullPointerException if any of the list items are null
      * @since 2.0.0
@@ -142,10 +142,10 @@ public class Generator {
     /**
      * Creates an immutable k-permutation.
      *
-     * @param <T>        the type
-     * @param list       the value elements
-     * @param comparator the comparator
-     * @param kSize      kSize value
+     * @param <T>        element type
+     * @param list       list of elements
+     * @param comparator comparator
+     * @param kSize      number of elements for display
      * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
      * @throws NullPointerException if any of the list items are null
      * @since 2.0.0
@@ -193,8 +193,8 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
-     * @param <T>  the type
-     * @param list the value elements
+     * @param <T>  element type
+     * @param list list of elements
      * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
      * @throws NullPointerException if any of the list items are null
      * @since 2.0.0
@@ -206,9 +206,9 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
-     * @param <T>   the type
-     * @param list  the value elements
-     * @param kSize kSize value
+     * @param <T>   element type
+     * @param list  list of elements
+     * @param kSize number of elements for display
      * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
      * @throws NullPointerException if any of the list items are null
      */
@@ -251,8 +251,8 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
-     * @param <T>             the type
-     * @param list            the value elements
+     * @param <T>             element type
+     * @param list            list of elements
      * @param withRepetitions flag to specify if duplicates should be ignored
      * @return immutable linked permutation
      * @throws NullPointerException if any of the list items are null
@@ -265,10 +265,10 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
-     * @param <T>             the type
-     * @param list            the value elements
+     * @param <T>             element type
+     * @param list            list of elements
      * @param withRepetitions flag to specify if duplicates should be ignored
-     * @param kSize           kSize value
+     * @param kSize           number of elements for display
      * @return immutable linked permutation
      * @throws NullPointerException if any of the list items are null
      * @since 2.0.0
