@@ -8,17 +8,19 @@ import java.math.BigInteger;
  * </p>
  *
  * @author Osmund
+ * @since 2.0.0
  */
 public class Series {
 
     /**
-     * Calculates the series for the summation of form <code>term(base + increment * x).pow(exponent)</code>
+     * Calculates the series for the summation of form <code>term(base + increment * x).pow(exponent)</code>.
      *
-     * @param base      the base value
-     * @param increment the increment value
-     * @param exponent  the exponent value
-     * @param length    the number of summation elements
-     * @return the series
+     * @param base      base value
+     * @param increment increment value
+     * @param exponent  exponent value
+     * @param length    number of summation elements
+     * @return series value
+     * @since 2.0.0
      */
     public static Long calculate(Long base, Long increment, int exponent, Long length) {
         BigDecimal a = base != null ? new BigDecimal(base) : null;
@@ -28,13 +30,14 @@ public class Series {
     }
 
     /**
-     * Calculates the series for the summation of form <code>term(base + increment * x).pow(exponent)</code>
+     * Calculates the series for the summation of form <code>term(base + increment * x).pow(exponent)</code>.
      *
-     * @param base      the base value
-     * @param increment the increment value
-     * @param exponent  the exponent value
-     * @param length    the number of summation elements
-     * @return the series
+     * @param base      base value
+     * @param increment increment value
+     * @param exponent  exponent value
+     * @param length    number of summation elements
+     * @return series value
+     * @since 2.0.0
      */
     public static BigInteger calculate(BigInteger base, BigInteger increment, int exponent, BigInteger length) {
         BigDecimal a = base != null ? new BigDecimal(base) : null;
@@ -43,13 +46,14 @@ public class Series {
     }
 
     /**
-     * Calculates the series for the summation of form <code>term(base + increment * x).pow(exponent)</code>
+     * Calculates the series for the summation of form <code>term(base + increment * x).pow(exponent)</code>.
      *
-     * @param base      the base value
-     * @param increment the increment value
-     * @param exponent  the exponent value
-     * @param length    the number of summation elements
-     * @return the series
+     * @param base      base value
+     * @param increment increment value
+     * @param exponent  exponent value
+     * @param length    number of summation elements
+     * @return series value
+     * @since 2.0.0
      */
     public static BigDecimal calculate(BigDecimal base, BigDecimal increment, int exponent, BigInteger length) {
         if (base == null) {
@@ -73,18 +77,21 @@ public class Series {
 
     /**
      * Constructor for Series (package-private).
+     *
+     * @since 2.0.0
      */
     Series() {
     }
 
     /**
-     * Calculates the summation of form <code>term(a + d * x).pow(exponent)</code>
+     * Calculates the summation of form <code>term(a + d * x).pow(exponent)</code>.
      *
-     * @param a the base value
-     * @param d the increment value
-     * @param p the exponent value
-     * @param n the number of summation elements
-     * @return the summation
+     * @param a base value
+     * @param d increment value
+     * @param p exponent value
+     * @param n number of summation elements
+     * @return summation value
+     * @since 2.0.0
      */
     BigDecimal summation(BigDecimal a, BigDecimal d, int p, BigInteger n) {
         if (n.signum() == 0) {
@@ -135,31 +142,32 @@ public class Series {
      * <p>sum{ i = 0...n-1, n^power }
      * </p>
      *
-     * @param n     the length of the summation
-     * @param power the exponent for each term
-     * @return the summation
+     * @param n number of summation elements
+     * @param p exponent for each term
+     * @return summation value
+     * @since 2.0.0
      */
-    BigInteger sequenceVariableSum(BigInteger n, int power) {
+    BigInteger sequenceVariableSum(BigInteger n, int p) {
         BigInteger sum = BigInteger.ZERO;
-        BigInteger t3d = sequenceProduct(BigInteger.ZERO, 1, power + 1);
+        BigInteger t3d = sequenceProduct(BigInteger.ZERO, 1, p + 1);
 
         // Calculate the binomial coefficients.
-        BigInteger[] bc = new BigInteger[power + 1];
+        BigInteger[] bc = new BigInteger[p + 1];
         int cr = 1;
         bc[0] = BigInteger.ONE;
-        for (int i = 1; i < power + 2 - i; i++) {
-            cr = cr * (power + 2 - i) / (i);
+        for (int i = 1; i < p + 2 - i; i++) {
+            cr = cr * (p + 2 - i) / (i);
             bc[i] = BigInteger.valueOf(cr);
-            bc[power + 1 - i] = bc[i];
+            bc[p + 1 - i] = bc[i];
         }
 
         // Calculate the sum of the sequence.
-        for (int i = 1; i <= power; i++) {
-            BigInteger t3 = sequenceProduct(n, 0 - i + 1, power - i + 1)
+        for (int i = 1; i <= p; i++) {
+            BigInteger t3 = sequenceProduct(n, 0 - i + 1, p - i + 1)
                 .divide(t3d);
 
             for (int j = 0; j <= i - 1; j++) {
-                BigInteger t2 = BigInteger.valueOf(i - j).pow(power);
+                BigInteger t2 = BigInteger.valueOf(i - j).pow(p);
                 BigInteger t4 = bc[j];
                 BigInteger q = (t2).multiply(t3).multiply(t4);
                 // sum { i=1..p, sum { j=0..i-1, { (-1)^j (i-j)^p nCk{ n+p-i+1; n-i} nCk{ p+1, j } } } }
@@ -174,18 +182,19 @@ public class Series {
      * Calculates the product of sequence of value from <code>n + min(left, right)</code> to <code>n + max(left,
      * right)</code>.
      *
-     * @param n     the base value
-     * @param left  the increment for the left
-     * @param right the increment for the right
-     * @return the product of the sequence.
+     * @param base  base value
+     * @param left  increment for the left
+     * @param right increment for the right
+     * @return product of the sequence
+     * @since 2.0.0
      */
-    BigInteger sequenceProduct(BigInteger n, int left, int right) {
+    BigInteger sequenceProduct(BigInteger base, int left, int right) {
         int min = Math.min(left, right);
         int max = Math.max(left, right);
 
         BigInteger product = BigInteger.ONE;
         for (int i = min; i <= max; i++) {
-            product = product.multiply(n.add(BigInteger.valueOf(i)));
+            product = product.multiply(base.add(BigInteger.valueOf(i)));
         }
         return product;
     }
