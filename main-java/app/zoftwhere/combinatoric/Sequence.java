@@ -30,7 +30,7 @@ public interface Sequence<T, L> {
     T increment();
 
     /**
-     * Return the sequence length
+     * Return the sequence length.
      *
      * @return sequence length
      */
