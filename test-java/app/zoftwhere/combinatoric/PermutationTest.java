@@ -70,20 +70,20 @@ class PermutationTest {
         assertNotNull(permutation.next());
         assertNotNull(permutation.next(0));
 
-        assertClass(newPermutation(0), PermutationEmpty.class);
-        assertClass(newPermutation(1, 0), PermutationEmpty.class);
-        assertClass(newPermutation(1).next(), PermutationEmpty.class);
-        assertClass(newPermutation(1).next(0), PermutationEmpty.class);
-        assertClass(newPermutation(1).progress(0), PermutationEmpty.class);
-        assertClass(newPermutation(2, 1).progress(1), PermutationEmpty.class);
-        assertClass(newPermutation(null, null, 0), PermutationEmpty.class);
-        assertClass(newPermutation(List.of(0)).next(), PermutationEmpty.class);
-        assertClass(newPermutation(List.of(0)).next(0), PermutationEmpty.class);
-        assertClass(newPermutation((List<Integer>) null), PermutationEmpty.class);
-        assertClass(newPermutation(new ArrayList<Integer>(0)), PermutationEmpty.class);
+        assertClass(PermutationEmpty.class, newPermutation(0));
+        assertClass(PermutationEmpty.class, newPermutation(1, 0));
+        assertClass(PermutationEmpty.class, newPermutation(1).next());
+        assertClass(PermutationEmpty.class, newPermutation(1).next(0));
+        assertClass(PermutationEmpty.class, newPermutation(1).progress(0));
+        assertClass(PermutationEmpty.class, newPermutation(2, 1).progress(1));
+        assertClass(PermutationEmpty.class, newPermutation(null, null, 0));
+        assertClass(PermutationEmpty.class, newPermutation(List.of(0)).next());
+        assertClass(PermutationEmpty.class, newPermutation(List.of(0)).next(0));
+        assertClass(PermutationEmpty.class, newPermutation((List<Integer>) null));
+        assertClass(PermutationEmpty.class, newPermutation(new ArrayList<Integer>(0)));
 
-        assertClass(newPermutation(List.of(0), false).progress(0), PermutationEmpty.class);
-        assertClass(newPermutation(Arrays.asList(1, 2, 1), 1).progress(2), PermutationEmpty.class);
+        assertClass(PermutationEmpty.class, newPermutation(List.of(0), false).progress(0));
+        assertClass(PermutationEmpty.class, newPermutation(Arrays.asList(1, 2, 1), 1).progress(2));
     }
 
     @Test
@@ -105,25 +105,25 @@ class PermutationTest {
         Permutation<Integer> permutation;
 
         permutation = newPermutation(List.of(1, 2, 3, 4));
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), Comparator.naturalOrder());
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), true);
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), false);
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), Comparator.naturalOrder(), 3);
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), true, 3);
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), false, 3);
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
     }
 
     @Test
@@ -131,22 +131,22 @@ class PermutationTest {
         Permutation<Integer> permutation;
 
         permutation = newPermutation(List.of(1, 1, 1, 1), Comparator.naturalOrder());
-        assertClass(permutation, PermutationNTuple.class);
+        assertClass(PermutationNTuple.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 2, 2), Comparator.naturalOrder());
-        assertClass(permutation, PermutationNTuple.class);
+        assertClass(PermutationNTuple.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 1, 1));
-        assertClass(permutation, PermutationNTuple.class);
+        assertClass(PermutationNTuple.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 2, 2));
-        assertClass(permutation, PermutationNTuple.class);
+        assertClass(PermutationNTuple.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 1, 1), true);
-        assertClass(permutation, PermutationNTuple.class);
+        assertClass(PermutationNTuple.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 2, 2), true);
-        assertClass(permutation, PermutationNTuple.class);
+        assertClass(PermutationNTuple.class, permutation);
     }
 
     @Test
@@ -155,28 +155,32 @@ class PermutationTest {
             newPermutation(1).index(-1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {
+        catch (RuntimeException e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
         }
 
         try {
             newPermutation(1).index(1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {
+        catch (RuntimeException e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
         }
 
         try {
             newPermutation(1).progress(-1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {
+        catch (RuntimeException e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
         }
 
         try {
             newPermutation(1).progress(1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {
+        catch (RuntimeException e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
         }
 
         try {
@@ -459,7 +463,7 @@ class PermutationTest {
         }
     }
 
-    private static void assertClass(Object object, Class<?> objectClass) {
+    private static void assertClass(Class<?> objectClass, Object object) {
         final var expected = objectClass.getName();
         final var actual = object.getClass().getName();
         if (Objects.equals(expected, actual)) {
