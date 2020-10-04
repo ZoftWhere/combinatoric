@@ -26,7 +26,7 @@ class FactorialScopeTest {
         }
         catch (RuntimeException e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("combinatoric.factorial.value.negative", e.getMessage());
+            assertEquals("calculator.factorial.value.negative", e.getMessage());
             assertNotNull(e.getCause());
             assertEquals(Exception.class, e.getCause().getClass());
             assertEquals("value: -1", e.getCause().getMessage());

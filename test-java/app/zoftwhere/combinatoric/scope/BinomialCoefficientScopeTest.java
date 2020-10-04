@@ -32,7 +32,7 @@ class BinomialCoefficientScopeTest {
         }
         catch (RuntimeException e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("combinatoric.calculator.ncr.number.negative", e.getMessage());
+            assertEquals("calculator.ncr.number.negative", e.getMessage());
             assertNotNull(e.getCause());
             assertEquals(Exception.class, e.getCause().getClass());
             assertEquals("n: -1", e.getCause().getMessage());
@@ -46,7 +46,7 @@ class BinomialCoefficientScopeTest {
         }
         catch (RuntimeException e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("combinatoric.calculator.ncr.number.out.of.bound", e.getMessage());
+            assertEquals("calculator.ncr.number.out.of.bound", e.getMessage());
             assertNotNull(e.getCause());
             assertEquals(Exception.class, e.getCause().getClass());
             assertEquals("r: -1", e.getCause().getMessage());
@@ -57,7 +57,7 @@ class BinomialCoefficientScopeTest {
         }
         catch (RuntimeException e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("combinatoric.calculator.ncr.number.out.of.bound", e.getMessage());
+            assertEquals("calculator.ncr.number.out.of.bound", e.getMessage());
             assertNotNull(e.getCause());
             assertEquals(Exception.class, e.getCause().getClass());
             assertEquals("r: 1", e.getCause().getMessage());

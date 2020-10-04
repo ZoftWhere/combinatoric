@@ -24,7 +24,7 @@ public class Calculator {
      */
     public static BigInteger factorial(int value) {
         if (value < 0) {
-            final String message = "combinatoric.factorial.value.negative";
+            final String message = "calculator.factorial.value.negative";
             final String template = "value: %d";
             final Exception cause = new Exception(String.format(template, value));
             throw new IllegalArgumentException(message, cause);
@@ -58,13 +58,13 @@ public class Calculator {
      */
     public static BigInteger nCr(int n, int r) {
         if (n < 0) {
-            String message = "combinatoric.calculator.ncr.number.negative";
+            String message = "calculator.ncr.number.negative";
             Exception cause = new Exception("n: " + n);
             throw new IllegalArgumentException(message, cause);
         }
 
         if (r < 0 || n < r) {
-            String message = "combinatoric.calculator.ncr.number.out.of.bound";
+            String message = "calculator.ncr.number.out.of.bound";
             Exception cause = new Exception("r: " + r);
             throw new IllegalArgumentException(message, cause);
         }
