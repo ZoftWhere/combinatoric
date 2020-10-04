@@ -16,6 +16,7 @@ import static java.util.Collections.unmodifiableList;
  * </p>
  *
  * @author Osmund
+ * @since 2.0.0
  */
 public class Generator {
 
@@ -23,6 +24,7 @@ public class Generator {
      * Factory method for {@link java.lang.Long} {@link app.zoftwhere.combinatoric.Sequence}.
      *
      * @return Long sequence
+     * @since 2.0.0
      */
     public static Sequence<Long, Long> primitiveSequence() {
         Long base = 1L;
@@ -36,6 +38,7 @@ public class Generator {
      * Factory method for {@link java.math.BigInteger} {@link app.zoftwhere.combinatoric.Sequence}.
      *
      * @return BigInteger sequence
+     * @since 2.0.0
      */
     public static Sequence<BigInteger, BigInteger> bigIntegerSequence() {
         BigInteger base = BigInteger.ONE;
@@ -49,6 +52,7 @@ public class Generator {
      * Factory method for {@link java.math.BigDecimal} {@link app.zoftwhere.combinatoric.Sequence}.
      *
      * @return BigDecimal sequence
+     * @since 2.0.0
      */
     public static Sequence<BigDecimal, BigInteger> bigDecimalSequence() {
         BigDecimal base = BigDecimal.ONE;
@@ -63,6 +67,7 @@ public class Generator {
      *
      * @param size the number of elements to hold.
      * @return immutable void permutation
+     * @since 2.0.0
      */
     public static Permutation<Void> newPermutation(int size) {
         if (size < 1) {
@@ -78,6 +83,7 @@ public class Generator {
      * @param size  the number of elements to hold
      * @param kSize the number of elements for display
      * @return immutable void permutation
+     * @since 2.0.0
      */
     public static Permutation<Void> newPermutation(int size, int kSize) {
         if (size < 1 || kSize <= 0) {
@@ -100,6 +106,7 @@ public class Generator {
      * @param comparator the comparator
      * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
      * @throws NullPointerException if any of the list items are null
+     * @since 2.0.0
      */
     public static <T> Permutation<T> newPermutation(List<T> list, Comparator<T> comparator) {
         return newPermutation(list, comparator, list != null ? list.size() : 0);
@@ -114,6 +121,7 @@ public class Generator {
      * @param kSize      kSize value
      * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
      * @throws NullPointerException if any of the list items are null
+     * @since 2.0.0
      */
     public static <T> Permutation<T> newPermutation(List<T> list, Comparator<T> comparator, int kSize) {
         if (list == null || comparator == null || list.size() <= 0 || kSize <= 0) {
@@ -157,6 +165,7 @@ public class Generator {
      * @param list the value elements
      * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
      * @throws NullPointerException if any of the list items are null
+     * @since 2.0.0
      */
     public static <T> Permutation<T> newPermutation(List<T> list) {
         return newPermutation(list, list != null ? list.size() : 0);
@@ -215,6 +224,7 @@ public class Generator {
      * @param withRepetitions flag to specify if duplicates should be ignored
      * @return immutable linked permutation
      * @throws NullPointerException if any of the list items are null
+     * @since 2.0.0
      */
     public static <T> Permutation<T> newPermutation(List<T> list, boolean withRepetitions) {
         return newPermutation(list, withRepetitions, list != null ? list.size() : 0);
@@ -229,6 +239,7 @@ public class Generator {
      * @param kSize           kSize value
      * @return immutable linked permutation
      * @throws NullPointerException if any of the list items are null
+     * @since 2.0.0
      */
     public static <T> Permutation<T> newPermutation(List<T> list, boolean withRepetitions, int kSize) {
         if (withRepetitions) {
@@ -253,6 +264,7 @@ public class Generator {
      * @param item item to insert
      * @param <T>  item type
      * @return index for group insertion
+     * @since 2.0.0
      */
     private static <T> int getGroupInsertIndex(final List<T> list, T item) {
         final int size = list.size();
@@ -276,6 +288,7 @@ public class Generator {
      *
      * @param <T> the type
      * @return an empty permutation
+     * @since 2.0.0
      */
     static <T> Permutation<T> empty() {
         return new PermutationEmpty<>();
