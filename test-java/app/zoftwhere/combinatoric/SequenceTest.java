@@ -18,7 +18,7 @@ class SequenceTest {
             for (var d = -3; d < 3; d++) {
                 for (var n = -5; n <= 5; n++) {
                     final var expected = controlLine(a, d, n);
-                    long actual = primitiveSequence()
+                    final var actual = (long) primitiveSequence()
                         .base((long) a)
                         .increment((long) d)
                         .length(n)
@@ -39,7 +39,7 @@ class SequenceTest {
             for (var d = -3; d < 3; d++) {
                 for (var n = -5; n <= 5; n++) {
                     final var expected = controlSquare(a, d, n);
-                    long actual = primitiveSequence()
+                    final var actual = (long) primitiveSequence()
                         .base((long) a)
                         .exponent(2)
                         .increment((long) d)
@@ -61,7 +61,7 @@ class SequenceTest {
             for (var d = -3; d < 3; d++) {
                 for (var n = -5; n <= 5; n++) {
                     final var expected = controlCube(a, d, n);
-                    long actual = primitiveSequence()
+                    final var actual = (long) primitiveSequence()
                         .base((long) a)
                         .exponent(3)
                         .increment((long) d)
@@ -149,7 +149,7 @@ class SequenceTest {
         if (n < 0) {
             return controlSquare(a, -d, -n);
         }
-        long sum = 0;
+        var sum = 0L;
         for (var i = 0; i < n; i++) {
             final var value = a + d * i;
             sum += value * value;
@@ -164,7 +164,7 @@ class SequenceTest {
         if (n < 0) {
             return controlCube(a, -d, -n);
         }
-        long sum = 0;
+        var sum = 0L;
         for (var i = 0; i < n; i++) {
             final var value = a + d * i;
             sum += value * value * value;
