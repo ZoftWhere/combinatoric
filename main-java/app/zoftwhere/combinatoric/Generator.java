@@ -81,7 +81,14 @@ public class Generator {
      * @since 2.0.0
      */
     public static Permutation<Void> newPermutation(int size) {
-        if (size < 1) {
+        // @since 3.0.0
+        if (size < 0) {
+            final String message = "generator.permutation.size.negative";
+            final Exception cause = new Exception("size: " + size);
+            throw new IllegalArgumentException(message, cause);
+        }
+
+        if (size == 0) {
             return emptyPermutation();
         }
 
@@ -97,13 +104,22 @@ public class Generator {
      * @since 2.0.0
      */
     public static Permutation<Void> newPermutation(int size, int kSize) {
-        if (size < 1 || kSize <= 0) {
-            return emptyPermutation();
+        // @since 3.0.0
+        if (size < 0) {
+            final String message = "generator.permutation.size.negative";
+            final Exception cause = new Exception("size: " + size);
+            throw new IllegalArgumentException(message, cause);
         }
 
-        if (kSize > size) {
-            // TODO
-            throw new ArrayIndexOutOfBoundsException("");
+        // @since 3.0.0
+        if (size < kSize) {
+            final String message = "generator.permutation.out.of.bounds";
+            final Exception cause = new Exception("kSize: " + kSize);
+            throw new IllegalArgumentException(message, cause);
+        }
+
+        if (size == 0 || kSize == 0) {
+            return emptyPermutation();
         }
 
         return new PermutationVoid(orderedArray(size), kSize);
@@ -135,7 +151,16 @@ public class Generator {
      * @since 2.0.0
      */
     public static <T> Permutation<T> newPermutation(List<T> list, Comparator<T> comparator, int kSize) {
-        if (list == null || comparator == null || list.size() <= 0 || kSize <= 0) {
+        final int size = list != null && comparator != null ? list.size() : 0;
+
+        // @since 3.0.0
+        if (size < kSize) {
+            final String message = "generator.permutation.out.of.bounds";
+            final Exception cause = new Exception("kSize: " + kSize);
+            throw new IllegalArgumentException(message, cause);
+        }
+
+        if (size == 0) {
             return emptyPermutation();
         }
 
@@ -143,12 +168,6 @@ public class Generator {
             if (item == null) {
                 throw new NullPointerException("permutation.list.item.null");
             }
-        }
-
-        final int size = list.size();
-        if (kSize > size) {
-            // TODO
-            throw new ArrayIndexOutOfBoundsException("");
         }
 
         final List<T> sortedList = new ArrayList<>(size);

@@ -87,6 +87,20 @@ class PermutationTest {
     }
 
     @Test
+    void testNegativeSize() {
+        try {
+            newPermutation(-1);
+        }
+        catch (RuntimeException e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("generator.permutation.size.negative", e.getMessage());
+            assertNotNull(e.getCause());
+            assertEquals(Exception.class, e.getCause().getClass());
+            assertEquals("size: -1", e.getCause().getMessage());
+        }
+    }
+
+    @Test
     void testBasicPermutationCreator() {
         Permutation<Integer> permutation;
 
@@ -169,14 +183,24 @@ class PermutationTest {
             newPermutation(1, 4);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {
+        catch (RuntimeException e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("generator.permutation.out.of.bounds", e.getMessage());
+            assertNotNull(e.getCause());
+            assertEquals(Exception.class, e.getCause().getClass());
+            assertEquals("kSize: 4", e.getCause().getMessage());
         }
 
         try {
             newPermutation(List.of(1, 2, 3), Comparator.naturalOrder(), 4);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {
+        catch (RuntimeException e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("generator.permutation.out.of.bounds", e.getMessage());
+            assertNotNull(e.getCause());
+            assertEquals(Exception.class, e.getCause().getClass());
+            assertEquals("kSize: 4", e.getCause().getMessage());
         }
     }
 
