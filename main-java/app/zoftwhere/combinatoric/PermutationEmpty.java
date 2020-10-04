@@ -20,7 +20,11 @@ class PermutationEmpty<T> extends AbstractPermutation<T> {
         super(new int[0], 0);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     *
+     * @noinspection unused
+     */
     @Override
     protected Permutation<T> newInstance(int[] index, List<T> list, int kSize) {
         return this;
