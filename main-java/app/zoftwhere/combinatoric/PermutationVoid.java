@@ -52,7 +52,11 @@ class PermutationVoid extends PermutationBasic<Void> {
         throw new NoSuchElementException();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     *
+     * @noinspection EmptyMethod
+     */
     @Override
     public Permutation<Void> next() {
         return super.next();
