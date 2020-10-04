@@ -40,6 +40,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
      * @param list  list of elements
      * @param kSize count of permutation elements
      * @return immutable permutation instance.
+     * @noinspection unused
      */
     protected abstract Permutation<T> newInstance(int[] index, List<T> list, int kSize);
 
