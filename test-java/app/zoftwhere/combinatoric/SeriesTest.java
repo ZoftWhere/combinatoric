@@ -11,6 +11,7 @@ import static app.zoftwhere.combinatoric.Generator.bigDecimalSequence;
 import static app.zoftwhere.combinatoric.Generator.bigIntegerSequence;
 import static app.zoftwhere.combinatoric.Generator.primitiveSequence;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class SeriesTest {
@@ -53,20 +54,22 @@ class SeriesTest {
 
     @Test
     void testSummation() {
-        // TODO
-        new Series().summation(BigDecimal.ONE, BigDecimal.ZERO, 1, BigInteger.TEN);
+        final var result = new Series().summation(BigDecimal.ONE, BigDecimal.ZERO, 1, BigInteger.TEN);
+        assertEquals(10, result.longValue());
     }
 
     @Test
     void testSummationVariable() {
-        // TODO
-        new Series().sequenceVariableSum(BigInteger.TEN, 2);
+        final var result = new Series().sequenceVariableSum(BigInteger.TEN, 2);
+        assertEquals(385, result.longValue());
     }
 
     @Test
     void testSequenceProduct() {
-        // TODO
-        new Series().sequenceProduct(BigInteger.TEN, -2, 2);
+        final var result = new Series().sequenceProduct(BigInteger.TEN, -2, 2);
+        // 8 * 9 * 10 * 11 * 12 = 95040
+        final var expected = 8 * 9 * 10 * 11 * 12;
+        assertEquals(expected, result.longValue());
     }
 
     @Test
@@ -111,21 +114,30 @@ class SeriesTest {
             primitiveSequence().base(0).exponent(0).sum();
             fail("expected.illegal.argument.exception");
         }
-        catch (Exception ignore) {
+        catch (RuntimeException e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("series.zero.power.zero", e.getMessage());
+            assertNull(e.getCause());
         }
 
         try {
             bigIntegerSequence().base(0).exponent(0).sum();
             fail("expected.illegal.argument.exception");
         }
-        catch (Exception ignore) {
+        catch (RuntimeException e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("series.zero.power.zero", e.getMessage());
+            assertNull(e.getCause());
         }
 
         try {
             bigDecimalSequence().base(0).exponent(0).sum();
             fail("expected.illegal.argument.exception");
         }
-        catch (Exception ignore) {
+        catch (RuntimeException e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("series.zero.power.zero", e.getMessage());
+            assertNull(e.getCause());
         }
     }
 
