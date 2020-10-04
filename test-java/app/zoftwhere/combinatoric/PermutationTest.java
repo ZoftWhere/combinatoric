@@ -20,6 +20,14 @@ import static org.junit.jupiter.api.Assertions.fail;
 class PermutationTest {
 
     @Test
+    void testBasicIndex() {
+        final var permutation = newPermutation(10);
+        for (var i = 0; i <= 9; i++) {
+            assertEquals(i, permutation.index(i));
+        }
+    }
+
+    @Test
     void testEmpty() {
         final var permutation = newPermutation(0);
         assertEquals(Integer.valueOf(0), permutation.size());
