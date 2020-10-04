@@ -175,7 +175,9 @@ public class Generator {
         sortedList.addAll(list);
         sortedList.sort(comparator);
         for (int i = 1; i < size; i++) {
-            if (comparator.compare(sortedList.get(i - 1), sortedList.get(i)) == 0) {
+            final T left = sortedList.get(i - 1);
+            final T right = sortedList.get(i);
+            if (left == right || comparator.compare(left, right) == 0) {
                 basic = false;
                 break;
             }
