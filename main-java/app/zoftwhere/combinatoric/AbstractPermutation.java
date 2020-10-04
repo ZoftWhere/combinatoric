@@ -3,7 +3,7 @@ package app.zoftwhere.combinatoric;
 import java.util.Arrays;
 import java.util.List;
 
-import static app.zoftwhere.combinatoric.Generator.empty;
+import static app.zoftwhere.combinatoric.Generator.emptyPermutation;
 
 /**
  * <p>Abstract Permutation.
@@ -91,7 +91,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
     @Override
     public Permutation<T> next() {
         if (size < 2) {
-            return empty();
+            return emptyPermutation();
         }
         return next(Math.min(size - 2, kSize - 1));
     }

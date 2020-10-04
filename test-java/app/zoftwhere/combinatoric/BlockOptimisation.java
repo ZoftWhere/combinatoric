@@ -3,7 +3,7 @@ package app.zoftwhere.combinatoric;
 import java.util.ArrayList;
 import java.util.List;
 
-import static app.zoftwhere.combinatoric.Generator.empty;
+import static app.zoftwhere.combinatoric.Generator.emptyPermutation;
 
 public class BlockOptimisation extends NumberBlock {
 
@@ -51,7 +51,7 @@ public class BlockOptimisation extends NumberBlock {
                     move = rowOffset + column - 1;
 
                     if (move == -1) {
-                        permutation = empty();
+                        permutation = emptyPermutation();
                     }
 
 //                    System.out.println(permutation.toString());≤

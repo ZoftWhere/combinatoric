@@ -63,6 +63,17 @@ public class Generator {
     }
 
     /**
+     * Creates an empty permutation.
+     *
+     * @param <T> the type
+     * @return an empty permutation
+     * @since 3.0.0
+     */
+    public static <T> Permutation<T> emptyPermutation() {
+        return new PermutationEmpty<>();
+    }
+
+    /**
      * Creates an immutable void permutation.
      *
      * @param size the number of elements to hold.
@@ -71,7 +82,7 @@ public class Generator {
      */
     public static Permutation<Void> newPermutation(int size) {
         if (size < 1) {
-            return empty();
+            return emptyPermutation();
         }
 
         return new PermutationVoid(orderedArray(size), size);
@@ -87,7 +98,7 @@ public class Generator {
      */
     public static Permutation<Void> newPermutation(int size, int kSize) {
         if (size < 1 || kSize <= 0) {
-            return empty();
+            return emptyPermutation();
         }
 
         if (kSize > size) {
@@ -125,7 +136,7 @@ public class Generator {
      */
     public static <T> Permutation<T> newPermutation(List<T> list, Comparator<T> comparator, int kSize) {
         if (list == null || comparator == null || list.size() <= 0 || kSize <= 0) {
-            return empty();
+            return emptyPermutation();
         }
 
         for (T item : list) {
@@ -182,7 +193,7 @@ public class Generator {
      */
     public static <T> Permutation<T> newPermutation(List<T> list, int kSize) {
         if (list == null || list.size() == 0 || kSize < 1 || kSize > list.size()) {
-            return empty();
+            return emptyPermutation();
         }
 
         final int size = list.size();
@@ -281,17 +292,6 @@ public class Generator {
         }
 
         return size;
-    }
-
-    /**
-     * Creates an empty permutation.
-     *
-     * @param <T> the type
-     * @return an empty permutation
-     * @since 2.0.0
-     */
-    static <T> Permutation<T> empty() {
-        return new PermutationEmpty<>();
     }
 
 }

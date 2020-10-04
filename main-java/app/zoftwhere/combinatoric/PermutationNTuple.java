@@ -2,7 +2,7 @@ package app.zoftwhere.combinatoric;
 
 import java.util.List;
 
-import static app.zoftwhere.combinatoric.Generator.empty;
+import static app.zoftwhere.combinatoric.Generator.emptyPermutation;
 
 /**
  * <p>Permutation N-Tuple.
@@ -47,7 +47,7 @@ class PermutationNTuple<T> extends PermutationBasic<T> {
     @Override
     public Permutation<T> progress(int position) {
         if (!checkPosition(position)) {
-            return empty();
+            return emptyPermutation();
         }
 
         int min = index[position];
@@ -69,7 +69,7 @@ class PermutationNTuple<T> extends PermutationBasic<T> {
         }
 
         if (swap == position) {
-            return empty();
+            return emptyPermutation();
         }
 
         final int[] push = advance(index, position, swap);

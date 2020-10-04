@@ -3,7 +3,7 @@ package app.zoftwhere.combinatoric;
 import java.util.ArrayList;
 import java.util.List;
 
-import static app.zoftwhere.combinatoric.Generator.empty;
+import static app.zoftwhere.combinatoric.Generator.emptyPermutation;
 
 /**
  * <p>Permutation Basic.
@@ -64,7 +64,7 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
     @Override
     public Permutation<T> progress(int position) {
         if (!checkPosition(position)) {
-            return empty();
+            return emptyPermutation();
         }
 
         int min = index[position];
@@ -83,7 +83,7 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
         }
 
         if (swap == position) {
-            return empty();
+            return emptyPermutation();
         }
 
         return newInstance(advance(index, position, swap), list, kSize);
