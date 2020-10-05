@@ -30,11 +30,12 @@ class PermutationCountTest {
 
     @Test
     void testMultiSetCount() {
-        final var list = new ArrayList<>(List.of(1, 1, 2, 3, 3, 5, 5, 7, 7, 7, 7));
+        final var list = new ArrayList<>(List.of(1, 2, 2, 5, 5, 5, 5, 5));
         list.sort(naturalOrder());
         final var permutation = Generator.newPermutation(list, naturalOrder(), list.size());
         final var count = permutation.count();
-        assertEquals(207900, count.longValue());
+        final var check = checkPermutations(permutation);
+        assertEquals(check, count.longValue());
     }
 
     long checkPermutations(int size, int kSize) {
