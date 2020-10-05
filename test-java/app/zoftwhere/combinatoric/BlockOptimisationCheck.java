@@ -1,12 +1,11 @@
 package app.zoftwhere.combinatoric;
 
-public class BlockOptimisationCheck {
+class BlockOptimisationCheck {
 
     public static void main(String[] args) {
-        final int[] rowTotal = {15, 15, 15};
-        final int[] columnTotal = {15, 15, 15};
-        final int[] pileArray = {0, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-//        final int[] pileArray = {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, -1, -1};
+        final var rowTotal = new int[] {15, 15, 15};
+        final var columnTotal = new int[] {15, 15, 15};
+        final var pileArray = new int[] {0, 1, 1, 1, 1, 1, 1, 1, 1, 1};
         final var optimisationTest = new BlockOptimisation(rowTotal, columnTotal, pileArray);
         final var pair = optimisationTest.testBlockSolutions();
         final var iterationCount = (long) pair.getLeft();
