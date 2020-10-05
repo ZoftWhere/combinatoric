@@ -19,6 +19,7 @@ class PermutationScopeTest {
         permutation.index(0);
         permutation.index();
         permutation.progress(0);
+        permutation.count();
     }
 
     @Test
@@ -32,6 +33,7 @@ class PermutationScopeTest {
         permutation.index();
         permutation.value();
         permutation.progress(0);
+        permutation.count();
     }
 
 }
