@@ -38,7 +38,7 @@ class PermutationCountTest {
         assertEquals(check, count.longValue());
     }
 
-    long checkPermutations(int size, int kSize) {
+    private long checkPermutations(int size, int kSize) {
         if (size == kSize) {
             var permutation = Generator.newPermutation(size);
             return checkPermutations(permutation);
@@ -48,7 +48,7 @@ class PermutationCountTest {
         return checkPermutations(permutation);
     }
 
-    <T> long checkPermutations(Permutation<T> base) {
+    private <T> long checkPermutations(Permutation<T> base) {
         long count = 0;
         var permutation = base;
         while (permutation.isPresent()) {
