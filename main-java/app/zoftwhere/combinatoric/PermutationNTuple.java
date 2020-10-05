@@ -11,6 +11,7 @@ import static app.zoftwhere.combinatoric.Generator.emptyPermutation;
  * </p>
  *
  * @author Osmund
+ * @since 2.0.0
  */
 class PermutationNTuple<T> extends PermutationBasic<T> {
 
@@ -28,6 +29,7 @@ class PermutationNTuple<T> extends PermutationBasic<T> {
      * @param index index
      * @param list  list
      * @param kSize size of display elements
+     * @since 2.0.0
      */
     PermutationNTuple(int[] index, List<T> list, int kSize) {
         super(index, list, kSize);
