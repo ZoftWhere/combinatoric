@@ -12,6 +12,7 @@ import java.util.NoSuchElementException;
  * </p>
  *
  * @author Osmund
+ * @since 2.0.0
  */
 class PermutationVoid extends PermutationBasic<Void> {
 
@@ -26,6 +27,7 @@ class PermutationVoid extends PermutationBasic<Void> {
      *
      * @param index index
      * @param kSize size of display elements
+     * @since 2.0.0
      */
     PermutationVoid(int[] index, int kSize) {
         super(index, null, kSize);
@@ -62,7 +64,12 @@ class PermutationVoid extends PermutationBasic<Void> {
         return super.next();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Returns the permutation index information.
+     *
+     * @return permutation index information
+     * @since 2.0.0
+     */
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("[");
