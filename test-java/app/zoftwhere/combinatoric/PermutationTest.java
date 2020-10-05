@@ -172,7 +172,11 @@ class PermutationTest {
             fail("expected.array.index.out.of.bounds.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("permutation.check.position.invalid.position", e.getMessage());
+            assertNotNull(e.getCause());
+            assertEquals(Exception.class, e.getCause().getClass());
+            assertEquals("size: 1 position: -1", e.getCause().getMessage());
         }
 
         try {
@@ -180,7 +184,11 @@ class PermutationTest {
             fail("expected.array.index.out.of.bounds.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("permutation.check.position.invalid.position", e.getMessage());
+            assertNotNull(e.getCause());
+            assertEquals(Exception.class, e.getCause().getClass());
+            assertEquals("size: 1 position: 1", e.getCause().getMessage());
         }
 
         try {
