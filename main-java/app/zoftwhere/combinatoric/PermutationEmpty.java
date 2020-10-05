@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
  * </p>
  *
  * @author Osmund
+ * @since 1.0.0
  */
 class PermutationEmpty<T> extends AbstractPermutation<T> {
 
@@ -33,31 +34,32 @@ class PermutationEmpty<T> extends AbstractPermutation<T> {
     /** {@inheritDoc} */
     @Override
     public int[] index() {
-        throw new NoSuchElementException();
+        throw new NoSuchElementException("permutation.empty.no.index");
     }
 
     /** {@inheritDoc} */
     @Override
     public int index(int position) {
-        throw new NoSuchElementException();
+        throw new NoSuchElementException("permutation.empty.no.index");
     }
 
     /** {@inheritDoc} */
     @Override
     public List<T> value() {
-        throw new NoSuchElementException();
+        throw new NoSuchElementException("permutation.empty.no.value");
     }
 
     /** {@inheritDoc} */
     @Override
     public T value(int position) {
-        throw new NoSuchElementException();
+        throw new NoSuchElementException("permutation.empty.no.value");
     }
 
     /**
      * Returns an empty permutation.
      *
      * @return empty permutation
+     * @since 2.0.0
      */
     @Override
     public Permutation<T> next() {
@@ -69,6 +71,7 @@ class PermutationEmpty<T> extends AbstractPermutation<T> {
      *
      * @param position ignored
      * @return empty permutation
+     * @since 2.0.0
      */
     @Override
     public Permutation<T> next(int position) {
@@ -80,12 +83,18 @@ class PermutationEmpty<T> extends AbstractPermutation<T> {
      *
      * @param position ignored
      * @return empty permutation
+     * @since 2.0.0
      */
     @Override
     public Permutation<T> progress(int position) {
         return this;
     }
 
+    /**
+     * Returns the empty permutation string.
+     *
+     * @since 2.0.0
+     */
     @Override
     public String toString() {
         return "[]";
