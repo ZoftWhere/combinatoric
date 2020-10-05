@@ -5,15 +5,19 @@ import java.util.List;
 
 import static app.zoftwhere.combinatoric.Generator.emptyPermutation;
 
-public class BlockOptimisation extends NumberBlock {
+class BlockOptimisation extends NumberBlock {
 
     private final int[] rowTotal;
+
     private final int[] columnTotal;
+
     private final int[] pileArray;
+
     private final int rowCount;
+
     private final int columnCount;
 
-    public BlockOptimisation(int[] rowTotal, int[] columnTotal, int[] pileArray) {
+    BlockOptimisation(int[] rowTotal, int[] columnTotal, int[] pileArray) {
         super(rowTotal, columnTotal, pileArray);
         this.rowTotal = rowTotal;
         this.columnTotal = columnTotal;
@@ -22,7 +26,7 @@ public class BlockOptimisation extends NumberBlock {
         this.columnCount = columnTotal.length;
     }
 
-    public SolutionPair testBlockSolutions() {
+    SolutionPair testBlockSolutions() {
         long iterationCount = 0;
         final var boardTileCount = rowCount * columnCount;
 
@@ -54,9 +58,6 @@ public class BlockOptimisation extends NumberBlock {
                         permutation = emptyPermutation();
                     }
 
-//                    System.out.println(permutation.toString());≤
-//                    System.out.printf("Move due to column total for cell row:%d column:%d (%d)%n", row, column, move);
-//                    System.out.println();
                     break;
                 }
 
@@ -69,9 +70,6 @@ public class BlockOptimisation extends NumberBlock {
                     solution = false;
                     move = (row + 1) * columnCount - 1;
 
-//                    System.out.println(permutation.toString());
-//                    System.out.println("Move due to row total for row " + row + " (" + move + ")");
-//                    System.out.println();
                     break;
                 }
             }
@@ -84,10 +82,6 @@ public class BlockOptimisation extends NumberBlock {
                 if (sumColumn(permutation, column) != columnTotal[column]) {
                     solution = false;
                     move = (rowCount - 1) * columnCount + column;
-
-//                    System.out.println(permutation.toString());
-//                    System.out.println("Move due to column total for column " + column + " (" + move + ")");
-//                    System.out.println();
                 }
             }
 
@@ -107,7 +101,9 @@ public class BlockOptimisation extends NumberBlock {
     }
 
     public static class SolutionPair {
+
         private final Long left;
+
         private final List<Permutation<Integer>> right;
 
         SolutionPair(Long left, List<Permutation<Integer>> right) {
@@ -115,11 +111,11 @@ public class BlockOptimisation extends NumberBlock {
             this.right = right;
         }
 
-        public Long getLeft() {
+        Long getLeft() {
             return left;
         }
 
-        public List<Permutation<Integer>> getRight() {
+        List<Permutation<Integer>> getRight() {
             return right;
         }
 
