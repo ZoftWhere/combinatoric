@@ -1,17 +1,25 @@
 package example;
 
-import java.util.Arrays;
-
 import app.zoftwhere.combinatoric.Generator;
 
-public class RunIndexPermutation {
+/**
+ * <p>Run Index Permutation.
+ * </p>
+ * <p>This example shows how to run an indexed k-size permutation with progress.
+ * </p>
+ *
+ * @author Osmund
+ * @since 3.0.0
+ */
+class RunIndexPermutation {
 
     public static void main(String[] args) {
-        final var size = 4;
-        var permutation = Generator.newPermutation(size);
+        final var size = 6;
+        final var kSize = 4;
+        var permutation = Generator.newPermutation(size, kSize);
 
-        System.out.println(Arrays.toString(permutation.index()));
-        var position = size - 1;
+        System.out.println(permutation);
+        var position = kSize - 1;
 
         while (position >= 0) {
             final var test = permutation.progress(position);
@@ -23,8 +31,8 @@ public class RunIndexPermutation {
 
             if (test.isPresent()) {
                 permutation = test;
-                System.out.println(Arrays.toString(permutation.index()));
-                position = size - 1;
+                System.out.println(permutation);
+                position = kSize - 1;
             }
         }
     }
