@@ -1,5 +1,6 @@
 package app.zoftwhere.combinatoric.scope;
 
+import java.math.BigInteger;
 import java.util.Base64;
 
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class FactorialScopeTest {
 
     @Test
-    void testFactorial() {
+    void testBasic() {
+        assertEquals(BigInteger.ONE, factorial(0));
+        assertEquals(BigInteger.ONE, factorial(1));
+        assertEquals(BigInteger.TWO, factorial(2));
+        assertEquals(6, factorial(3).intValue());
+        assertEquals(24, factorial(4).intValue());
+    }
+
+    @Test
+    void testLarge() {
         final var factorial = factorial(72);
         final var byteArray = factorial.toByteArray();
         final var baseString = Base64.getEncoder().encodeToString(byteArray);
