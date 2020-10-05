@@ -192,7 +192,6 @@ public class NumberBlock {
         return Math.min(getMax(this.rowTotal), getMax(this.columnTotal));
     }
 
-
     /**
      * Return the maximum value in an array
      *
