@@ -35,16 +35,20 @@ public class Calculator {
 
         BigInteger result = BigInteger.valueOf(2);
         long temp = 1;
+        long max = 1 << 24;
+
         for (var i = 3; i <= value; i++) {
             temp *= i;
-            if (temp > Integer.MAX_VALUE) {
+            if (temp > max) {
                 result = result.multiply(BigInteger.valueOf(temp));
                 temp = 1;
             }
         }
-        if (temp != 1) {
+
+        if (temp > 1) {
             result = result.multiply(BigInteger.valueOf(temp));
         }
+
         return result;
     }
 
