@@ -12,6 +12,7 @@ import static app.zoftwhere.combinatoric.Generator.emptyPermutation;
  * </p>
  *
  * @author Osmund
+ * @since 1.0.0
  */
 abstract class AbstractPermutation<T> implements Permutation<T> {
 
@@ -26,6 +27,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
      *
      * @param index index array
      * @param kSize count of permutation elements
+     * @since 2.1.0
      */
     AbstractPermutation(int[] index, int kSize) {
         this.index = index;
@@ -41,6 +43,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
      * @param kSize count of permutation elements
      * @return immutable permutation instance.
      * @noinspection unused
+     * @since 2.0.0
      */
     protected abstract Permutation<T> newInstance(int[] index, List<T> list, int kSize);
 
@@ -69,6 +72,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] index() {
         int[] push = new int[size];
         System.arraycopy(index, 0, push, 0, size);
@@ -86,6 +90,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
     public abstract List<T> value();
 
     /** {@inheritDoc} */
+    @Override
     public abstract T value(int position);
 
     /** {@inheritDoc} */
@@ -126,11 +131,14 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
      *
      * @param position position
      * @return if check successful, false otherwise
+     * @since 2.0.0
      */
     boolean checkPosition(int position) {
         if (position < 0 || position >= size) {
-            final String template = "Index %d out of bounds for length %d";
-            throw new ArrayIndexOutOfBoundsException(String.format(template, position, size));
+            // @since 3.0.0
+            String message = "permutation.check.position.invalid.position";
+            Exception cause = new Exception(String.format("size: %d position: %d", size, position));
+            throw new IllegalArgumentException(message, cause);
         }
 
         return (position < size - 1) && (position < kSize);
@@ -143,6 +151,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
      * @param left  the index position to advance
      * @param right the replacement position index array index
      * @return the index array after advancement
+     * @since 2.0.0
      */
     int[] advance(int[] index, int left, int right) {
         int[] push = new int[size];
@@ -158,6 +167,7 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
      *
      * @param size the size of the array
      * @return an ordered index array
+     * @since 2.0.0
      */
     static int[] orderedArray(int size) {
         final int[] index = new int[size];
