@@ -10,9 +10,9 @@ import java.math.BigInteger;
  * </p>
  *
  * @author Osmund
+ * @since 2.0.0
  */
 class SequenceBigDecimal extends AbstractSequence<BigDecimal, BigInteger> {
-
 
     /**
      * Constructor for {@link app.zoftwhere.combinatoric.SequenceBigDecimal} (package-private).
@@ -21,6 +21,7 @@ class SequenceBigDecimal extends AbstractSequence<BigDecimal, BigInteger> {
      * @param increment increment value
      * @param exponent  exponent value
      * @param length    sequence length
+     * @since 2.0.0
      */
     SequenceBigDecimal(BigDecimal base, BigDecimal increment, int exponent, BigInteger length) {
         super(base, increment, exponent, length);

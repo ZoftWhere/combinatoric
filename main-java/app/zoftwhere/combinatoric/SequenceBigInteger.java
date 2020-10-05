@@ -9,6 +9,7 @@ import java.math.BigInteger;
  * </p>
  *
  * @author Osmund
+ * @since 2.0.0
  */
 class SequenceBigInteger extends AbstractSequence<BigInteger, BigInteger> {
 
@@ -19,6 +20,7 @@ class SequenceBigInteger extends AbstractSequence<BigInteger, BigInteger> {
      * @param increment increment value
      * @param exponent  exponent value
      * @param length    sequence length
+     * @since 2.0.0
      */
     SequenceBigInteger(BigInteger base, BigInteger increment, int exponent, BigInteger length) {
         super(base, increment, exponent, length);
