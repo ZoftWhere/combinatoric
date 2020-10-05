@@ -30,7 +30,7 @@ class FactorialScopeTest {
     }
 
     @Test
-    void TestFactorialNegative() {
+    void testFactorialNegative() {
         try {
             factorial(-1);
         }
