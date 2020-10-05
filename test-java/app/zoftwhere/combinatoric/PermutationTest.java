@@ -87,9 +87,25 @@ class PermutationTest {
     }
 
     @Test
-    void testNegativeSize() {
+    void testVoidNegativeSize() {
         try {
             newPermutation(-1);
+            fail("permutation.test.expected.exception");
+        }
+        catch (RuntimeException e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("generator.permutation.size.negative", e.getMessage());
+            assertNotNull(e.getCause());
+            assertEquals(Exception.class, e.getCause().getClass());
+            assertEquals("size: -1", e.getCause().getMessage());
+        }
+    }
+
+    @Test
+    void testKVoidNegativeSize() {
+        try {
+            newPermutation(-1, 0);
+            fail("permutation.test.expected.exception");
         }
         catch (RuntimeException e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
