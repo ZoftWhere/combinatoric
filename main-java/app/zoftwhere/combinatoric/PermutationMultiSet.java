@@ -129,17 +129,8 @@ class PermutationMultiSet<T> extends PermutationBasic<T> {
         var unique = size - compacted;
 
         if (unique > 0) {
-            var factor = 1L;
-            for (int i = 1; i <= unique; i++) {
-                factor *= (compacted + i);
-                if (factor > Integer.MAX_VALUE) {
-                    total = total.multiply(BigInteger.valueOf(factor));
-                    factor = 1;
-                }
-            }
-            if (factor > 1) {
-                total = total.multiply(BigInteger.valueOf(factor));
-            }
+            // nPk(compacted + unique, unique) == nPk(size, unique)
+            total = total.multiply(Calculator.nPk(size, unique));
         }
 
         return total;
