@@ -36,7 +36,7 @@ public class Calculator {
         long temp = 1;
         long max = 1 << 24;
 
-        for (var i = 3; i <= value; i++) {
+        for (int i = 3; i <= value; i++) {
             temp *= i;
             if (temp > max) {
                 result = result.multiply(BigInteger.valueOf(temp));
@@ -79,7 +79,7 @@ public class Calculator {
         final int k = Math.min(r, n - r);
         BigInteger result = BigInteger.valueOf(n);
 
-        for (var i = 1; i < k; i++) {
+        for (int i = 1; i < k; i++) {
             result = result.multiply(BigInteger.valueOf(n - i));
             result = result.divide(BigInteger.valueOf(i + 1));
         }
@@ -119,7 +119,7 @@ public class Calculator {
         long temp = n;
         long max = 1 << 22;
 
-        for (var i = n - k + 1; i < n; i++) {
+        for (int i = n - k + 1; i < n; i++) {
             temp *= i;
             if (temp > max) {
                 result = result.multiply(BigInteger.valueOf(temp));
