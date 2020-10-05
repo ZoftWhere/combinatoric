@@ -7,7 +7,7 @@ import app.zoftwhere.combinatoric.Generator;
 
 import static java.util.Comparator.naturalOrder;
 
-public class RunValuePermutation {
+class RunValuePermutation {
 
     public static void main(String[] args) {
         new RunValuePermutation().runValueList();
