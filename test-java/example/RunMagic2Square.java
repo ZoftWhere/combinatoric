@@ -8,7 +8,7 @@ import app.zoftwhere.combinatoric.NumberBlock;
 
 import static app.zoftwhere.combinatoric.Generator.primitiveSequence;
 
-public class RunMagic2Square {
+class RunMagic2Square {
 
     public static void main(String[] args) {
         for (var n = 3; n <= 3; n++) {
