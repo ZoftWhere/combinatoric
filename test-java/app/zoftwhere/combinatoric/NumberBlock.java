@@ -156,7 +156,7 @@ public class NumberBlock {
      * @param boardTileCount board tile count
      * @return number block pocket
      */
-    public List<Integer> getPocket(int[] pileArray, int boardTileCount) {
+    List<Integer> getPocket(int[] pileArray, int boardTileCount) {
         final var boardMax = getBoardMax();
         final var size = getPocketSize(pileArray, boardTileCount, boardMax);
         List<Integer> pocket = new ArrayList<>(size);
@@ -188,7 +188,7 @@ public class NumberBlock {
      *
      * @return maximum value for any total
      */
-    int getBoardMax() {
+    private int getBoardMax() {
         return Math.min(getMax(this.rowTotal), getMax(this.columnTotal));
     }
 
@@ -199,7 +199,7 @@ public class NumberBlock {
      * @param array array
      * @return maximum value in an array
      */
-    int getMax(int[] array) {
+    private int getMax(int[] array) {
         var max = array[0];
         for (var i = 1; i < array.length; i++) {
             max = Math.max(array[i], max);
@@ -215,7 +215,7 @@ public class NumberBlock {
      * @param boardMax       board maximum value
      * @return number block pocket size
      */
-    int getPocketSize(int[] pileArray, int boardTileCount, int boardMax) {
+    private int getPocketSize(int[] pileArray, int boardTileCount, int boardMax) {
         final var pileSize = pileArray.length;
 
         var size = 0;
