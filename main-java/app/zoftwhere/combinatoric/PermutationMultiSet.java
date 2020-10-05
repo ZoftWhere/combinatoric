@@ -100,20 +100,20 @@ class PermutationMultiSet<T> extends PermutationBasic<T> {
      * @return count for simple multi-set permutation.
      */
     private BigInteger simpleCount() {
-        var group = 1;
-        var compacted = 0;
-        var total = BigInteger.ONE;
+        int group = 1;
+        int compacted = 0;
+        BigInteger total = BigInteger.ONE;
 
-        var left = list.get(0);
+        T left = list.get(0);
 
         for (int i = 1; i < size; i++) {
-            var right = list.get(i);
+            T right = list.get(i);
             if (left.equals(right)) {
                 group++;
             }
             else {
                 if (group != 1) {
-                    var factor = Calculator.nCr(compacted + group, group);
+                    BigInteger factor = Calculator.nCr(compacted + group, group);
                     total = total.multiply(factor);
                     compacted += group;
                     group = 1;
@@ -123,12 +123,12 @@ class PermutationMultiSet<T> extends PermutationBasic<T> {
         }
 
         if (group > 1) {
-            var factor = Calculator.nCr(compacted + group, group);
+            BigInteger factor = Calculator.nCr(compacted + group, group);
             total = total.multiply(factor);
             compacted += group;
         }
 
-        var unique = size - compacted;
+        int unique = size - compacted;
 
         if (unique > 0) {
             // nPk(compacted + unique, unique) == nPk(size, unique)
