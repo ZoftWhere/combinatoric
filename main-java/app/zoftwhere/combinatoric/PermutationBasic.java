@@ -95,14 +95,8 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
     /** {@inheritDoc} */
     @Override
     public BigInteger count() {
-        if (kSize == size) {
-            return Calculator.factorial(kSize);
-        }
-        BigInteger count = BigInteger.valueOf(size);
-        for (int i = 1; i < kSize; i++) {
-            count = count.multiply(BigInteger.valueOf(size - i));
-        }
-        return count;
+        // Permutation formula.
+        return Calculator.nPk(size, kSize);
     }
 
     /**
