@@ -47,7 +47,7 @@ class PermutationCountTest {
         return checkPermutations(permutation);
     }
 
-    long checkPermutations(Permutation base) {
+    <T> long checkPermutations(Permutation<T> base) {
         long count = 0;
         var permutation = base;
         while (permutation.isPresent()) {
