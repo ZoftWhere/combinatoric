@@ -1,5 +1,6 @@
 package app.zoftwhere.combinatoric;
 
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -102,5 +103,13 @@ public interface Permutation<T> {
      * @since 2.0.0
      */
     Permutation<T> progress(int position);
+
+    /**
+     * Return the total number of unique permutations possible
+     *
+     * @return total number of unique permutations possible
+     * @since 3.0.0
+     */
+    BigInteger count();
 
 }

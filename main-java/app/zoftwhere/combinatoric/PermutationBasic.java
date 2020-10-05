@@ -1,5 +1,6 @@
 package app.zoftwhere.combinatoric;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,6 +90,19 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
         }
 
         return newInstance(advance(index, position, swap), list, kSize);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public BigInteger count() {
+        if (kSize == size) {
+            return Calculator.factorial(kSize);
+        }
+        BigInteger count = BigInteger.valueOf(size);
+        for (int i = 1; i < kSize; i++) {
+            count = count.multiply(BigInteger.valueOf(size - i));
+        }
+        return count;
     }
 
     /**

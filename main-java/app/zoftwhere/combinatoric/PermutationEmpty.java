@@ -1,5 +1,6 @@
 package app.zoftwhere.combinatoric;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -88,6 +89,12 @@ class PermutationEmpty<T> extends AbstractPermutation<T> {
     @Override
     public Permutation<T> progress(int position) {
         return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public BigInteger count() {
+        return BigInteger.ZERO;
     }
 
     /**

@@ -1,5 +1,6 @@
 package app.zoftwhere.combinatoric;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -125,6 +126,10 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
     /** {@inheritDoc} */
     @Override
     public abstract Permutation<T> progress(int position);
+
+    /** {@inheritDoc} */
+    @Override
+    public abstract BigInteger count();
 
     /**
      * Check the position.
