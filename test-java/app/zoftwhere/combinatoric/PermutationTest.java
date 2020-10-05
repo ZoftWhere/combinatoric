@@ -127,26 +127,26 @@ class PermutationTest {
     }
 
     @Test
-    void testPermutationTupleCreator() {
+    void testMultiSetPermutationCreator() {
         Permutation<Integer> permutation;
 
         permutation = newPermutation(List.of(1, 1, 1, 1), Comparator.naturalOrder());
-        assertClass(PermutationNTuple.class, permutation);
+        assertClass(PermutationMultiSet.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 2, 2), Comparator.naturalOrder());
-        assertClass(PermutationNTuple.class, permutation);
+        assertClass(PermutationMultiSet.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 1, 1));
-        assertClass(PermutationNTuple.class, permutation);
+        assertClass(PermutationMultiSet.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 2, 2));
-        assertClass(PermutationNTuple.class, permutation);
+        assertClass(PermutationMultiSet.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 1, 1), true);
-        assertClass(PermutationNTuple.class, permutation);
+        assertClass(PermutationMultiSet.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 2, 2), true);
-        assertClass(PermutationNTuple.class, permutation);
+        assertClass(PermutationMultiSet.class, permutation);
     }
 
     @Test
@@ -384,7 +384,7 @@ class PermutationTest {
     }
 
     @Test
-    void testKTuple() {
+    void testMultiSetKPermutation() {
         final var list = Arrays.asList(1, 1, 2, 2, 3, 3);
         final String[] expected = {
             "[0:1, 1:1][2:2, 3:2, 4:3, 5:3]", //

@@ -6,15 +6,17 @@ import java.util.List;
 import static app.zoftwhere.combinatoric.Generator.emptyPermutation;
 
 /**
- * <p>Permutation N-Tuple.
+ * <p>Permutation Multi-Set.
  * </p>
  * <p>This is a package-private class that implements functionality.
  * </p>
+ * <p>A multi-set permutation is a permutation over a finite multi-set.  This may include a k-permutation.
+ * </p>
  *
  * @author Osmund
- * @since 2.0.0
+ * @since 3.0.0
  */
-class PermutationNTuple<T> extends PermutationBasic<T> {
+class PermutationMultiSet<T> extends PermutationBasic<T> {
 
     private final int[] index;
 
@@ -25,14 +27,14 @@ class PermutationNTuple<T> extends PermutationBasic<T> {
     private final int kSize;
 
     /**
-     * Constructor for {@link app.zoftwhere.combinatoric.PermutationNTuple} (package-private).
+     * Constructor for {@link PermutationMultiSet} (package-private).
      *
      * @param index index
      * @param list  list
      * @param kSize size of display elements
      * @since 2.0.0
      */
-    PermutationNTuple(int[] index, List<T> list, int kSize) {
+    PermutationMultiSet(int[] index, List<T> list, int kSize) {
         super(index, list, kSize);
         this.index = index;
         this.size = index.length;
@@ -43,7 +45,7 @@ class PermutationNTuple<T> extends PermutationBasic<T> {
     /** {@inheritDoc} */
     @Override
     protected Permutation<T> newInstance(int[] index, List<T> list, int kSize) {
-        return new PermutationNTuple<>(index, list, kSize);
+        return new PermutationMultiSet<>(index, list, kSize);
     }
 
     /** {@inheritDoc} */
@@ -86,13 +88,14 @@ class PermutationNTuple<T> extends PermutationBasic<T> {
             return simpleCount();
         }
 
-        throw new NoSuchMethodError("kSize?");
+        // Cannot calculate k-permutation of multi-set permutation.
+        throw new NoSuchMethodError("permutation.multiset.k.permutation.count");
     }
 
     /**
-     * Private method for returning count for a simple n-tuple (k-size == size).
+     * Private method for returning count for a multi-set permutation.
      *
-     * @return count for simple n-tuple
+     * @return count for simple multi-set permutation.
      */
     private BigInteger simpleCount() {
         var group = 1;

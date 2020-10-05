@@ -99,7 +99,7 @@ public class Generator {
      * Creates an immutable void permutation.
      *
      * @param size  number of elements to hold
-     * @param kSize number of elements for display
+     * @param kSize permutation sequence length
      * @return immutable void permutation
      * @since 2.0.0
      */
@@ -131,7 +131,7 @@ public class Generator {
      * @param <T>        element type
      * @param list       list of elements
      * @param comparator comparator
-     * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
+     * @return immutable basic permutation if no duplicates are detected, a multi-set otherwise
      * @throws NullPointerException if any of the list items are null
      * @since 2.0.0
      */
@@ -145,8 +145,8 @@ public class Generator {
      * @param <T>        element type
      * @param list       list of elements
      * @param comparator comparator
-     * @param kSize      number of elements for display
-     * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
+     * @param kSize      permutation sequence length
+     * @return immutable basic permutation if no duplicates are detected, a multi-set otherwise
      * @throws NullPointerException if any of the list items are null
      * @since 2.0.0
      */
@@ -184,7 +184,7 @@ public class Generator {
         }
 
         if (!basic) {
-            return new PermutationNTuple<>(orderedArray(size), unmodifiableList(sortedList), kSize);
+            return new PermutationMultiSet<>(orderedArray(size), unmodifiableList(sortedList), kSize);
         }
 
         return new PermutationBasic<>(orderedArray(size), unmodifiableList(sortedList), kSize);
@@ -195,7 +195,7 @@ public class Generator {
      *
      * @param <T>  element type
      * @param list list of elements
-     * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
+     * @return immutable basic permutation if no duplicates are detected, a multi-set otherwise
      * @throws NullPointerException if any of the list items are null
      * @since 2.0.0
      */
@@ -208,8 +208,8 @@ public class Generator {
      *
      * @param <T>   element type
      * @param list  list of elements
-     * @param kSize number of elements for display
-     * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
+     * @param kSize permutation sequence length
+     * @return immutable basic permutation if no duplicates are detected, a multi-set otherwise
      * @throws NullPointerException if any of the list items are null
      */
     public static <T> Permutation<T> newPermutation(List<T> list, int kSize) {
@@ -242,7 +242,7 @@ public class Generator {
         }
 
         if (!basic) {
-            return new PermutationNTuple<>(orderedArray(size), unmodifiableList(groupedList), kSize);
+            return new PermutationMultiSet<>(orderedArray(size), unmodifiableList(groupedList), kSize);
         }
 
         return new PermutationBasic<>(orderedArray(size), unmodifiableList(groupedList), kSize);
@@ -268,7 +268,7 @@ public class Generator {
      * @param <T>             element type
      * @param list            list of elements
      * @param withRepetitions flag to specify if duplicates should be ignored
-     * @param kSize           number of elements for display
+     * @param kSize           permutation sequence length
      * @return immutable linked permutation
      * @throws NullPointerException if any of the list items are null
      * @since 2.0.0
