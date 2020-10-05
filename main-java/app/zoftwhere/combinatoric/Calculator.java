@@ -116,19 +116,22 @@ public class Calculator {
             return BigInteger.ONE;
         }
 
-        // Result = factorial(n) / factorial(n-k).
         BigInteger result = BigInteger.ONE;
-        long temp = 1;
-        for (var i = n - k + 1; i <= n; i++) {
+        long temp = n;
+        long max = 1 << 22;
+
+        for (var i = n - k + 1; i < n; i++) {
             temp *= i;
-            if (temp > Integer.MAX_VALUE) {
+            if (temp > max) {
                 result = result.multiply(BigInteger.valueOf(temp));
                 temp = 1;
             }
         }
-        if (temp != 1) {
+
+        if (temp > 1) {
             result = result.multiply(BigInteger.valueOf(temp));
         }
+
         return result;
     }
 
