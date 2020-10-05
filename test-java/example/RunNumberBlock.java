@@ -2,7 +2,7 @@ package example;
 
 import app.zoftwhere.combinatoric.NumberBlock;
 
-public class RunNumberBlock {
+class RunNumberBlock {
 
     public static void main(String[] args) {
         final int[] rowTotal = {2, 4, 6};
