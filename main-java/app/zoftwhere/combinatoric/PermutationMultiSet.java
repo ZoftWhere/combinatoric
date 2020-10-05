@@ -89,7 +89,9 @@ class PermutationMultiSet<T> extends PermutationBasic<T> {
         }
 
         // Cannot calculate k-permutation of multi-set permutation.
-        throw new NoSuchMethodError("permutation.multiset.k.permutation.count");
+        String message = "permutation.multiset.k.permutation.count";
+        Exception cause = new Exception("kSize: " + kSize);
+        throw new IllegalArgumentException(message, cause);
     }
 
     /**
