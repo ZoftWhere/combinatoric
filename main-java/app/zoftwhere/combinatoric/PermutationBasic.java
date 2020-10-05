@@ -12,6 +12,7 @@ import static app.zoftwhere.combinatoric.Generator.emptyPermutation;
  * </p>
  *
  * @author Osmund
+ * @since 1.0.0
  */
 class PermutationBasic<T> extends AbstractPermutation<T> {
 
@@ -29,6 +30,7 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
      * @param index index
      * @param list  list
      * @param kSize size of display elements
+     * @since 2.0.0
      */
     PermutationBasic(int[] index, List<T> list, int kSize) {
         super(index, kSize);
@@ -89,6 +91,12 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
         return newInstance(advance(index, position, swap), list, kSize);
     }
 
+    /**
+     * Returns the permutation information with index and value.
+     *
+     * @return permutation information with index and value
+     * @since 1.0.0
+     */
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("[");
