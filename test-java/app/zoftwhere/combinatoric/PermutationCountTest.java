@@ -47,11 +47,6 @@ class PermutationCountTest {
         return checkPermutations(permutation);
     }
 
-    long checkPermutations(List<Integer> sorted) {
-        var permutation = Generator.newPermutation(sorted, naturalOrder());
-        return checkPermutations(permutation);
-    }
-
     long checkPermutations(Permutation base) {
         long count = 0;
         var permutation = base;
