@@ -1,6 +1,5 @@
 package app.zoftwhere.combinatoric;
 
-
 import java.math.BigInteger;
 
 /**
