@@ -11,13 +11,13 @@ class NumberBlockTest {
 
     @Test
     void testSumTotal() {
-        final int[] rowTotal = {3, 8};
+        final var rowTotal = new int[] {3, 8};
         final var rowCount = rowTotal.length;
 
-        final int[] columnTotal = {4, 7};
+        final var columnTotal = new int[] {4, 7};
         final var columnCount = columnTotal.length;
 
-        final int[] pileArray = {0, 1, 1, 1, 0, 1};
+        final var pileArray = new int[] {0, 1, 1, 1, 0, 1};
 
         final var numberBlock = new NumberBlock(rowTotal, columnTotal, pileArray);
 

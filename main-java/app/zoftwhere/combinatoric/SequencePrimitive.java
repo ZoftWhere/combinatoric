@@ -7,16 +7,18 @@ package app.zoftwhere.combinatoric;
  * </p>
  *
  * @author Osmund
+ * @since 2.0.0
  */
 class SequencePrimitive extends AbstractSequence<Long, Long> {
 
     /**
      * Constructor for {@link app.zoftwhere.combinatoric.SequencePrimitive} (package-private).
      *
-     * @param base      base
-     * @param increment increment
-     * @param exponent  exponent
-     * @param length    length
+     * @param base      base value
+     * @param increment increment value
+     * @param exponent  exponent value
+     * @param length    sequence length
+     * @since 2.0.0
      */
     SequencePrimitive(Long base, Long increment, int exponent, Long length) {
         super(base, increment, exponent, length);

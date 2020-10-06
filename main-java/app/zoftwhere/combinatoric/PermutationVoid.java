@@ -6,29 +6,25 @@ import java.util.NoSuchElementException;
 /**
  * <p>Permutation Void.
  * </p>
+ * <p>The Permutation Void class is an index-only implementation.
+ * </p>
  * <p>This is a package-private class that implements functionality.
  * </p>
  *
  * @author Osmund
+ * @since 2.0.0
  */
 class PermutationVoid extends PermutationBasic<Void> {
 
-    private final int size;
-
-    private final int[] index;
-
-    private final int kSize;
-
     /**
      * Constructor for {@link app.zoftwhere.combinatoric.PermutationVoid} (package-private).
+     *
      * @param index index
      * @param kSize size of display elements
+     * @since 2.0.0
      */
     PermutationVoid(int[] index, int kSize) {
         super(index, null, kSize);
-        this.index = index;
-        this.size = index.length;
-        this.kSize = kSize;
     }
 
     /** {@inheritDoc} */
@@ -49,13 +45,12 @@ class PermutationVoid extends PermutationBasic<Void> {
         throw new NoSuchElementException();
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public Permutation<Void> next() {
-        return super.next();
-    }
-
-    /** {@inheritDoc} */
+    /**
+     * Returns the permutation index information.
+     *
+     * @return permutation index information
+     * @since 2.0.0
+     */
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("[");

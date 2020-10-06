@@ -50,7 +50,7 @@ If the project needs to be installed against JDK8, it can be accomplished by cal
 
 ``` shell script
 mvn clean compiler:compile@main-compile-jdk8 jar:jar@main-jar source:jar@main-sources javadoc:jar@main-javadoc-jdk8 moditect:add-module-info@main-jpms install:install-file@main-install
-``` 
+```
 
 
 ## Examples
@@ -99,7 +99,6 @@ The sum `(1.1)^4 + (2.2)^4 + (3.3)^4 + ... + (1.1 + 1.1 n)^4 + ... (10312.5)^4`
         .base(0).increment(BigDecimal.valueOf(1.1)).exponent(4).length(9376).sum();
 ```
 
-
 ### Example for Permutation (index only)
 
 To run through two permutations by changing the index 1 to the next value.
@@ -114,7 +113,6 @@ To run through two permutations by changing the index 1 to the next value.
     // [0, 3, 1, 2, 4]
     System.out.println(permutation);
 ```
-
 
 ### More Examples
 

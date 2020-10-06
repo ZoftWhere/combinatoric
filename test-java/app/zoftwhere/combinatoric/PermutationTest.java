@@ -1,16 +1,16 @@
 package app.zoftwhere.combinatoric;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
-import org.opentest4j.AssertionFailedError;
 
 import static app.zoftwhere.combinatoric.Generator.newPermutation;
+import static app.zoftwhere.combinatoric.TestHelper.assertClass;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -18,6 +18,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class PermutationTest {
+
+    @Test
+    void testBasicIndex() {
+        final var permutation = newPermutation(10);
+        for (var i = 0; i <= 9; i++) {
+            assertEquals(i, permutation.index(i));
+        }
+    }
 
     @Test
     void testEmpty() {
@@ -62,20 +70,50 @@ class PermutationTest {
         assertNotNull(permutation.next());
         assertNotNull(permutation.next(0));
 
-        assertClass(newPermutation(0), PermutationEmpty.class);
-        assertClass(newPermutation(1, 0), PermutationEmpty.class);
-        assertClass(newPermutation(1).next(), PermutationEmpty.class);
-        assertClass(newPermutation(1).next(0), PermutationEmpty.class);
-        assertClass(newPermutation(1).progress(0), PermutationEmpty.class);
-        assertClass(newPermutation(2, 1).progress(1), PermutationEmpty.class);
-        assertClass(newPermutation(null, null, 0), PermutationEmpty.class);
-        assertClass(newPermutation(List.of(0)).next(), PermutationEmpty.class);
-        assertClass(newPermutation(List.of(0)).next(0), PermutationEmpty.class);
-        assertClass(newPermutation((List<Integer>) null), PermutationEmpty.class);
-        assertClass(newPermutation(new ArrayList<Integer>(0)), PermutationEmpty.class);
+        assertClass(PermutationEmpty.class, newPermutation(0));
+        assertClass(PermutationEmpty.class, newPermutation(1, 0));
+        assertClass(PermutationEmpty.class, newPermutation(1).next());
+        assertClass(PermutationEmpty.class, newPermutation(1).next(0));
+        assertClass(PermutationEmpty.class, newPermutation(1).progress(0));
+        assertClass(PermutationEmpty.class, newPermutation(2, 1).progress(1));
+        assertClass(PermutationEmpty.class, newPermutation(null, null, 0));
+        assertClass(PermutationEmpty.class, newPermutation(List.of(0)).next());
+        assertClass(PermutationEmpty.class, newPermutation(List.of(0)).next(0));
+        assertClass(PermutationEmpty.class, newPermutation((List<Integer>) null));
+        assertClass(PermutationEmpty.class, newPermutation(new ArrayList<Integer>(0)));
 
-        assertClass(newPermutation(List.of(0), false).progress(0), PermutationEmpty.class);
-        assertClass(newPermutation(Arrays.asList(1, 2, 1), 1).progress(2), PermutationEmpty.class);
+        assertClass(PermutationEmpty.class, newPermutation(List.of(0), false).progress(0));
+        assertClass(PermutationEmpty.class, newPermutation(Arrays.asList(1, 2, 1), 1).progress(2));
+    }
+
+    @Test
+    void testVoidNegativeSize() {
+        try {
+            newPermutation(-1);
+            fail("permutation.test.expected.exception");
+        }
+        catch (RuntimeException e) {
+            assertClass(IllegalArgumentException.class, e);
+            assertEquals("generator.permutation.size.negative", e.getMessage());
+            assertNotNull(e.getCause());
+            assertClass(Exception.class, e.getCause());
+            assertEquals("size: -1", e.getCause().getMessage());
+        }
+    }
+
+    @Test
+    void testKVoidNegativeSize() {
+        try {
+            newPermutation(-1, 0);
+            fail("permutation.test.expected.exception");
+        }
+        catch (RuntimeException e) {
+            assertClass(IllegalArgumentException.class, e);
+            assertEquals("generator.permutation.size.negative", e.getMessage());
+            assertNotNull(e.getCause());
+            assertClass(Exception.class, e.getCause());
+            assertEquals("size: -1", e.getCause().getMessage());
+        }
     }
 
     @Test
@@ -83,48 +121,48 @@ class PermutationTest {
         Permutation<Integer> permutation;
 
         permutation = newPermutation(List.of(1, 2, 3, 4));
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), Comparator.naturalOrder());
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), true);
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), false);
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), Comparator.naturalOrder(), 3);
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), true, 3);
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
 
         permutation = newPermutation(List.of(1, 2, 3, 4), false, 3);
-        assertClass(permutation, PermutationBasic.class);
+        assertClass(PermutationBasic.class, permutation);
     }
 
     @Test
-    void testPermutationTupleCreator() {
+    void testMultiSetPermutationCreator() {
         Permutation<Integer> permutation;
 
         permutation = newPermutation(List.of(1, 1, 1, 1), Comparator.naturalOrder());
-        assertClass(permutation, PermutationNTuple.class);
+        assertClass(PermutationMultiSet.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 2, 2), Comparator.naturalOrder());
-        assertClass(permutation, PermutationNTuple.class);
+        assertClass(PermutationMultiSet.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 1, 1));
-        assertClass(permutation, PermutationNTuple.class);
+        assertClass(PermutationMultiSet.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 2, 2));
-        assertClass(permutation, PermutationNTuple.class);
+        assertClass(PermutationMultiSet.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 1, 1), true);
-        assertClass(permutation, PermutationNTuple.class);
+        assertClass(PermutationMultiSet.class, permutation);
 
         permutation = newPermutation(List.of(1, 1, 2, 2), true);
-        assertClass(permutation, PermutationNTuple.class);
+        assertClass(PermutationMultiSet.class, permutation);
     }
 
     @Test
@@ -133,42 +171,64 @@ class PermutationTest {
             newPermutation(1).index(-1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {
+        catch (RuntimeException e) {
+            assertClass(ArrayIndexOutOfBoundsException.class, e);
         }
 
         try {
             newPermutation(1).index(1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {
+        catch (RuntimeException e) {
+            assertClass(ArrayIndexOutOfBoundsException.class, e);
         }
 
         try {
             newPermutation(1).progress(-1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {
+        catch (RuntimeException e) {
+            assertClass(IllegalArgumentException.class, e);
+            assertEquals("permutation.check.position.invalid.position", e.getMessage());
+            assertNotNull(e.getCause());
+            assertClass(Exception.class, e.getCause());
+            assertEquals("size: 1 position: -1", e.getCause().getMessage());
         }
 
         try {
             newPermutation(1).progress(1);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {
+        catch (RuntimeException e) {
+            assertClass(IllegalArgumentException.class, e);
+            assertEquals("permutation.check.position.invalid.position", e.getMessage());
+            assertNotNull(e.getCause());
+            assertClass(Exception.class, e.getCause());
+            assertEquals("size: 1 position: 1", e.getCause().getMessage());
         }
 
         try {
             newPermutation(1, 4);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {
+        catch (RuntimeException e) {
+            assertClass(IllegalArgumentException.class, e);
+            assertEquals("generator.permutation.out.of.bounds", e.getMessage());
+            assertNotNull(e.getCause());
+            assertClass(Exception.class, e.getCause());
+            assertEquals("kSize: 4", e.getCause().getMessage());
         }
 
         try {
             newPermutation(List.of(1, 2, 3), Comparator.naturalOrder(), 4);
             fail("expected.array.index.out.of.bounds.exception");
         }
-        catch (ArrayIndexOutOfBoundsException ignore) {
+        catch (RuntimeException e) {
+            assertClass(IllegalArgumentException.class, e);
+            assertEquals("generator.permutation.out.of.bounds", e.getMessage());
+            assertNotNull(e.getCause());
+            assertClass(Exception.class, e.getCause());
+            assertEquals("kSize: 4", e.getCause().getMessage());
         }
     }
 
@@ -348,7 +408,7 @@ class PermutationTest {
     }
 
     @Test
-    void testKTuple() {
+    void testMultiSetKPermutation() {
         final var list = Arrays.asList(1, 1, 2, 2, 3, 3);
         final String[] expected = {
             "[0:1, 1:1][2:2, 3:2, 4:3, 5:3]", //
@@ -427,14 +487,22 @@ class PermutationTest {
         }
     }
 
-    private static void assertClass(Object object, Class<?> objectClass) {
-        final var expected = objectClass.getName();
-        final var actual = object.getClass().getName();
-        if (Objects.equals(expected, actual)) {
-            return;
-        }
+    @Test
+    void testEmptyPermutationNewInstance() {
+        // For code coverage.
+        var permutation = new PermutationEmpty<>();
+        var index = new int[0];
+        var kSize = 0;
+        var list = new ArrayList<>();
+        permutation.newInstance(index, list, kSize);
+        assertNotNull(permutation);
+    }
 
-        throw new AssertionFailedError("Object not of the expected type.", expected, actual);
+    @Test
+    void testEmptyPermutationCount() {
+        var permutation = new PermutationEmpty<>();
+        var count = permutation.count();
+        assertEquals(BigInteger.ZERO, count);
     }
 
 }

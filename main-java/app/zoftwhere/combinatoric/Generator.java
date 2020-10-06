@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static app.zoftwhere.combinatoric.AbstractPermutation.orderedArray;
 import static java.util.Collections.unmodifiableList;
 
 /**
@@ -16,6 +15,7 @@ import static java.util.Collections.unmodifiableList;
  * </p>
  *
  * @author Osmund
+ * @since 2.0.0
  */
 public class Generator {
 
@@ -23,6 +23,7 @@ public class Generator {
      * Factory method for {@link java.lang.Long} {@link app.zoftwhere.combinatoric.Sequence}.
      *
      * @return Long sequence
+     * @since 2.0.0
      */
     public static Sequence<Long, Long> primitiveSequence() {
         Long base = 1L;
@@ -36,6 +37,7 @@ public class Generator {
      * Factory method for {@link java.math.BigInteger} {@link app.zoftwhere.combinatoric.Sequence}.
      *
      * @return BigInteger sequence
+     * @since 2.0.0
      */
     public static Sequence<BigInteger, BigInteger> bigIntegerSequence() {
         BigInteger base = BigInteger.ONE;
@@ -49,6 +51,7 @@ public class Generator {
      * Factory method for {@link java.math.BigDecimal} {@link app.zoftwhere.combinatoric.Sequence}.
      *
      * @return BigDecimal sequence
+     * @since 2.0.0
      */
     public static Sequence<BigDecimal, BigInteger> bigDecimalSequence() {
         BigDecimal base = BigDecimal.ONE;
@@ -59,14 +62,33 @@ public class Generator {
     }
 
     /**
+     * Creates an empty permutation.
+     *
+     * @param <T> element type
+     * @return an empty permutation
+     * @since 3.0.0
+     */
+    public static <T> Permutation<T> emptyPermutation() {
+        return new PermutationEmpty<>();
+    }
+
+    /**
      * Creates an immutable void permutation.
      *
-     * @param size the number of elements to hold.
+     * @param size number of elements to hold.
      * @return immutable void permutation
+     * @since 2.0.0
      */
     public static Permutation<Void> newPermutation(int size) {
-        if (size < 1) {
-            return empty();
+        // @since 3.0.0
+        if (size < 0) {
+            final String message = "generator.permutation.size.negative";
+            final Exception cause = new Exception("size: " + size);
+            throw new IllegalArgumentException(message, cause);
+        }
+
+        if (size == 0) {
+            return emptyPermutation();
         }
 
         return new PermutationVoid(orderedArray(size), size);
@@ -75,18 +97,28 @@ public class Generator {
     /**
      * Creates an immutable void permutation.
      *
-     * @param size  the number of elements to hold
-     * @param kSize the number of elements for display
+     * @param size  number of elements to hold
+     * @param kSize permutation sequence length
      * @return immutable void permutation
+     * @since 2.0.0
      */
     public static Permutation<Void> newPermutation(int size, int kSize) {
-        if (size < 1 || kSize <= 0) {
-            return empty();
+        // @since 3.0.0
+        if (size < 0) {
+            final String message = "generator.permutation.size.negative";
+            final Exception cause = new Exception("size: " + size);
+            throw new IllegalArgumentException(message, cause);
         }
 
-        if (kSize > size) {
-            // TODO
-            throw new ArrayIndexOutOfBoundsException("");
+        // @since 3.0.0
+        if (size < kSize) {
+            final String message = "generator.permutation.out.of.bounds";
+            final Exception cause = new Exception("kSize: " + kSize);
+            throw new IllegalArgumentException(message, cause);
+        }
+
+        if (size == 0 || kSize == 0) {
+            return emptyPermutation();
         }
 
         return new PermutationVoid(orderedArray(size), kSize);
@@ -95,11 +127,12 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
-     * @param <T>        the type
-     * @param list       the value elements
-     * @param comparator the comparator
-     * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
+     * @param <T>        element type
+     * @param list       list of elements
+     * @param comparator comparator
+     * @return immutable basic permutation if no duplicates are detected, a multi-set otherwise
      * @throws NullPointerException if any of the list items are null
+     * @since 2.0.0
      */
     public static <T> Permutation<T> newPermutation(List<T> list, Comparator<T> comparator) {
         return newPermutation(list, comparator, list != null ? list.size() : 0);
@@ -108,16 +141,26 @@ public class Generator {
     /**
      * Creates an immutable k-permutation.
      *
-     * @param <T>        the type
-     * @param list       the value elements
-     * @param comparator the comparator
-     * @param kSize      kSize value
-     * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
+     * @param <T>        element type
+     * @param list       list of elements
+     * @param comparator comparator
+     * @param kSize      permutation sequence length
+     * @return immutable basic permutation if no duplicates are detected, a multi-set otherwise
      * @throws NullPointerException if any of the list items are null
+     * @since 2.0.0
      */
     public static <T> Permutation<T> newPermutation(List<T> list, Comparator<T> comparator, int kSize) {
-        if (list == null || comparator == null || list.size() <= 0 || kSize <= 0) {
-            return empty();
+        final int size = list != null && comparator != null ? list.size() : 0;
+
+        // @since 3.0.0
+        if (size < kSize) {
+            final String message = "generator.permutation.out.of.bounds";
+            final Exception cause = new Exception("kSize: " + kSize);
+            throw new IllegalArgumentException(message, cause);
+        }
+
+        if (size == 0) {
+            return emptyPermutation();
         }
 
         for (T item : list) {
@@ -126,25 +169,21 @@ public class Generator {
             }
         }
 
-        final int size = list.size();
-        if (kSize > size) {
-            // TODO
-            throw new ArrayIndexOutOfBoundsException("");
-        }
-
         final List<T> sortedList = new ArrayList<>(size);
         boolean basic = true;
         sortedList.addAll(list);
         sortedList.sort(comparator);
         for (int i = 1; i < size; i++) {
-            if (comparator.compare(sortedList.get(i - 1), sortedList.get(i)) == 0) {
+            final T left = sortedList.get(i - 1);
+            final T right = sortedList.get(i);
+            if (left == right || comparator.compare(left, right) == 0) {
                 basic = false;
                 break;
             }
         }
 
         if (!basic) {
-            return new PermutationNTuple<>(orderedArray(size), unmodifiableList(sortedList), kSize);
+            return new PermutationMultiSet<>(orderedArray(size), unmodifiableList(sortedList), kSize);
         }
 
         return new PermutationBasic<>(orderedArray(size), unmodifiableList(sortedList), kSize);
@@ -153,10 +192,11 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
-     * @param <T>  the type
-     * @param list the value elements
-     * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
+     * @param <T>  element type
+     * @param list list of elements
+     * @return immutable basic permutation if no duplicates are detected, a multi-set otherwise
      * @throws NullPointerException if any of the list items are null
+     * @since 2.0.0
      */
     public static <T> Permutation<T> newPermutation(List<T> list) {
         return newPermutation(list, list != null ? list.size() : 0);
@@ -165,15 +205,15 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
-     * @param <T>   the type
-     * @param list  the value elements
-     * @param kSize kSize value
-     * @return immutable basic permutation if no duplicates are detected, an N-Tuple otherwise
+     * @param <T>   element type
+     * @param list  list of elements
+     * @param kSize permutation sequence length
+     * @return immutable basic permutation if no duplicates are detected, a multi-set otherwise
      * @throws NullPointerException if any of the list items are null
      */
     public static <T> Permutation<T> newPermutation(List<T> list, int kSize) {
         if (list == null || list.size() == 0 || kSize < 1 || kSize > list.size()) {
-            return empty();
+            return emptyPermutation();
         }
 
         final int size = list.size();
@@ -201,7 +241,7 @@ public class Generator {
         }
 
         if (!basic) {
-            return new PermutationNTuple<>(orderedArray(size), unmodifiableList(groupedList), kSize);
+            return new PermutationMultiSet<>(orderedArray(size), unmodifiableList(groupedList), kSize);
         }
 
         return new PermutationBasic<>(orderedArray(size), unmodifiableList(groupedList), kSize);
@@ -210,11 +250,12 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
-     * @param <T>             the type
-     * @param list            the value elements
+     * @param <T>             element type
+     * @param list            list of elements
      * @param withRepetitions flag to specify if duplicates should be ignored
      * @return immutable linked permutation
      * @throws NullPointerException if any of the list items are null
+     * @since 2.0.0
      */
     public static <T> Permutation<T> newPermutation(List<T> list, boolean withRepetitions) {
         return newPermutation(list, withRepetitions, list != null ? list.size() : 0);
@@ -223,12 +264,13 @@ public class Generator {
     /**
      * Creates an immutable linked permutation.
      *
-     * @param <T>             the type
-     * @param list            the value elements
+     * @param <T>             element type
+     * @param list            list of elements
      * @param withRepetitions flag to specify if duplicates should be ignored
-     * @param kSize           kSize value
+     * @param kSize           permutation sequence length
      * @return immutable linked permutation
      * @throws NullPointerException if any of the list items are null
+     * @since 2.0.0
      */
     public static <T> Permutation<T> newPermutation(List<T> list, boolean withRepetitions, int kSize) {
         if (withRepetitions) {
@@ -247,12 +289,72 @@ public class Generator {
     }
 
     /**
+     * Creates an empty k-tuple.
+     *
+     * @param <T> element type
+     * @return an empty k-tuple
+     * @since 3.0.0
+     */
+    public static <T> KTuple<T> emptyTuple() {
+        return new KTupleEmpty<>();
+    }
+
+    /**
+     * Creates an index-only k-tuple.
+     *
+     * @param size  tuple size
+     * @param kSize count of k-tuple elements
+     * @return index-only k-tuple
+     * @since 3.0.0
+     */
+    public static KTuple<Void> newTuple(int size, int kSize) {
+        if (size < 0) {
+            final String message = "generator.tuple.size.negative";
+            final Exception cause = new Exception("size: " + size);
+            throw new IllegalArgumentException(message, cause);
+        }
+        if (size == 0 || kSize == 0) {
+            return emptyTuple();
+        }
+
+        return new KTupleVoid(new int[size], kSize);
+    }
+
+    /**
+     * Creates a linked k-tuple.
+     *
+     * @param size tuple size
+     * @param kSet ordered k-set
+     * @param <T> element type
+     * @return linked k-tuple
+     * @since 3.0.0
+     */
+    public static <T> KTuple<T> newTuple(int size, List<T> kSet) {
+        if (size < 0) {
+            final String message = "generator.tuple.size.negative";
+            final Exception cause = new Exception("size: " + size);
+            throw new IllegalArgumentException(message, cause);
+        }
+        if (kSet == null) {
+            final String message = "generator.tuple.set.null";
+            final Exception cause = new Exception("size: " + size + " kSet: " + null);
+            throw new IllegalArgumentException(message, cause);
+        }
+        if (size == 0 || kSet.size() == 0) {
+            return emptyTuple();
+        }
+
+        return new KTupleLinked<>(new int[size], kSet, kSet.size());
+    }
+
+    /**
      * Returns the index for group insertion.
      *
      * @param list list of elements
      * @param item item to insert
      * @param <T>  item type
      * @return index for group insertion
+     * @since 2.0.0
      */
     private static <T> int getGroupInsertIndex(final List<T> list, T item) {
         final int size = list.size();
@@ -272,13 +374,21 @@ public class Generator {
     }
 
     /**
-     * Creates an empty permutation.
+     * <p>Creates an ordered index array.
+     * </p>
+     * <p>This method is private for this functionality.
+     * </p>
      *
-     * @param <T> the type
-     * @return an empty permutation
+     * @param size the size of the array
+     * @return an ordered index array
+     * @since 3.0.0
      */
-    static <T> Permutation<T> empty() {
-        return new PermutationEmpty<>();
+    private static int[] orderedArray(int size) {
+        final int[] index = new int[size];
+        for (int i = 0; i < size; i++) {
+            index[i] = i;
+        }
+        return index;
     }
 
 }

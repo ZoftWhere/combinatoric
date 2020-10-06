@@ -1,9 +1,10 @@
 package app.zoftwhere.combinatoric;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import static app.zoftwhere.combinatoric.Generator.empty;
+import static app.zoftwhere.combinatoric.Generator.emptyPermutation;
 
 /**
  * <p>Permutation Basic.
@@ -12,16 +13,17 @@ import static app.zoftwhere.combinatoric.Generator.empty;
  * </p>
  *
  * @author Osmund
+ * @since 1.0.0
  */
 class PermutationBasic<T> extends AbstractPermutation<T> {
 
-    private final int size;
+    final int[] index;
 
-    private final int[] index;
+    final int size;
 
     private final List<T> list;
 
-    private final int kSize;
+    final int kSize;
 
     /**
      * Constructor for {@link app.zoftwhere.combinatoric.PermutationBasic} (package-private).
@@ -29,6 +31,7 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
      * @param index index
      * @param list  list
      * @param kSize size of display elements
+     * @since 2.0.0
      */
     PermutationBasic(int[] index, List<T> list, int kSize) {
         super(index, kSize);
@@ -64,7 +67,7 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
     @Override
     public Permutation<T> progress(int position) {
         if (!checkPosition(position)) {
-            return empty();
+            return emptyPermutation();
         }
 
         int min = index[position];
@@ -83,12 +86,25 @@ class PermutationBasic<T> extends AbstractPermutation<T> {
         }
 
         if (swap == position) {
-            return empty();
+            return emptyPermutation();
         }
 
         return newInstance(advance(index, position, swap), list, kSize);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public BigInteger count() {
+        // Permutation formula.
+        return Calculator.nPk(size, kSize);
+    }
+
+    /**
+     * Returns the permutation information with index and value.
+     *
+     * @return permutation information with index and value
+     * @since 1.0.0
+     */
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("[");
