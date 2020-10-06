@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import static app.zoftwhere.combinatoric.Generator.bigDecimalSequence;
 import static app.zoftwhere.combinatoric.Generator.bigIntegerSequence;
 import static app.zoftwhere.combinatoric.Generator.primitiveSequence;
+import static app.zoftwhere.combinatoric.TestHelper.assertClass;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -115,7 +116,7 @@ class SeriesTest {
             fail("expected.illegal.argument.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("series.zero.power.zero", e.getMessage());
             assertNull(e.getCause());
         }
@@ -125,7 +126,7 @@ class SeriesTest {
             fail("expected.illegal.argument.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("series.zero.power.zero", e.getMessage());
             assertNull(e.getCause());
         }
@@ -135,7 +136,7 @@ class SeriesTest {
             fail("expected.illegal.argument.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("series.zero.power.zero", e.getMessage());
             assertNull(e.getCause());
         }

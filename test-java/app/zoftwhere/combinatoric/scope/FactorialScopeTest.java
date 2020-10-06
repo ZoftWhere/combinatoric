@@ -6,6 +6,7 @@ import java.util.Base64;
 import org.junit.jupiter.api.Test;
 
 import static app.zoftwhere.combinatoric.Calculator.factorial;
+import static app.zoftwhere.combinatoric.TestHelper.assertClass;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -35,10 +36,10 @@ class FactorialScopeTest {
             factorial(-1);
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("calculator.factorial.value.negative", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("value: -1", e.getCause().getMessage());
         }
     }

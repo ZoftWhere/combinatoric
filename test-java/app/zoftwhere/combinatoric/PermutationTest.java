@@ -5,12 +5,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
-import org.opentest4j.AssertionFailedError;
 
 import static app.zoftwhere.combinatoric.Generator.newPermutation;
+import static app.zoftwhere.combinatoric.TestHelper.assertClass;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -93,10 +92,10 @@ class PermutationTest {
             fail("permutation.test.expected.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("generator.permutation.size.negative", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("size: -1", e.getCause().getMessage());
         }
     }
@@ -108,10 +107,10 @@ class PermutationTest {
             fail("permutation.test.expected.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("generator.permutation.size.negative", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("size: -1", e.getCause().getMessage());
         }
     }
@@ -172,7 +171,7 @@ class PermutationTest {
             fail("expected.array.index.out.of.bounds.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+            assertClass(ArrayIndexOutOfBoundsException.class, e);
         }
 
         try {
@@ -180,7 +179,7 @@ class PermutationTest {
             fail("expected.array.index.out.of.bounds.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+            assertClass(ArrayIndexOutOfBoundsException.class, e);
         }
 
         try {
@@ -188,10 +187,10 @@ class PermutationTest {
             fail("expected.array.index.out.of.bounds.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("permutation.check.position.invalid.position", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("size: 1 position: -1", e.getCause().getMessage());
         }
 
@@ -200,10 +199,10 @@ class PermutationTest {
             fail("expected.array.index.out.of.bounds.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("permutation.check.position.invalid.position", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("size: 1 position: 1", e.getCause().getMessage());
         }
 
@@ -212,10 +211,10 @@ class PermutationTest {
             fail("expected.array.index.out.of.bounds.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("generator.permutation.out.of.bounds", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("kSize: 4", e.getCause().getMessage());
         }
 
@@ -224,10 +223,10 @@ class PermutationTest {
             fail("expected.array.index.out.of.bounds.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("generator.permutation.out.of.bounds", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("kSize: 4", e.getCause().getMessage());
         }
     }
@@ -485,16 +484,6 @@ class PermutationTest {
         if (!(permutation instanceof PermutationEmpty)) {
             fail("permutation.type.not.empty");
         }
-    }
-
-    private static void assertClass(Class<?> objectClass, Object object) {
-        final var expected = objectClass.getName();
-        final var actual = object.getClass().getName();
-        if (Objects.equals(expected, actual)) {
-            return;
-        }
-
-        throw new AssertionFailedError("Object not of the expected type.", expected, actual);
     }
 
 }

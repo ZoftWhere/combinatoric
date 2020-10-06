@@ -3,6 +3,7 @@ package app.zoftwhere.combinatoric.scope;
 import org.junit.jupiter.api.Test;
 
 import static app.zoftwhere.combinatoric.Calculator.nCr;
+import static app.zoftwhere.combinatoric.TestHelper.assertClass;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -31,10 +32,10 @@ class BinomialCoefficientScopeTest {
             nCr(-1, 0);
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("calculator.ncr.number.negative", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("n: -1", e.getCause().getMessage());
         }
     }
@@ -45,10 +46,10 @@ class BinomialCoefficientScopeTest {
             nCr(0, -1);
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("calculator.ncr.number.out.of.bound", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("r: -1", e.getCause().getMessage());
         }
 
@@ -56,10 +57,10 @@ class BinomialCoefficientScopeTest {
             nCr(0, 1);
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("calculator.ncr.number.out.of.bound", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("r: 1", e.getCause().getMessage());
         }
     }

@@ -3,6 +3,7 @@ package app.zoftwhere.combinatoric.scope;
 import org.junit.jupiter.api.Test;
 
 import static app.zoftwhere.combinatoric.Calculator.nPk;
+import static app.zoftwhere.combinatoric.TestHelper.assertClass;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -36,10 +37,10 @@ class PartialPermutationTest {
             nPk(-1, 0);
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("calculator.npk.number.negative", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("n: -1", e.getCause().getMessage());
         }
     }
@@ -50,10 +51,10 @@ class PartialPermutationTest {
             nPk(1, -1);
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("calculator.npk.number.out.of.bound", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("k: -1", e.getCause().getMessage());
         }
     }

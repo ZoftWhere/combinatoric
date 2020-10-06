@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import static app.zoftwhere.combinatoric.TestHelper.assertClass;
 import static java.util.Comparator.naturalOrder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -51,10 +52,10 @@ class PermutationCountTest {
             fail("permutation.test.expected.exception");
         }
         catch (RuntimeException e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertClass(IllegalArgumentException.class, e);
             assertEquals("permutation.multiset.k.permutation.count", e.getMessage());
             assertNotNull(e.getCause());
-            assertEquals(Exception.class, e.getCause().getClass());
+            assertClass(Exception.class, e.getCause());
             assertEquals("kSize: 7", e.getCause().getMessage());
         }
     }
