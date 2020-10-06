@@ -96,6 +96,7 @@ class PermutationEmpty<T> extends AbstractPermutation<T> {
     /**
      * Returns the empty permutation string.
      *
+     * @return empty permutation string
      * @since 2.0.0
      */
     @Override
