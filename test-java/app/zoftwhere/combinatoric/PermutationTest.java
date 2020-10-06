@@ -1,5 +1,6 @@
 package app.zoftwhere.combinatoric;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -484,6 +485,24 @@ class PermutationTest {
         if (!(permutation instanceof PermutationEmpty)) {
             fail("permutation.type.not.empty");
         }
+    }
+
+    @Test
+    void testEmptyPermutationNewInstance() {
+        // For code coverage.
+        var permutation = new PermutationEmpty<>();
+        var index = new int[0];
+        var kSize = 0;
+        var list = new ArrayList<>();
+        permutation.newInstance(index, list, kSize);
+        assertNotNull(permutation);
+    }
+
+    @Test
+    void testEmptyPermutationCount() {
+        var permutation = new PermutationEmpty<>();
+        var count = permutation.count();
+        assertEquals(BigInteger.ZERO, count);
     }
 
 }
