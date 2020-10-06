@@ -55,16 +55,6 @@ class PermutationVoid extends PermutationBasic<Void> {
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @noinspection EmptyMethod
-     */
-    @Override
-    public Permutation<Void> next() {
-        return super.next();
-    }
-
-    /**
      * Returns the permutation index information.
      *
      * @return permutation index information
