@@ -289,6 +289,65 @@ public class Generator {
     }
 
     /**
+     * Creates an empty k-tuple.
+     *
+     * @param <T> element type
+     * @return an empty k-tuple
+     * @since 3.0.0
+     */
+    public static <T> KTuple<T> emptyTuple() {
+        return new KTupleEmpty<>();
+    }
+
+    /**
+     * Creates an index-only k-tuple.
+     *
+     * @param size  tuple size
+     * @param kSize count of k-tuple elements
+     * @return index-only k-tuple
+     * @since 3.0.0
+     */
+    public static KTuple<Void> newTuple(int size, int kSize) {
+        if (size < 0) {
+            final String message = "generator.tuple.size.negative";
+            final Exception cause = new Exception("size: " + size);
+            throw new IllegalArgumentException(message, cause);
+        }
+        if (size == 0 || kSize == 0) {
+            return emptyTuple();
+        }
+
+        return new KTupleVoid(new int[size], kSize);
+    }
+
+    /**
+     * Creates a linked k-tuple.
+     *
+     * @param size tuple size
+     * @param kSet ordered k-set
+     * @param <T> element type
+     * @return linked k-tuple
+     * @since 3.0.0
+     */
+    public static <T> KTuple<T> newTuple(int size, List<T> kSet) {
+        if (size < 0) {
+            final String message = "generator.tuple.size.negative";
+            final Exception cause = new Exception("size: " + size);
+            throw new IllegalArgumentException(message, cause);
+        }
+        if (kSet == null) {
+            final String message = "generator.tuple.set.null";
+            final Exception cause = new Exception("size: " + size + " kSet: " + null);
+            throw new IllegalArgumentException(message, cause);
+        }
+        if (size == 0 || kSet.size() == 0) {
+            return emptyTuple();
+        }
+
+        return new KTupleLinked<>(new int[size], kSet, kSet.size());
+    }
+
+    /**
      * Returns the index for group insertion.
      *
      * @param list list of elements
