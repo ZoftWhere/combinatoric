@@ -17,13 +17,13 @@ import static app.zoftwhere.combinatoric.Generator.emptyPermutation;
  */
 class PermutationBasic<T> extends AbstractPermutation<T> {
 
-    private final int size;
+    final int[] index;
 
-    private final int[] index;
+    final int size;
 
     private final List<T> list;
 
-    private final int kSize;
+    final int kSize;
 
     /**
      * Constructor for {@link app.zoftwhere.combinatoric.PermutationBasic} (package-private).

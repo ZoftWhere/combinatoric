@@ -16,12 +16,6 @@ import java.util.NoSuchElementException;
  */
 class PermutationVoid extends PermutationBasic<Void> {
 
-    private final int size;
-
-    private final int[] index;
-
-    private final int kSize;
-
     /**
      * Constructor for {@link app.zoftwhere.combinatoric.PermutationVoid} (package-private).
      *
@@ -31,9 +25,6 @@ class PermutationVoid extends PermutationBasic<Void> {
      */
     PermutationVoid(int[] index, int kSize) {
         super(index, null, kSize);
-        this.index = index;
-        this.size = index.length;
-        this.kSize = kSize;
     }
 
     /** {@inheritDoc} */
