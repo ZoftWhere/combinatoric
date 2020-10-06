@@ -75,9 +75,9 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
     /** {@inheritDoc} */
     @Override
     public int[] index() {
-        int[] push = new int[size];
-        System.arraycopy(index, 0, push, 0, size);
-        return push;
+        int[] copy = new int[size];
+        System.arraycopy(index, 0, copy, 0, size);
+        return copy;
     }
 
     /** {@inheritDoc} */
