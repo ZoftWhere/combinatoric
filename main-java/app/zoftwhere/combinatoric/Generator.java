@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static app.zoftwhere.combinatoric.AbstractPermutation.orderedArray;
 import static java.util.Collections.unmodifiableList;
 
 /**
@@ -313,6 +312,24 @@ public class Generator {
         }
 
         return size;
+    }
+
+    /**
+     * <p>Creates an ordered index array.
+     * </p>
+     * <p>This method is private for this functionality.
+     * </p>
+     *
+     * @param size the size of the array
+     * @return an ordered index array
+     * @since 3.0.0
+     */
+    private static int[] orderedArray(int size) {
+        final int[] index = new int[size];
+        for (int i = 0; i < size; i++) {
+            index[i] = i;
+        }
+        return index;
     }
 
 }

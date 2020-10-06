@@ -167,19 +167,4 @@ abstract class AbstractPermutation<T> implements Permutation<T> {
         return push;
     }
 
-    /**
-     * Creates an ordered index array for the permutation.
-     *
-     * @param size the size of the array
-     * @return an ordered index array
-     * @since 2.0.0
-     */
-    static int[] orderedArray(int size) {
-        final int[] index = new int[size];
-        for (int i = 0; i < size; i++) {
-            index[i] = i;
-        }
-        return index;
-    }
-
 }
