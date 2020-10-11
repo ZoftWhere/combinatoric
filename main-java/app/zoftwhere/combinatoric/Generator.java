@@ -325,7 +325,7 @@ public class Generator {
      *
      * @param size tuple size
      * @param kSet ordered k-set
-     * @param <T> element type
+     * @param <T>  element type
      * @return linked k-tuple
      * @since 3.0.0
      */
