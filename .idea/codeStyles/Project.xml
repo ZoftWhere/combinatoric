@@ -529,6 +529,18 @@
               <match>
                 <AND>
                   <FIELD>true</FIELD>
+                  <FINAL>true</FINAL>
+                  <PRIVATE>true</PRIVATE>
+                  <STATIC>true</STATIC>
+                </AND>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <FIELD>true</FIELD>
                   <PUBLIC>true</PUBLIC>
                   <STATIC>true</STATIC>
                 </AND>
