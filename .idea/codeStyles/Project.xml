@@ -1,7 +1,6 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
     <option name="LINE_SEPARATOR" value="&#10;" />
-    <option name="RIGHT_MARGIN" value="240" />
     <option name="FORMATTER_TAGS_ENABLED" value="true" />
     <DB2CodeStyleSettings version="0">
       <option name="myVersion" value="0" />
@@ -490,7 +489,6 @@
     <codeStyleSettings language="JAVA">
       <option name="RIGHT_MARGIN" value="120" />
       <option name="KEEP_CONTROL_STATEMENT_IN_ONE_LINE" value="false" />
-      <option name="BLANK_LINES_BEFORE_CLASS_END" value="1" />
       <option name="CLASS_BRACE_STYLE" value="5" />
       <option name="METHOD_BRACE_STYLE" value="5" />
       <option name="ELSE_ON_NEW_LINE" value="true" />
@@ -531,27 +529,7 @@
               <match>
                 <AND>
                   <FIELD>true</FIELD>
-                  <FINAL>true</FINAL>
-                  <STATIC>true</STATIC>
-                </AND>
-              </match>
-            </rule>
-          </section>
-          <section>
-            <rule>
-              <match>
-                <AND>
-                  <FIELD>true</FIELD>
-                  <STATIC>true</STATIC>
-                </AND>
-              </match>
-            </rule>
-          </section>
-          <section>
-            <rule>
-              <match>
-                <AND>
-                  <INITIALIZER_BLOCK>true</INITIALIZER_BLOCK>
+                  <PUBLIC>true</PUBLIC>
                   <STATIC>true</STATIC>
                 </AND>
               </match>
@@ -573,8 +551,7 @@
             <rule>
               <match>
                 <AND>
-                  <METHOD>true</METHOD>
-                  <PUBLIC>true</PUBLIC>
+                  <INITIALIZER_BLOCK>true</INITIALIZER_BLOCK>
                   <STATIC>true</STATIC>
                 </AND>
               </match>
@@ -585,7 +562,8 @@
               <match>
                 <AND>
                   <FIELD>true</FIELD>
-                  <FINAL>true</FINAL>
+                  <PUBLIC>false</PUBLIC>
+                  <STATIC>true</STATIC>
                 </AND>
               </match>
             </rule>
@@ -593,14 +571,31 @@
           <section>
             <rule>
               <match>
-                <FIELD>true</FIELD>
+                <AND>
+                  <METHOD>true</METHOD>
+                  <PRIVATE>false</PRIVATE>
+                  <STATIC>true</STATIC>
+                </AND>
               </match>
             </rule>
           </section>
           <section>
             <rule>
               <match>
-                <INITIALIZER_BLOCK>true</INITIALIZER_BLOCK>
+                <AND>
+                  <FIELD>true</FIELD>
+                  <STATIC>false</STATIC>
+                </AND>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <INITIALIZER_BLOCK>true</INITIALIZER_BLOCK>
+                  <STATIC>false</STATIC>
+                </AND>
               </match>
             </rule>
           </section>
@@ -623,8 +618,44 @@
               <match>
                 <AND>
                   <METHOD>true</METHOD>
-                  <PUBLIC>false</PUBLIC>
+                  <PRIVATE>true</PRIVATE>
                   <STATIC>true</STATIC>
+                </AND>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <METHOD>true</METHOD>
+                  <NAME>hashCode</NAME>
+                  <PUBLIC>true</PUBLIC>
+                  <STATIC>false</STATIC>
+                </AND>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <METHOD>true</METHOD>
+                  <NAME>equals</NAME>
+                  <PUBLIC>true</PUBLIC>
+                  <STATIC>false</STATIC>
+                </AND>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <METHOD>true</METHOD>
+                  <NAME>toString</NAME>
+                  <PUBLIC>true</PUBLIC>
+                  <STATIC>false</STATIC>
                 </AND>
               </match>
             </rule>
@@ -741,7 +772,6 @@
       </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="XML">
-      <option name="RIGHT_MARGIN" value="120" />
       <indentOptions>
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
       </indentOptions>
